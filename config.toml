@@ -1,3 +1,24 @@
-baseURL = "http://example.org/"
+baseURL = "https://mjdiloreto.github.io"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Matthew DiLoreto"
+theme = "kiera" # todo switch to hyde
+
+# Kiera specific configurations
+
+pygmentsCodeFences = true
+disqusShortname = "" #Disqus shortname
+googleAnalytics = "" #Google Analytics ID
+
+[author]
+    name = "Matthew DiLoreto"       #Author name
+    github = "mjdiloreto"     #Github username
+#    gitlab = ""     #Gitlab username
+    linkedin = "matthew-diloreto-410510150"   #LinkedIn username
+#    facebook = ""   #Facebook username
+#    twitter = ""    #Twitter username
+#    instagram = ""  #Instagram username
+
+[params]
+    tagline = "A place to keep track of some of my things."
+
+#end Kiera specific configurations    

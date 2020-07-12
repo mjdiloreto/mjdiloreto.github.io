@@ -1,0 +1,140 @@
+
+   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+     <channel>
+       <title>Posts on Matthew DiLoreto</title>
+       <link>https://mjdiloreto.github.io/posts/</link>
+       <description>Recent content in Posts on Matthew DiLoreto</description>
+       <generator>Hugo -- gohugo.io</generator>
+       <language>en-us</language>
+       
+           <atom:link href="https://mjdiloreto.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+       
+       
+       <item>
+         <title>Emacs and Org-Mode</title>
+         <link>https://mjdiloreto.github.io/posts/org-mode/</link>
+         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+         
+         <guid>https://mjdiloreto.github.io/posts/org-mode/</guid>
+         <description>&lt;p&gt;Before this year I was always a vim guy. I used vim for almost everything except JVM programming (Java, Scala. For those tasks I really prefer IntelliJ), but this year I installed emacs. I figured if I really wanted to participate in the [holy flame war] I better spend some time learning the other tool as well. I used a few different tool for all my electronic tasks, and here&amp;rsquo;s what that landscape looked like for me before emacs:&lt;/p&gt;
+&lt;h2 id=&#34;before-emacs&#34;&gt;Before Emacs&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Task&lt;/th&gt;
+&lt;th&gt;Software&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Taking Notes&lt;/td&gt;
+&lt;td&gt;vim, Github-flavored Markdown&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Keeping an agenda&lt;/td&gt;
+&lt;td&gt;A simple note widget on my phone, Google Tasks&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Text file manipulation&lt;/td&gt;
+&lt;td&gt;vim&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;python, C++&lt;/td&gt;
+&lt;td&gt;vim with [YouCompleteMe]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Java, Scala, javascript&lt;/td&gt;
+&lt;td&gt;IntelliJ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;I was generally happy using this configuration, with the exception of my agenda. I was too disorganized, with short-term tasks on a note widget on my phone&amp;rsquo;s home screen, and longer term tasks in Google Tasks. Putting time constraints on the short-term tasks was basically impossible since the note app had no integrations with the calendar, and putting those things in Google Tasks was too onerous. Also, I do most of my work on my laptop, so having to keep my phone by my side while working was a big pain.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d recently watched a talk from [some guy] on org-mode, and the simple plain-text markup with powerful keyboard shortcuts convinced me to give it a shot. Actually, the keyboard shortcut for inserting timestamps, &lt;code&gt;C-u C-c .&lt;/code&gt;, is the single thing I saw in that talk that I &lt;em&gt;had&lt;/em&gt; to try. So I opened emacs and&amp;hellip; couldn&amp;rsquo;t figure out how to make a new file. So back to what I knew, &lt;code&gt;vim agenda.org&lt;/code&gt;, insert some markup, save, &lt;em&gt;then&lt;/em&gt; &lt;code&gt;emacs agenda.org&lt;/code&gt;. I haven&amp;rsquo;t gone back to another way of organizing my tasks. I ought to write about my workflow with org-mode, but that&amp;rsquo;s for another day. In fact, I liked it so much that I started taking all my class notes with emacs too. So it begins, I&amp;rsquo;ve chosen a side on the holy war, and emacs is slowly conquering territory that used to belong firmly to vim.&lt;/p&gt;
+&lt;h2 id=&#34;now-3-months-of-emacs&#34;&gt;Now, 3 months of emacs&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Task&lt;/th&gt;
+&lt;th&gt;Software&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Taking Notes&lt;/td&gt;
+&lt;td&gt;emacs, org-mode&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Keeping an agenda&lt;/td&gt;
+&lt;td&gt;emacs, org-mode&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Text file manipulation&lt;/td&gt;
+&lt;td&gt;vim&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;python, C++&lt;/td&gt;
+&lt;td&gt;vim with [YouCompleteMe]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Java, Scala, javascript&lt;/td&gt;
+&lt;td&gt;IntelliJ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Actually, these changes coincided with me teaching myself Clojure, so the landscape &lt;em&gt;really&lt;/em&gt; looks like:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Task&lt;/th&gt;
+&lt;th&gt;Software&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Taking Notes&lt;/td&gt;
+&lt;td&gt;emacs, org-mode&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Keeping an agenda&lt;/td&gt;
+&lt;td&gt;emacs, org-mode&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Clojure&lt;/td&gt;
+&lt;td&gt;emacs, CIDR&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Text file manipulation&lt;/td&gt;
+&lt;td&gt;vim&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;python, C++&lt;/td&gt;
+&lt;td&gt;vim with [YouCompleteMe]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Java, Scala, javascript&lt;/td&gt;
+&lt;td&gt;IntelliJ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;And it&amp;rsquo;s definitely not looking good for vim down the road. Right now my vim/emacs ratio is around 1:1, but I imagine this will shift more in emacs&amp;rsquo;s favor soon. I &lt;em&gt;really&lt;/em&gt; like emacs. It&amp;rsquo;s almost apples and oranges to vim, or maybe a more apt analogy would be &lt;em&gt;crab-apples&lt;/em&gt; to oranges, where you&amp;rsquo;ve only been eating crab-apples for years and didn&amp;rsquo;t know how good oranges tasted yet.&lt;/p&gt;
+</description>
+       </item>
+       
+       <item>
+         <title>The Time I Cheated a Browser Game and Didn&#39;t Get Caught.</title>
+         <link>https://mjdiloreto.github.io/posts/cheater/</link>
+         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+         
+         <guid>https://mjdiloreto.github.io/posts/cheater/</guid>
+         <description>&lt;p&gt;It&amp;rsquo;s 2006 and I&amp;rsquo;m allowed to use the family computer on a weekend. Between &lt;a href=&#34;https://armorgames.com&#34;&gt;https://armorgames.com&lt;/a&gt;, &lt;a href=&#34;https://miniclip.com&#34;&gt;https://miniclip.com&lt;/a&gt;, and &lt;a href=&#34;https://newgrounds.com&#34;&gt;https://newgrounds.com&lt;/a&gt;, there are essentially limitless options for fun and entertainment.
+As anyone who used these sites back then would know, popups and ads were constantly bombarding the screen, informing you that you had won some grand prize with shiny icons and annoying animations.&lt;/p&gt;
+&lt;p&gt;Even as a kid I was constantly told never to click these ads, and that they were either scams or installed viruses on the computer, and for the most part I simply ignored them.
+But for some period of time, on armorgames.com, there was a banner ad for something called &amp;ldquo;Travian&amp;rdquo;. The advertisement was relatively simple and modest compared to most of the flashy ads promising some too-good-to-be-true reward.
+It appeared to be some sort of map, featuring a small, circular village, surrounded by large fields of wheat, mountains, forests, and clay pits. Each surrounding area of the village was labeled by a number from 0-10, and the only text read, &amp;ldquo;Play Travian&amp;rdquo; in a roman-esque font.
+For 8-year old me, the mystery of Travian was incredibly enticing. Why was the ad so simple, and how could one possibly play a game like that?&lt;/p&gt;
+&lt;p&gt;Compared to the fast-paced flash games I was used to, like &amp;ldquo;Slap the Monkey&amp;rdquo;, &amp;ldquo;Bloons&amp;rdquo;, or &amp;ldquo;Fancy Pants Adventure 2&amp;rdquo;, Travian was bizarre. 6 months to play a &lt;em&gt;single game?!&lt;/em&gt;&lt;/p&gt;
+</description>
+       </item>
+       
+     </channel>
+   </rss>
