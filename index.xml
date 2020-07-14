@@ -115,7 +115,8 @@ Expect a post about it.
          <pubDate>Fri, 01 May 2020 00:00:00 -0400</pubDate>
          
          <guid>https://mjdiloreto.github.io/about/</guid>
-         <description>&lt;p&gt;I&amp;rsquo;m not a superstar, but I love programming.
+         <description>&lt;p&gt;Check out &lt;a href=&#34;https://mjdiloreto.github.io/ox-hugo/resume.pdf&#34;&gt;my resume!&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not a superstar, but I love programming.
 I&amp;rsquo;m far from a designer or architect, but I would like to design complex systems.
 I read more than I do, but I&amp;rsquo;m trying to change that.
 I appreciate the beauty and simplicity of Lisp.

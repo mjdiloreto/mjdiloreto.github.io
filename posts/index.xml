@@ -17,7 +17,10 @@
          <pubDate>Sun, 01 Mar 2020 15:41:00 -0500</pubDate>
          
          <guid>https://mjdiloreto.github.io/posts/org-mode/</guid>
-         <description>&lt;p&gt;Before this year I was always a vim guy. I used vim for almost everything except JVM programming (Java, Scala. For those tasks I really prefer IntelliJ), but this year I installed emacs. I figured if I really wanted to participate in the [holy flame war] I better spend some time learning the other tool as well. I used a few different tool for all my electronic tasks, and here&amp;rsquo;s what that landscape looked like for me before emacs:&lt;/p&gt;
+         <description>&lt;p&gt;Before this year I was always a vim guy.
+I used vim for almost everything except JVM programming (Java, Scala. For those tasks I really prefer IntelliJ), but this year I installed emacs.
+I figured if I really wanted to participate in the &lt;a href=&#34;https://wiki.c2.com/?EmacsVsVi&#34;&gt;holy flame war&lt;/a&gt; I better spend some time learning the other tool as well.
+I used a few different tool for all my electronic tasks, and here&amp;rsquo;s what that landscape looked like for me before emacs:&lt;/p&gt;
 &lt;h2 id=&#34;before-emacs&#34;&gt;Before Emacs&lt;/h2&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -41,7 +44,7 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;python, C++&lt;/td&gt;
-&lt;td&gt;vim with [YouCompleteMe]&lt;/td&gt;
+&lt;td&gt;vim with &lt;a href=&#34;https://github.com/ycm-core/YouCompleteMe&#34;&gt;YouCompleteMe&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Java, Scala, javascript&lt;/td&gt;
@@ -49,8 +52,11 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;I was generally happy using this configuration, with the exception of my agenda. I was too disorganized, with short-term tasks on a note widget on my phone&amp;rsquo;s home screen, and longer term tasks in Google Tasks. Putting time constraints on the short-term tasks was basically impossible since the note app had no integrations with the calendar, and putting those things in Google Tasks was too onerous. Also, I do most of my work on my laptop, so having to keep my phone by my side while working was a big pain.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;d recently watched a talk from [some guy] on org-mode, and the simple plain-text markup with powerful keyboard shortcuts convinced me to give it a shot.
+&lt;p&gt;I was generally happy using this configuration, with the exception of my agenda.
+I was too disorganized, with short-term tasks on a note widget on my phone&amp;rsquo;s home screen, and longer term tasks in Google Tasks.
+Putting time constraints on the short-term tasks was basically impossible since the note app had no integrations with the calendar, and putting those things in Google Tasks was too onerous.
+Also, I do most of my work on my laptop, so having to keep my phone by my side while working was a big pain.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;d recently watched a talk from &lt;a href=&#34;https://www.youtube.com/watch?v=SzA2YODtgK4&amp;amp;t=2851s&#34;&gt;Harry Schwartz&lt;/a&gt; on org-mode, and the simple plain-text markup with powerful keyboard shortcuts convinced me to give it a shot.
 Actually, the keyboard shortcut for inserting timestamps, &lt;code&gt;C-u C-c .&lt;/code&gt;, is the single thing I saw in that talk that I &lt;em&gt;had&lt;/em&gt; to try.
 So I opened emacs and&amp;hellip; couldn&amp;rsquo;t figure out how to make a new file.
 So back to what I knew, &lt;code&gt;vim agenda.org&lt;/code&gt;, insert some markup, save, &lt;em&gt;then&lt;/em&gt; &lt;code&gt;emacs agenda.org&lt;/code&gt;.
@@ -81,7 +87,7 @@ So it begins, I&amp;rsquo;ve chosen a side on the holy war, and emacs is slowly 
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;python, C++&lt;/td&gt;
-&lt;td&gt;vim with [YouCompleteMe]&lt;/td&gt;
+&lt;td&gt;vim with &lt;a href=&#34;https://github.com/ycm-core/YouCompleteMe&#34;&gt;YouCompleteMe&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Java, Scala, javascript&lt;/td&gt;
@@ -116,7 +122,7 @@ So it begins, I&amp;rsquo;ve chosen a side on the holy war, and emacs is slowly 
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;python, C++&lt;/td&gt;
-&lt;td&gt;vim with [YouCompleteMe]&lt;/td&gt;
+&lt;td&gt;vim with &lt;a href=&#34;https://github.com/ycm-core/YouCompleteMe&#34;&gt;YouCompleteMe&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Java, Scala, javascript&lt;/td&gt;
@@ -124,7 +130,10 @@ So it begins, I&amp;rsquo;ve chosen a side on the holy war, and emacs is slowly 
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;And it&amp;rsquo;s definitely not looking good for vim down the road. Right now my vim/emacs ratio is around 1:1, but I imagine this will shift more in emacs&amp;rsquo;s favor soon. I &lt;em&gt;really&lt;/em&gt; like emacs. It&amp;rsquo;s almost apples and oranges to vim, or maybe a more apt analogy would be &lt;em&gt;crab-apples&lt;/em&gt; to oranges, where you&amp;rsquo;ve only been eating crab-apples for years and didn&amp;rsquo;t know how good oranges tasted yet.&lt;/p&gt;
+&lt;p&gt;And it&amp;rsquo;s definitely not looking good for vim down the road.
+Right now my vim/emacs ratio is around 1:1, but I imagine this will shift more in emacs&amp;rsquo;s favor soon.
+I &lt;em&gt;really&lt;/em&gt; like emacs.
+It&amp;rsquo;s almost apples and oranges to vim, or maybe a more apt analogy would be &lt;em&gt;crab-apples&lt;/em&gt; to oranges, where you&amp;rsquo;ve only been eating crab-apples for years and didn&amp;rsquo;t know how good oranges tasted yet.&lt;/p&gt;
 </description>
        </item>
        
