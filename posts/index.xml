@@ -6,10 +6,126 @@
        <description>Recent content in Posts on Matthew DiLoreto</description>
        <generator>Hugo -- gohugo.io</generator>
        <language>en-us</language>
-       <lastBuildDate>Sun, 01 Mar 2020 15:41:00 -0500</lastBuildDate>
+       <lastBuildDate>Sun, 18 Apr 2021 21:09:00 -0400</lastBuildDate>
        
            <atom:link href="https://mjdiloreto.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
        
+       
+       <item>
+         <title>Libraries for Web Development</title>
+         <link>https://mjdiloreto.github.io/posts/libraries-for-web-development/</link>
+         <pubDate>Sun, 18 Apr 2021 21:09:00 -0400</pubDate>
+         
+         <guid>https://mjdiloreto.github.io/posts/libraries-for-web-development/</guid>
+         <description>&lt;p&gt;A list of neat and nifty libraries I&amp;rsquo;ve stumbled across which have piqued my interest enough for me to save them.
+Keeping track of them here in this list for my future reference.&lt;/p&gt;
+&lt;h2 id=&#34;in-the-browser&#34;&gt;In the Browser&lt;/h2&gt;
+&lt;h3 id=&#34;analytics&#34;&gt;Analytics&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://counter.dev&#34;&gt;counter.dev&lt;/a&gt;: Simple, open-source, free (as in beer), privacy-focused analytics.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;built-on-react&#34;&gt;Built on React&lt;/h3&gt;
+&lt;p&gt;React wins the web by converting the problem of UI to a function:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;V = F(D)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here are some projects which compose with that simple function.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blitzjs.com&#34;&gt;Blitz.js&lt;/a&gt;: Full-stack batteries-included React Framework. 0-API. Comes with Routing, Authentication (sign-up, log in, password reset) preconfigured. Would use for a hackathon project.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;data-visualization&#34;&gt;Data Visualization&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://formidable.com/open-source/victory/&#34;&gt;Victory&lt;/a&gt;: Easy to use Charts and data visualization components for React. Works with React Native too(!)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.highcharts.com/demo&#34;&gt;Highcharts&lt;/a&gt;: Modular library of many chart types with React or plain js bindings.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://chartscss.org/&#34;&gt;Charts.scss&lt;/a&gt;: Boom, no need for React at all. Charts directly in css baby. Could be really cool in conjuction with htmx.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://reactflow.dev/examples&#34;&gt;React flow&lt;/a&gt;: Node editor for building flowcharts / graph-based diagrams with interactive editing, minimap, and more.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://riccardoscalco.it/textures/&#34;&gt;Textures.js&lt;/a&gt;: SVG patterns for data visualization. Trivial to use and beautiful.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;dates&#34;&gt;Dates&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;//js-joda.github.io/js-joda/&#34;&gt;JS-Joda&lt;/a&gt;: Lower adoption than date-fns.
+Immutable implementation of dates (Does not wrap the native JS &lt;code&gt;Date&lt;/code&gt; object.
+Different classes of dates for different use-cases:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;LocalDate (dates like birthdays or holidays)&lt;/li&gt;
+&lt;li&gt;Period (between 2 dates)&lt;/li&gt;
+&lt;li&gt;Duration (scalar time)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;http://date-fns.org&#34;&gt;Date-fns:&lt;/a&gt; Consistent, complete, immutable.&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;High adoption (recommended from &lt;code&gt;moment.js&lt;/code&gt; (the easiest/most intuitive date library I&amp;rsquo;ve encountered)).
+Wraps the Native &lt;code&gt;Date&lt;/code&gt; object.
+Has an FP submodule providing convenience for functional-style programming.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;dom-styling&#34;&gt;DOM styling&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://styled-components.com&#34;&gt;Styled Components&lt;/a&gt;: Directly associate React Components with styles without the need for global style sheets.
+Good for building highly modular (read standalone) components.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://react.semantic-ui.com&#34;&gt;Semantic UI:&lt;/a&gt; words &lt;code&gt;=&lt;/code&gt; classnames. Create highly readable &amp;ldquo;semantic&amp;rdquo; UI code with a decent selection of components&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dwyl/learn-tachyons&#34;&gt;Tachyons&lt;/a&gt;: Functional terse css classes. Might be based off tailwind, not sure.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://roughnotation.com/&#34;&gt;Rough Notation&lt;/a&gt;: Create + animate &amp;ldquo;hand-drawn&amp;rdquo; annotations on top of html.
+Super simple and cool effect.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;dope-stylesheets&#34;&gt;Dope stylesheets&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://nostalgic-css.github.io/NES.css/&#34;&gt;NES.css&lt;/a&gt;: Stylesheet to emulate old NES style interface. Certified dope.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;react-alternatives&#34;&gt;React alternatives&lt;/h3&gt;
+&lt;p&gt;Alternatives to the classic client-side rendered react SPA.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://htmx.org/examples/&#34;&gt;htmx&lt;/a&gt;: Build SPAs directly onto html elements using attributes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;htmx allows you to access AJAX, CSS Transitions, WebSockets and Server Sent Events directly in HTML, using attributes, so you can build modern user interfaces with the simplicity and power of hypertext.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;small - 10k minified + gzipped. Cool author.&lt;/p&gt;
+&lt;h3 id=&#34;misc-dot&#34;&gt;Misc.&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://quotebacks.net/&#34;&gt;Quotebacks&lt;/a&gt;: Create nice-looking and functional quotes to external resources. Mostly used in the blogosphere.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;not-the-browser&#34;&gt;Not the Browser&lt;/h2&gt;
+&lt;h3 id=&#34;web-hosting&#34;&gt;Web hosting&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.netlify.com/&#34;&gt;Netlify&lt;/a&gt;: The best. use it.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://coollabs.io/coolify&#34;&gt;Coolify&lt;/a&gt;: Open-source, indie-hacker-esque Netlify alternative. Not clear what pricing is like.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://raw.githack.com/&#34;&gt;raw.githack.com&lt;/a&gt;: CDN for files hosted in github repos. Good for indie-dev type projects.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;databases&#34;&gt;Databases&lt;/h3&gt;
+&lt;h4 id=&#34;sql&#34;&gt;SQL&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://walkable.gitlab.io&#34;&gt;Walkable&lt;/a&gt;: hiccup-style sql (use EDN to describe SQL statements).&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://massivejs.org/&#34;&gt;Massive.js&lt;/a&gt;: A powerful &lt;code&gt;Node.js&lt;/code&gt; wrapper for (only) &lt;code&gt;postgres&lt;/code&gt; that doesn&amp;rsquo;t get in the way.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;replication&#34;&gt;Replication&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://litestream.io/getting-started/&#34;&gt;litestream&lt;/a&gt;: Replicate SQLite databases automatically in the background as a separate process.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;fun--data-sources&#34;&gt;(Fun) Data sources&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.rijksmuseum.nl/en/rijksstudio&#34;&gt;Rijksmuseum&lt;/a&gt;: Searchable compilation of over 700k high-res copies of famous paintings.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://omar.website/tabfs/&#34;&gt;Tabfs&lt;/a&gt;: Mount browser tabs as a local filesystem.
+Allows easy querying of multiple open tabs, saving+reloading tabs + manipulating + communicating with browser.
+Your own browsing sessions become the data source.
+Literally endless possibilities for scripting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://everynoise.com/&#34;&gt;Everynoise&lt;/a&gt;: Literally every spotify genre, with links to relevant artists / song snippets, and the relations between them all.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;machine-learning&#34;&gt;Machine learning&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://lobe.ai/&#34;&gt;Lobe&lt;/a&gt;: Easiest (superlative, yes) online training of machine learning models. It&amp;rsquo;s free for now.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/nidhaloff/igel&#34;&gt;Igel&lt;/a&gt;: Train + fit, test + use machine learning models at the command line without writing code.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://alicevision.org/#meshroom&#34;&gt;Meshroom&lt;/a&gt;: Reconstruct images as 3D models, aka &lt;code&gt;Photogrammetry&lt;/code&gt; (your $2 word for the day).
+Free (as in freedom, and also beer).&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+       </item>
        
        <item>
          <title>Emacs and Org-Mode</title>

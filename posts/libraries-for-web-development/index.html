@@ -1,0 +1,244 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>Matthew DiLoreto</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="[Matthew DiLoreto]" /><meta name="generator" content="Hugo 0.66.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <script src="https://kit.fontawesome.com/b76b73e8e8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Matthew DiLoreto</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://www.linkedin.com/in/matthew-diloreto-410510150"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://github.com/mjdiloreto"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><em>A place to keep track of some of my things.</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About Me</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/blogs_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>Blogs I Like</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/books_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>Books I Like</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/music_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>What Am I Listening to?</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/what_am_i_working_on/">
+                <i class="fa-li fa  fa-lg"></i><span>What Am Working On?</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Libraries for Web Development</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2021-04-18T21:09:00-04:00">Apr 18, 2021</time>
+        </li>
+        
+
+        
+
+        <li>3 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    <p>A list of neat and nifty libraries I&rsquo;ve stumbled across which have piqued my interest enough for me to save them.
+Keeping track of them here in this list for my future reference.</p>
+<h2 id="in-the-browser">In the Browser</h2>
+<h3 id="analytics">Analytics</h3>
+<ul>
+<li><a href="https://counter.dev">counter.dev</a>: Simple, open-source, free (as in beer), privacy-focused analytics.</li>
+</ul>
+<h3 id="built-on-react">Built on React</h3>
+<p>React wins the web by converting the problem of UI to a function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">V = F(D)
+</code></pre></div><p>Here are some projects which compose with that simple function.</p>
+<ul>
+<li><a href="https://blitzjs.com">Blitz.js</a>: Full-stack batteries-included React Framework. 0-API. Comes with Routing, Authentication (sign-up, log in, password reset) preconfigured. Would use for a hackathon project.</li>
+</ul>
+<h3 id="data-visualization">Data Visualization</h3>
+<ul>
+<li><a href="https://formidable.com/open-source/victory/">Victory</a>: Easy to use Charts and data visualization components for React. Works with React Native too(!)</li>
+<li><a href="https://www.highcharts.com/demo">Highcharts</a>: Modular library of many chart types with React or plain js bindings.</li>
+<li><a href="https://chartscss.org/">Charts.scss</a>: Boom, no need for React at all. Charts directly in css baby. Could be really cool in conjuction with htmx.</li>
+<li><a href="https://reactflow.dev/examples">React flow</a>: Node editor for building flowcharts / graph-based diagrams with interactive editing, minimap, and more.</li>
+<li><a href="https://riccardoscalco.it/textures/">Textures.js</a>: SVG patterns for data visualization. Trivial to use and beautiful.</li>
+</ul>
+<h3 id="dates">Dates</h3>
+<ul>
+<li>
+<p><a href="//js-joda.github.io/js-joda/">JS-Joda</a>: Lower adoption than date-fns.
+Immutable implementation of dates (Does not wrap the native JS <code>Date</code> object.
+Different classes of dates for different use-cases:</p>
+<ul>
+<li>LocalDate (dates like birthdays or holidays)</li>
+<li>Period (between 2 dates)</li>
+<li>Duration (scalar time)</li>
+</ul>
+</li>
+<li>
+<p><a href="http://date-fns.org">Date-fns:</a> Consistent, complete, immutable.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>High adoption (recommended from <code>moment.js</code> (the easiest/most intuitive date library I&rsquo;ve encountered)).
+Wraps the Native <code>Date</code> object.
+Has an FP submodule providing convenience for functional-style programming.</p>
+</li>
+</ul>
+<h3 id="dom-styling">DOM styling</h3>
+<ul>
+<li><a href="http://styled-components.com">Styled Components</a>: Directly associate React Components with styles without the need for global style sheets.
+Good for building highly modular (read standalone) components.</li>
+<li><a href="http://react.semantic-ui.com">Semantic UI:</a> words <code>=</code> classnames. Create highly readable &ldquo;semantic&rdquo; UI code with a decent selection of components</li>
+<li><a href="https://github.com/dwyl/learn-tachyons">Tachyons</a>: Functional terse css classes. Might be based off tailwind, not sure.</li>
+<li><a href="https://roughnotation.com/">Rough Notation</a>: Create + animate &ldquo;hand-drawn&rdquo; annotations on top of html.
+Super simple and cool effect.</li>
+</ul>
+<h3 id="dope-stylesheets">Dope stylesheets</h3>
+<ul>
+<li><a href="https://nostalgic-css.github.io/NES.css/">NES.css</a>: Stylesheet to emulate old NES style interface. Certified dope.</li>
+</ul>
+<h3 id="react-alternatives">React alternatives</h3>
+<p>Alternatives to the classic client-side rendered react SPA.</p>
+<ul>
+<li><a href="https://htmx.org/examples/">htmx</a>: Build SPAs directly onto html elements using attributes.</li>
+</ul>
+<blockquote>
+<p>htmx allows you to access AJAX, CSS Transitions, WebSockets and Server Sent Events directly in HTML, using attributes, so you can build modern user interfaces with the simplicity and power of hypertext.</p>
+</blockquote>
+<p>small - 10k minified + gzipped. Cool author.</p>
+<h3 id="misc-dot">Misc.</h3>
+<ul>
+<li><a href="https://quotebacks.net/">Quotebacks</a>: Create nice-looking and functional quotes to external resources. Mostly used in the blogosphere.</li>
+</ul>
+<h2 id="not-the-browser">Not the Browser</h2>
+<h3 id="web-hosting">Web hosting</h3>
+<ul>
+<li><a href="https://www.netlify.com/">Netlify</a>: The best. use it.</li>
+<li><a href="https://coollabs.io/coolify">Coolify</a>: Open-source, indie-hacker-esque Netlify alternative. Not clear what pricing is like.</li>
+<li><a href="https://raw.githack.com/">raw.githack.com</a>: CDN for files hosted in github repos. Good for indie-dev type projects.</li>
+</ul>
+<h3 id="databases">Databases</h3>
+<h4 id="sql">SQL</h4>
+<ul>
+<li><a href="http://walkable.gitlab.io">Walkable</a>: hiccup-style sql (use EDN to describe SQL statements).</li>
+<li><a href="https://massivejs.org/">Massive.js</a>: A powerful <code>Node.js</code> wrapper for (only) <code>postgres</code> that doesn&rsquo;t get in the way.</li>
+</ul>
+<h4 id="replication">Replication</h4>
+<ul>
+<li><a href="https://litestream.io/getting-started/">litestream</a>: Replicate SQLite databases automatically in the background as a separate process.</li>
+</ul>
+<h3 id="fun--data-sources">(Fun) Data sources</h3>
+<ul>
+<li>
+<p><a href="https://www.rijksmuseum.nl/en/rijksstudio">Rijksmuseum</a>: Searchable compilation of over 700k high-res copies of famous paintings.</p>
+</li>
+<li>
+<p><a href="https://omar.website/tabfs/">Tabfs</a>: Mount browser tabs as a local filesystem.
+Allows easy querying of multiple open tabs, saving+reloading tabs + manipulating + communicating with browser.
+Your own browsing sessions become the data source.
+Literally endless possibilities for scripting.</p>
+</li>
+<li>
+<p><a href="https://everynoise.com/">Everynoise</a>: Literally every spotify genre, with links to relevant artists / song snippets, and the relations between them all.</p>
+</li>
+</ul>
+<h3 id="machine-learning">Machine learning</h3>
+<ul>
+<li><a href="https://lobe.ai/">Lobe</a>: Easiest (superlative, yes) online training of machine learning models. It&rsquo;s free for now.</li>
+<li><a href="https://github.com/nidhaloff/igel">Igel</a>: Train + fit, test + use machine learning models at the command line without writing code.</li>
+<li><a href="https://alicevision.org/#meshroom">Meshroom</a>: Reconstruct images as 3D models, aka <code>Photogrammetry</code> (your $2 word for the day).
+Free (as in freedom, and also beer).</li>
+</ul>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://mjdiloreto.github.io/posts/org-mode/"><i class="fa fa-chevron-circle-left"></i> Emacs and Org-Mode</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://mjdiloreto.github.ioindex.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+</body>
+
+</html>
