@@ -71,9 +71,9 @@ But the abstract knowledge does not stick immediately, because she will then bal
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The code editor should show the results of each part of chained method calls, and of each subexpression in an expression.&lt;/p&gt;
 &lt;p&gt;As a side note, when describing the previous example I was asked, &amp;ldquo;How come it isn&amp;rsquo;t&amp;rdquo;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;ages &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; split(input())
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;What a good question, and the explanation will be completely incomprehensible to a beginner.
-&amp;ldquo;Well in Python everything is an object (except for primitives), and those objects have methods, which are really just functions whose first argument is always the object instance itself. Isn&amp;rsquo;t programming fun?&amp;rdquo;
-This is a huge WTF for beginners, and I remember spending hours googling &amp;ldquo;what is an object in programming&amp;rdquo; when I first started to code.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;What a good question, and the explanation will be completely incomprehensible to a beginner:&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Well in Python everything is an object (except for primitives), and those objects have methods, which are really just functions whose first argument is always the object instance itself. Isn&amp;rsquo;t programming fun?&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;This is a huge WTF for beginners, and I remember spending hours googling &amp;ldquo;what is an object in programming&amp;rdquo; when I first started to code.
 It&amp;rsquo;s irrelevant to teach a beginner these things, but languages like Python force this confusion from the start.&lt;/p&gt;
 &lt;p&gt;That&amp;rsquo;s why &lt;a href=&#34;https://htdp.org/&#34;&gt;How To Design Programs&lt;/a&gt; uses a Lisp as its teaching language.
 Any syntax is overhead which distracts from the essence of programming.&lt;/p&gt;
