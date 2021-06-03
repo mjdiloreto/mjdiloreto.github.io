@@ -1,0 +1,257 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>Matthew DiLoreto</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="[Matthew DiLoreto]" /><meta name="generator" content="Hugo 0.66.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <script src="https://kit.fontawesome.com/b76b73e8e8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Matthew DiLoreto</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://www.linkedin.com/in/matthew-diloreto-410510150"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://github.com/mjdiloreto"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><em>A place to keep track of some of my things.</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About Me</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/blogs_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>Blogs I Like</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/books_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>Books I Like</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/music_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>What Am I Listening to?</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/what_am_i_working_on/">
+                <i class="fa-li fa  fa-lg"></i><span>What Am Working On?</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Problems with Programming Books</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2021-06-02T21:44:00-04:00">Jun 2, 2021</time>
+        </li>
+        
+
+        
+
+        <li>9 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    <p>My girlfriend&rsquo;s sister is taking her first programming course using an &ldquo;interactive&rdquo; online textbook (a <a href="https://www.zybooks.com/">Zybook</a>) for school, and I offered to tutor her.</p>
+<p>When she needs help, she usually sends me 3 pictures:</p>
+<ol>
+<li>The text of the problem statement.</li>
+<li>Her python code (some of it is prepopulated by the textbook).</li>
+<li>The error message (there is almost always an error message)</li>
+</ol>
+<p>I then decipher what exactly the question is asking for, what the error message says, what her code is doing, and finally write up an explanation to help her understand all of it.</p>
+<p>Sometimes it&rsquo;s easier to facetime.</p>
+<p>Throughout this process I&rsquo;ve maintained notes about what trips her up, because it&rsquo;s been so long since I started programming that I don&rsquo;t actually remember what it was like not to know these things.
+I&rsquo;ve come to the conclusion that programming &ldquo;books&rdquo; (the hypertext document consisting of long passages of reading followed by graded problems &mdash; which I will simply call books), or at least the one she is using, are seriously flawed.</p>
+<p>My perspective is also colored by my personal experience with <a href="http://www.codecademy.com">codecademy</a> circa 2014, and later in 2019, as well as a few other courses from college (the names of which I cannot recall), so a lot might have changed in some of the better tools, but I&rsquo;m certain there&rsquo;s a lot more that can be done.</p>
+<p>The main ingredient they seem lack is <em>interactivity</em>.</p>
+<p>Any fan of Brett Victor will know the importance of interactivity, but for the unitiated, allow me (him) to enlighten you:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=PUv66718DII">Brett Victor: Inventing on Principle</a></li>
+<li><a href="http://worrydream.com/LadderOfAbstraction/">The Ladder of Abstraction</a></li>
+</ul>
+<p>(Seriously, watch the video from Brett, and read this essay too while you&rsquo;re at it. The ideas he presents are wonderfully <em>simple</em>. I guarantee they will leave a lasting impression.)</p>
+<p>What interactivity does for a first-time programming language learner is remove barriers.
+A good programming book empowers her to find answers to her questions on her own.
+It provides endless <em>contextual information</em> for every part of the interface, code, and errors (no, not just some static textual explanation of the topic at-hand 5 pages up in the document).
+The fewer buttons she has to click to see a result, the more help she has decoding an error message, the more likely she is to keep going, and keep coding.</p>
+<p>I boiled down my experience tutoring to a few areas for improvement for a truly interactive programming book.</p>
+<h2 id="language-specific-ergonomics">Language-specific Ergonomics</h2>
+<p>Let&rsquo;s start with something programming books usually get right &mdash; isolating the beginner from the technology.</p>
+<p>As software developers, we love tinkering on the command line.
+We like to connect services and write scripts and run test suites and version control source code files.
+We like to be in control of a system.</p>
+<p>This is anathema to the first-time programming language learner.</p>
+<p>A beginner should not have to set up anything.
+They should be presented immediately with the opportunity to read, execute, and write programs without any effort.
+Most books at least solve this problem by providing code execution tools (a bare text-editor and a &ldquo;RUN CODE&rdquo; button usually) from the browser, and some tools like <a href="http://www.repl.it">repl.it</a> are doing very cool things in this space.</p>
+<p>I do think there is more work to be done regarding in-context documentation of language features.</p>
+<h2 id="partial-results">Partial Results</h2>
+<p>One thing I wish more books emphasized is the <em>substitution model</em> of programming.
+That is, the iterative process of substituting subexpressions for their results to make up larger results in a program, e.g;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(+ <span style="color:#ae81ff">1</span> (+ <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>))
+<span style="color:#75715e">; becomes</span>
+(+ <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">5</span>)
+<span style="color:#75715e">; becomes</span>
+<span style="color:#ae81ff">6</span>
+</code></pre></div><p>Technically this model only applies to expressions, so in a language like Python there are exceptions, but the same basic principle carries over at least somewhat in every programming language, and it is not an obvious principle.</p>
+<p>It&rsquo;s not obvious to a beginner that:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">age_input <span style="color:#f92672">=</span> input()
+age <span style="color:#f92672">=</span> int(age_input)
+</code></pre></div><p>is exactly the same as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">age <span style="color:#f92672">=</span> int(input())
+</code></pre></div><p>unless they are explicitly told so.
+But the abstract knowledge does not stick immediately, because they will then balk at:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ages <span style="color:#f92672">=</span> input()<span style="color:#f92672">.</span>split()
+</code></pre></div><p>&ldquo;How come it isn&rsquo;t&rdquo;:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ages <span style="color:#f92672">=</span> split(input())
+</code></pre></div><p>Good question. That&rsquo;s why <a href="https://htdp.org/">How To Design Programs</a> uses a Lisp as its teaching language.
+Any syntax is overhead.
+It distracts from the essence of programming.</p>
+<p>A good interactive programming book might not want to teach Lisp, but it should give insight into the results of each part of every expression.</p>
+<h2 id="error-messages">Error Messages</h2>
+<p>This is what infuriates me about every single book I&rsquo;ve come across &mdash; they all forward the bare error messages from the interpreter/compiler/VM/whatever straight to the user.
+This in and of itself is not really an issue, but the problem is that they all <em>stop</em> there.</p>
+<p>What do software developers do when they get an error message?
+Well, it depends on the error:</p>
+<h4 id="syntax-errors">Syntax errors:</h4>
+<p>My IDE catches this <em>in context</em> AND usually provides a quick fix.
+A beginner is already used to this common paradigm (e.g. spellcheck).
+There is no reason for any programming book not to have this feature (Zybooks does not have it).</p>
+<h4 id="runtime-errors">Runtime errors:</h4>
+<p>StackOverflow.
+There is no avoiding the value of google-searching the error message.
+I would like to see a book that does this on behalf of the user, suggesting a search whenever an error occurs; or preferably suggesting a <em>useful</em> search from a previous user of the book i.e. a post which solved <em>this</em> specific error in <em>this</em> specific graded problem.</p>
+<p>One error message is usually tolerable, but it&rsquo;s when the beginner tries 2, 3, or 4 different things, and gets <em>different</em> errors that they quit.
+My role as a tutor is essentially an error explainer.
+I explain what the error means generally, then what it means in this context, then <em>why</em> it happened in this context, what line of code is <em>really</em> to blame (you got a SynaxError on line 11 because you forgot a <code>:</code> on line 10), and finally prompt with a leading question toward a solution (or just give the solution if it isn&rsquo;t obvious).
+There&rsquo;s no reason the book can&rsquo;t do a lot of this work.</p>
+<h2 id="case-analysis">Case Analysis</h2>
+<p>This is where the actual programming work begins.
+Alan Perlis famously <a href="http://www.cs.yale.edu/homes/perlis-alan/quotes.html">said</a>:</p>
+<blockquote>
+<p>Programmers are not to be measured by their ingenuity and their logic but by the completeness of their case analysis.</p>
+</blockquote>
+<p>The problem is that it&rsquo;s very difficult for beginners to differentiate between errors due to incomplete case analysis and &ldquo;programming&rdquo; errors (like using the wrong variable, forgetting a <code>+1</code> somewhere, etc.)</p>
+<p>Software developers write tests in order to increase their confidence in their case analysis, and run those tests when the relevant code changes.
+Beginners do not write tests, because they do not yet know the value of doing so.</p>
+<p>Most books I&rsquo;ve come across usually provide some mechanism for user-supplied inputs, and typically include a short test suite for graded problems, but this is not enough.
+Books should provide this list of cases and run the tests whenever the code is updated.
+The beginner should know <em>immediately</em> whenever one of their changes influenced the outcome of a test case.</p>
+<p>The book should also provide test cases for the functions relevant to a solution, i.e. I should be able to hover over `pow` in some Python code and see:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pow(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)  <span style="color:#75715e"># -&gt; 4</span>
+pow(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)  <span style="color:#75715e"># -&gt; 8</span>
+pow(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>)  <span style="color:#75715e"># -&gt; 16</span>
+pow(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)  <span style="color:#75715e"># -&gt; 27</span>
+<span style="color:#75715e"># ... etc.</span>
+</code></pre></div><p>So far I have not come across any books which have immediate feedback like this.</p>
+<h2 id="exploration">Exploration</h2>
+<p>This is by far the most important aspect of programming that books fail at.
+Almost every one of my tutoring texts includes the phrase &ldquo;open up your terminal and type <code>python3</code>&rdquo; (I demonstrated the REPL live a couple times; I&rsquo;m not a sadist).
+I then say, &ldquo;See what happens when you do:&rdquo; and provide a verbatim copy of a repl session demonstrating whatever concept I was discussing.</p>
+<p>You might be skeptical about the merits of REPL-driven development as a style of software-engineering, and prefer TDD or something. That&rsquo;s fine.
+It is undeniable though that a repl is <em>more interactive</em> than TDD, and in our hypothetical programming book we&rsquo;ve already provided the user with a live test suite.
+The code editors these programming books use really need to integrate something like <a href="https://quokkajs.com/">Quokka</a> or <a href="http://lighttable.com/">Lighttable</a> for whatever language the book uses.</p>
+<p>They should also suggest other things to try.
+This might have to be problem-specific, but if the preceding chapter discusses the <code>split</code> and <code>join</code> functions, then wherever a list appears in the code, the editor should show it <code>join</code>'ed, and wherever there is a string, the editor should show it <code>split</code>'ed.
+If there is a string in the code, the editor should should each of the characters and how to access them.</p>
+<p>I assumed since the REPL is such a simple piece of interactive software that it would be super useful for beginners, but what I noticed is that, when presented with an empty prompt, she just didn&rsquo;t know what to type next.
+I realized suggestions are imperative.</p>
+<h2 id="memory">Memory</h2>
+<p>Disclaimer: I&rsquo;ve never seen <em>any</em> programming interface (let alone a beginner&rsquo;s programming book) which solves this problem.
+Once the beginner has solved a problem and submitted their program, it is lost in the ether.
+She goes about her life and (to no fault of her own) effectively purges whatever arcane knowledge she gleaned from the homework.
+This is really more of a problem with books in general, but there is no place other than your own brain to keep the knowledge you learned.</p>
+<p>Well, computers have memory, and a sufficiently interactive programming environment should really <em>remember</em> the code it runs.</p>
+<p>Whenever a beginner correctly uses a function, syntactic construct, or other piece of source code, the book ought to remember that.
+Whenever a beginner writes some code that generates an error, and then fixes that error with a code change, that&rsquo;s a huge success! The book ought to congratulate and remember that.
+They should then have the immediate ability to recall that success in another context.</p>
+<p>If I used <code>input().split()</code> on problem 1.c, I should be reminded of it when I write <code>input().split()</code> on problem 13.a.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I&rsquo;m sure there is a ton of work going on in the digital textbook space, but from what I see, the majority of &ldquo;Teach yourself Python!&rdquo; books/courses online fall into the MVP-product with Superstar-marketing category.
+There seem to be tons of books, videos, and blog posts for every concept a beginner would ever want to know about Python, but none satisfy the level of interactivity I feel is really needed.
+My sister&rsquo;s girlfriend said to me &ldquo;I have no idea how the other students are managing without a <em>professional software engineer</em> helping them.&rdquo;
+I don&rsquo;t know either, but the book definitely is not sufficient.</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://mjdiloreto.github.io/posts/libraries-for-web-development/"><i class="fa fa-chevron-circle-left"></i> Libraries for Web Development</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://mjdiloreto.github.ioindex.xml">Subscribe</a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+</body>
+
+</html>

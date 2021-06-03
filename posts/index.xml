@@ -6,10 +6,139 @@
        <description>Recent content in Posts on Matthew DiLoreto</description>
        <generator>Hugo -- gohugo.io</generator>
        <language>en-us</language>
-       <lastBuildDate>Sun, 18 Apr 2021 21:09:00 -0400</lastBuildDate>
+       <lastBuildDate>Wed, 02 Jun 2021 21:44:00 -0400</lastBuildDate>
        
            <atom:link href="https://mjdiloreto.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
        
+       
+       <item>
+         <title>Problems with Programming Books</title>
+         <link>https://mjdiloreto.github.io/posts/problems-with-programming-books/</link>
+         <pubDate>Wed, 02 Jun 2021 21:44:00 -0400</pubDate>
+         
+         <guid>https://mjdiloreto.github.io/posts/problems-with-programming-books/</guid>
+         <description>&lt;p&gt;My girlfriend&amp;rsquo;s sister is taking her first programming course using an &amp;ldquo;interactive&amp;rdquo; online textbook (a &lt;a href=&#34;https://www.zybooks.com/&#34;&gt;Zybook&lt;/a&gt;) for school, and I offered to tutor her.&lt;/p&gt;
+&lt;p&gt;When she needs help, she usually sends me 3 pictures:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The text of the problem statement.&lt;/li&gt;
+&lt;li&gt;Her python code (some of it is prepopulated by the textbook).&lt;/li&gt;
+&lt;li&gt;The error message (there is almost always an error message)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I then decipher what exactly the question is asking for, what the error message says, what her code is doing, and finally write up an explanation to help her understand all of it.&lt;/p&gt;
+&lt;p&gt;Sometimes it&amp;rsquo;s easier to facetime.&lt;/p&gt;
+&lt;p&gt;Throughout this process I&amp;rsquo;ve maintained notes about what trips her up, because it&amp;rsquo;s been so long since I started programming that I don&amp;rsquo;t actually remember what it was like not to know these things.
+I&amp;rsquo;ve come to the conclusion that programming &amp;ldquo;books&amp;rdquo; (the hypertext document consisting of long passages of reading followed by graded problems &amp;mdash; which I will simply call books), or at least the one she is using, are seriously flawed.&lt;/p&gt;
+&lt;p&gt;My perspective is also colored by my personal experience with &lt;a href=&#34;http://www.codecademy.com&#34;&gt;codecademy&lt;/a&gt; circa 2014, and later in 2019, as well as a few other courses from college (the names of which I cannot recall), so a lot might have changed in some of the better tools, but I&amp;rsquo;m certain there&amp;rsquo;s a lot more that can be done.&lt;/p&gt;
+&lt;p&gt;The main ingredient they seem lack is &lt;em&gt;interactivity&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Any fan of Brett Victor will know the importance of interactivity, but for the unitiated, allow me (him) to enlighten you:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=PUv66718DII&#34;&gt;Brett Victor: Inventing on Principle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://worrydream.com/LadderOfAbstraction/&#34;&gt;The Ladder of Abstraction&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(Seriously, watch the video from Brett, and read this essay too while you&amp;rsquo;re at it. The ideas he presents are wonderfully &lt;em&gt;simple&lt;/em&gt;. I guarantee they will leave a lasting impression.)&lt;/p&gt;
+&lt;p&gt;What interactivity does for a first-time programming language learner is remove barriers.
+A good programming book empowers her to find answers to her questions on her own.
+It provides endless &lt;em&gt;contextual information&lt;/em&gt; for every part of the interface, code, and errors (no, not just some static textual explanation of the topic at-hand 5 pages up in the document).
+The fewer buttons she has to click to see a result, the more help she has decoding an error message, the more likely she is to keep going, and keep coding.&lt;/p&gt;
+&lt;p&gt;I boiled down my experience tutoring to a few areas for improvement for a truly interactive programming book.&lt;/p&gt;
+&lt;h2 id=&#34;language-specific-ergonomics&#34;&gt;Language-specific Ergonomics&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s start with something programming books usually get right &amp;mdash; isolating the beginner from the technology.&lt;/p&gt;
+&lt;p&gt;As software developers, we love tinkering on the command line.
+We like to connect services and write scripts and run test suites and version control source code files.
+We like to be in control of a system.&lt;/p&gt;
+&lt;p&gt;This is anathema to the first-time programming language learner.&lt;/p&gt;
+&lt;p&gt;A beginner should not have to set up anything.
+They should be presented immediately with the opportunity to read, execute, and write programs without any effort.
+Most books at least solve this problem by providing code execution tools (a bare text-editor and a &amp;ldquo;RUN CODE&amp;rdquo; button usually) from the browser, and some tools like &lt;a href=&#34;http://www.repl.it&#34;&gt;repl.it&lt;/a&gt; are doing very cool things in this space.&lt;/p&gt;
+&lt;p&gt;I do think there is more work to be done regarding in-context documentation of language features.&lt;/p&gt;
+&lt;h2 id=&#34;partial-results&#34;&gt;Partial Results&lt;/h2&gt;
+&lt;p&gt;One thing I wish more books emphasized is the &lt;em&gt;substitution model&lt;/em&gt; of programming.
+That is, the iterative process of substituting subexpressions for their results to make up larger results in a program, e.g;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(+ &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; (+ &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;))
+&lt;span style=&#34;color:#75715e&#34;&gt;; becomes&lt;/span&gt;
+(+ &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;; becomes&lt;/span&gt;
+&lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Technically this model only applies to expressions, so in a language like Python there are exceptions, but the same basic principle carries over at least somewhat in every programming language, and it is not an obvious principle.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s not obvious to a beginner that:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;age_input &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; input()
+age &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; int(age_input)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;is exactly the same as:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;age &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; int(input())
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;unless they are explicitly told so.
+But the abstract knowledge does not stick immediately, because they will then balk at:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;ages &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; input()&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;split()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&amp;ldquo;How come it isn&amp;rsquo;t&amp;rdquo;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;ages &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; split(input())
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Good question. That&amp;rsquo;s why &lt;a href=&#34;https://htdp.org/&#34;&gt;How To Design Programs&lt;/a&gt; uses a Lisp as its teaching language.
+Any syntax is overhead.
+It distracts from the essence of programming.&lt;/p&gt;
+&lt;p&gt;A good interactive programming book might not want to teach Lisp, but it should give insight into the results of each part of every expression.&lt;/p&gt;
+&lt;h2 id=&#34;error-messages&#34;&gt;Error Messages&lt;/h2&gt;
+&lt;p&gt;This is what infuriates me about every single book I&amp;rsquo;ve come across &amp;mdash; they all forward the bare error messages from the interpreter/compiler/VM/whatever straight to the user.
+This in and of itself is not really an issue, but the problem is that they all &lt;em&gt;stop&lt;/em&gt; there.&lt;/p&gt;
+&lt;p&gt;What do software developers do when they get an error message?
+Well, it depends on the error:&lt;/p&gt;
+&lt;h4 id=&#34;syntax-errors&#34;&gt;Syntax errors:&lt;/h4&gt;
+&lt;p&gt;My IDE catches this &lt;em&gt;in context&lt;/em&gt; AND usually provides a quick fix.
+A beginner is already used to this common paradigm (e.g. spellcheck).
+There is no reason for any programming book not to have this feature (Zybooks does not have it).&lt;/p&gt;
+&lt;h4 id=&#34;runtime-errors&#34;&gt;Runtime errors:&lt;/h4&gt;
+&lt;p&gt;StackOverflow.
+There is no avoiding the value of google-searching the error message.
+I would like to see a book that does this on behalf of the user, suggesting a search whenever an error occurs; or preferably suggesting a &lt;em&gt;useful&lt;/em&gt; search from a previous user of the book i.e. a post which solved &lt;em&gt;this&lt;/em&gt; specific error in &lt;em&gt;this&lt;/em&gt; specific graded problem.&lt;/p&gt;
+&lt;p&gt;One error message is usually tolerable, but it&amp;rsquo;s when the beginner tries 2, 3, or 4 different things, and gets &lt;em&gt;different&lt;/em&gt; errors that they quit.
+My role as a tutor is essentially an error explainer.
+I explain what the error means generally, then what it means in this context, then &lt;em&gt;why&lt;/em&gt; it happened in this context, what line of code is &lt;em&gt;really&lt;/em&gt; to blame (you got a SynaxError on line 11 because you forgot a &lt;code&gt;:&lt;/code&gt; on line 10), and finally prompt with a leading question toward a solution (or just give the solution if it isn&amp;rsquo;t obvious).
+There&amp;rsquo;s no reason the book can&amp;rsquo;t do a lot of this work.&lt;/p&gt;
+&lt;h2 id=&#34;case-analysis&#34;&gt;Case Analysis&lt;/h2&gt;
+&lt;p&gt;This is where the actual programming work begins.
+Alan Perlis famously &lt;a href=&#34;http://www.cs.yale.edu/homes/perlis-alan/quotes.html&#34;&gt;said&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Programmers are not to be measured by their ingenuity and their logic but by the completeness of their case analysis.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The problem is that it&amp;rsquo;s very difficult for beginners to differentiate between errors due to incomplete case analysis and &amp;ldquo;programming&amp;rdquo; errors (like using the wrong variable, forgetting a &lt;code&gt;+1&lt;/code&gt; somewhere, etc.)&lt;/p&gt;
+&lt;p&gt;Software developers write tests in order to increase their confidence in their case analysis, and run those tests when the relevant code changes.
+Beginners do not write tests, because they do not yet know the value of doing so.&lt;/p&gt;
+&lt;p&gt;Most books I&amp;rsquo;ve come across usually provide some mechanism for user-supplied inputs, and typically include a short test suite for graded problems, but this is not enough.
+Books should provide this list of cases and run the tests whenever the code is updated.
+The beginner should know &lt;em&gt;immediately&lt;/em&gt; whenever one of their changes influenced the outcome of a test case.&lt;/p&gt;
+&lt;p&gt;The book should also provide test cases for the functions relevant to a solution, i.e. I should be able to hover over `pow` in some Python code and see:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;pow(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)  &lt;span style=&#34;color:#75715e&#34;&gt;# -&amp;gt; 4&lt;/span&gt;
+pow(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;)  &lt;span style=&#34;color:#75715e&#34;&gt;# -&amp;gt; 8&lt;/span&gt;
+pow(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;)  &lt;span style=&#34;color:#75715e&#34;&gt;# -&amp;gt; 16&lt;/span&gt;
+pow(&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;)  &lt;span style=&#34;color:#75715e&#34;&gt;# -&amp;gt; 27&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# ... etc.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So far I have not come across any books which have immediate feedback like this.&lt;/p&gt;
+&lt;h2 id=&#34;exploration&#34;&gt;Exploration&lt;/h2&gt;
+&lt;p&gt;This is by far the most important aspect of programming that books fail at.
+Almost every one of my tutoring texts includes the phrase &amp;ldquo;open up your terminal and type &lt;code&gt;python3&lt;/code&gt;&amp;rdquo; (I demonstrated the REPL live a couple times; I&amp;rsquo;m not a sadist).
+I then say, &amp;ldquo;See what happens when you do:&amp;rdquo; and provide a verbatim copy of a repl session demonstrating whatever concept I was discussing.&lt;/p&gt;
+&lt;p&gt;You might be skeptical about the merits of REPL-driven development as a style of software-engineering, and prefer TDD or something. That&amp;rsquo;s fine.
+It is undeniable though that a repl is &lt;em&gt;more interactive&lt;/em&gt; than TDD, and in our hypothetical programming book we&amp;rsquo;ve already provided the user with a live test suite.
+The code editors these programming books use really need to integrate something like &lt;a href=&#34;https://quokkajs.com/&#34;&gt;Quokka&lt;/a&gt; or &lt;a href=&#34;http://lighttable.com/&#34;&gt;Lighttable&lt;/a&gt; for whatever language the book uses.&lt;/p&gt;
+&lt;p&gt;They should also suggest other things to try.
+This might have to be problem-specific, but if the preceding chapter discusses the &lt;code&gt;split&lt;/code&gt; and &lt;code&gt;join&lt;/code&gt; functions, then wherever a list appears in the code, the editor should show it &lt;code&gt;join&lt;/code&gt;&#39;ed, and wherever there is a string, the editor should show it &lt;code&gt;split&lt;/code&gt;&#39;ed.
+If there is a string in the code, the editor should should each of the characters and how to access them.&lt;/p&gt;
+&lt;p&gt;I assumed since the REPL is such a simple piece of interactive software that it would be super useful for beginners, but what I noticed is that, when presented with an empty prompt, she just didn&amp;rsquo;t know what to type next.
+I realized suggestions are imperative.&lt;/p&gt;
+&lt;h2 id=&#34;memory&#34;&gt;Memory&lt;/h2&gt;
+&lt;p&gt;Disclaimer: I&amp;rsquo;ve never seen &lt;em&gt;any&lt;/em&gt; programming interface (let alone a beginner&amp;rsquo;s programming book) which solves this problem.
+Once the beginner has solved a problem and submitted their program, it is lost in the ether.
+She goes about her life and (to no fault of her own) effectively purges whatever arcane knowledge she gleaned from the homework.
+This is really more of a problem with books in general, but there is no place other than your own brain to keep the knowledge you learned.&lt;/p&gt;
+&lt;p&gt;Well, computers have memory, and a sufficiently interactive programming environment should really &lt;em&gt;remember&lt;/em&gt; the code it runs.&lt;/p&gt;
+&lt;p&gt;Whenever a beginner correctly uses a function, syntactic construct, or other piece of source code, the book ought to remember that.
+Whenever a beginner writes some code that generates an error, and then fixes that error with a code change, that&amp;rsquo;s a huge success! The book ought to congratulate and remember that.
+They should then have the immediate ability to recall that success in another context.&lt;/p&gt;
+&lt;p&gt;If I used &lt;code&gt;input().split()&lt;/code&gt; on problem 1.c, I should be reminded of it when I write &lt;code&gt;input().split()&lt;/code&gt; on problem 13.a.&lt;/p&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I&amp;rsquo;m sure there is a ton of work going on in the digital textbook space, but from what I see, the majority of &amp;ldquo;Teach yourself Python!&amp;rdquo; books/courses online fall into the MVP-product with Superstar-marketing category.
+There seem to be tons of books, videos, and blog posts for every concept a beginner would ever want to know about Python, but none satisfy the level of interactivity I feel is really needed.
+My sister&amp;rsquo;s girlfriend said to me &amp;ldquo;I have no idea how the other students are managing without a &lt;em&gt;professional software engineer&lt;/em&gt; helping them.&amp;rdquo;
+I don&amp;rsquo;t know either, but the book definitely is not sufficient.&lt;/p&gt;
+</description>
+       </item>
        
        <item>
          <title>Libraries for Web Development</title>
