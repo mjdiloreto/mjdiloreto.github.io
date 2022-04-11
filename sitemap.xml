@@ -1,63 +1,42 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://mjdiloreto.github.io/posts/</loc>
-    <lastmod>2021-06-02T21:44:00-04:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-07-25T20:26:00-05:00</lastmod>
+  </url><url>
+    <loc>https://mjdiloreto.github.io/</loc>
+    <lastmod>2021-07-25T20:26:00-05:00</lastmod>
+  </url><url>
+    <loc>https://mjdiloreto.github.io/posts/meditations-quotations/</loc>
+    <lastmod>2021-07-25T20:26:00-05:00</lastmod>
+  </url><url>
     <loc>https://mjdiloreto.github.io/posts/problems-with-programming-books/</loc>
     <lastmod>2021-06-02T21:44:00-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mjdiloreto.github.io/posts/libraries-for-web-development/</loc>
     <lastmod>2021-04-18T21:09:00-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mjdiloreto.github.io/blogs_i_like/</loc>
     <lastmod>2020-07-06T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mjdiloreto.github.io/books_i_like/</loc>
     <lastmod>2020-07-06T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mjdiloreto.github.io/</loc>
-    <lastmod>2020-07-06T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mjdiloreto.github.io/music_i_like/</loc>
     <lastmod>2020-07-06T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mjdiloreto.github.io/what_am_i_working_on/</loc>
     <lastmod>2020-07-06T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mjdiloreto.github.io/about/</loc>
     <lastmod>2020-05-01T00:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mjdiloreto.github.io/posts/org-mode/</loc>
     <lastmod>2020-03-01T15:41:00-05:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mjdiloreto.github.io/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://mjdiloreto.github.io/tags/</loc>
   </url>
-  
 </urlset>
