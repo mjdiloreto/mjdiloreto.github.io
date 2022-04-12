@@ -6,17 +6,30 @@
     position: relative;
 }
 
-.icon {
-    outline: 1px solid red;
-    margin: 3px;
+.icons::before {
+    position: absolute;
+    content: attr(data-icons);
+    text-transform: uppercase;
+    top: 0.2em;
+    right: 1.5em;
+    color: #ababab;
+    z-index: 1;
+    opacity: 0;
+    transition: 0.5s;
 }
 
-.icon-container {
-    position: absolute;
-    outline: 2px solid blue;
-    right: 0px;
-    top: 0px;
-    /* Values calc'ed based on kiera theme blockquote styles. */
-    margin-right: 1.1em;
-    margin-top: 0.1em;
+.icons::after {
+    position:absolute;
+    content: "book " attr(data-chapter);
+    text-transform: uppercase;
+    bottom: 0;
+    right: 1.5em;
+    color: #ababab;
+    z-index: 1;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.icons:hover::before, .icons:hover::after {
+    opacity: 1;
 }
