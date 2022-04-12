@@ -6,10 +6,1073 @@
        <description>Recent content in Posts on Matthew DiLoreto</description>
        <generator>Hugo -- gohugo.io</generator>
        <language>en-us</language>
-       <lastBuildDate>Sun, 25 Jul 2021 20:26:00 -0500</lastBuildDate>
+       <lastBuildDate>Tue, 28 Dec 2021 00:00:00 -0600</lastBuildDate>
        
            <atom:link href="https://mjdiloreto.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
        
+       
+       <item>
+         <title>Mondegreen Generator</title>
+         <link>https://mjdiloreto.github.io/posts/literate/</link>
+         <pubDate>Tue, 28 Dec 2021 00:00:00 -0600</pubDate>
+         
+         <guid>https://mjdiloreto.github.io/posts/literate/</guid>
+         <description>&lt;h2 id=&#34;rationale&#34;&gt;Rationale&lt;/h2&gt;
+&lt;p&gt;Back in early 2019, when the &amp;ldquo;&lt;a href=&#34;https://duckduckgo.com/?t=ffab&amp;amp;q=gibberish+challenge&amp;amp;iax=videos&amp;amp;ia=videos&#34;&gt;gibberish challenge&lt;/a&gt;&amp;rdquo; was bubbling up through the nascent &amp;ldquo;TikTok&amp;rdquo; milieu, I was compelled to discover an algorithm which, given arbitrary English input, could produce a &amp;ldquo;gibberish&amp;rdquo; phrase appropriate for the challenge.&lt;/p&gt;
+&lt;p&gt;I searched the web for such an algorithm, since surely someone had to have done this previously, but I didn&amp;rsquo;t find any results on GitHub, nor any discussions elsewhere.&lt;/p&gt;
+&lt;p&gt;There is a popular card game which operates on the same principle, cards have &amp;ldquo;gibberish&amp;rdquo; phrases and players must speak the phrases out loud to figure out the true meaning of what they are saying.
+This game has hundreds of cards, so I figured there was no way someone sat down and manually translated those into gibberish, but I could not find an answer to this online either.
+If the company which makes this card game does have such an algorithm, they are apparently not sharing it on the web.&lt;/p&gt;
+&lt;p&gt;I hate starting side-projects that already have satisfactory solutions available for free, since they seem to be a waste of my time, but this project presented enough of an interesting challenge to really pursue for at least a weekend.&lt;/p&gt;
+&lt;p&gt;So, I wrote the program, but haven&amp;rsquo;t really done anything with it since then (besides &lt;a href=&#34;https://github.com/mjdiloreto/mondegreen&#34;&gt;post the code to GitHub&lt;/a&gt;).
+I haven&amp;rsquo;t actively shared it in any way.&lt;/p&gt;
+&lt;p&gt;At first I wanted to create a website which would run the algorithm for the &amp;ldquo;TikTok&amp;rdquo; crowd to share, but by the time I was done with the implementation they had already moved past the fad.
+You have to be quick to catch the social media tidal waves I suppose.
+So, I left the project alone, content with the unfinished project and the single GitHub star from my college buddy.&lt;/p&gt;
+&lt;p&gt;⭐&lt;/p&gt;
+&lt;p&gt;But now it&amp;rsquo;s December 2021 &amp;ndash; I&amp;rsquo;m reflecting on my year of coding and I&amp;rsquo;m ashamed to say that, besides adding ~2000 lines to my Emacs configuration and a single blog post I haven&amp;rsquo;t actually &lt;em&gt;finished&lt;/em&gt; any side projects!&lt;/p&gt;
+&lt;p&gt;I think it&amp;rsquo;s time I change that.&lt;/p&gt;
+&lt;p&gt;I originally wrote the program in Clojure, partly to learn the idioms of the language, and partly to try out REPL-driven development, which Clojurians always claim is a &amp;ldquo;super power&amp;rdquo;.
+I don&amp;rsquo;t think I used enough tooling to consider myself a repl-superman, but I did find the experience to be satisfying, conducive to &lt;em&gt;flow&lt;/em&gt;, and &lt;strong&gt;very&lt;/strong&gt; fun.&lt;/p&gt;
+&lt;p&gt;For the uninitiated (or even the moderately initiated, like I was when I started), reading Clojure can be tricky, and as I documented my code with comments, I quickly realized the comments amounted to more lines than the code itself!&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s when I learned about literate programming.
+Well, I had read some Knuth, so I was actually familiar with the &lt;em&gt;concept&lt;/em&gt; of literate programming (did you know TeX was originally written as a single file?), but I didn&amp;rsquo;t actually realize it was easy with Clojure until I watched &lt;a href=&#34;https://www.youtube.com/watch?v=bhNvwxFV5vU&#34;&gt;this video&lt;/a&gt; explaining the process plainly.
+It looked like something I could do (especially since I had been using org-mode for notes for over 2 years by that point), so I did it.&lt;/p&gt;
+&lt;h3 id=&#34;make-this-rationale-a-blog-post-and-the-rest-of-the-doc-a-project-page-dot&#34;&gt;&lt;span class=&#34;org-todo todo TODO&#34;&gt;TODO&lt;/span&gt; make this rationale a blog post, and the rest of the doc a project page.&lt;/h3&gt;
+&lt;h2 id=&#34;meta&#34;&gt;Meta&lt;/h2&gt;
+&lt;p&gt;The following document will explain the entire process of developing the mondegreen generator algorithm, and include the code and results.&lt;/p&gt;
+&lt;h2 id=&#34;what-am-i-doing&#34;&gt;What am I doing?&lt;/h2&gt;
+&lt;p&gt;The first step in any problem-solving endeavor is to outline exactly what the problem is, and the scope of the solution.&lt;/p&gt;
+&lt;p&gt;So what is the problem?
+Well, I want a function that can take English text and produce English text which &lt;em&gt;sounds like&lt;/em&gt; the first, but is composed of different words.&lt;/p&gt;
+&lt;p&gt;After some Googling, I discovered that this type of language trick is known as a &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Mondegreen&#34;&gt;Mondegreen&lt;/a&gt;&lt;/em&gt; (or maybe more appropriately an &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Mondegreen#Reverse_mondegreen&#34;&gt;Oronym&lt;/a&gt;&lt;/em&gt;, but I decided to go with &lt;em&gt;Mondegreen&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;So, what I want to create is a &lt;em&gt;Mondegreen generator&lt;/em&gt;, a function which produces a &lt;em&gt;Mondegreen&lt;/em&gt; given a list of words.&lt;/p&gt;
+&lt;h2 id=&#34;overview-of-the-problem-solving-process&#34;&gt;Overview of the problem-solving process&lt;/h2&gt;
+&lt;p&gt;Because I didn&amp;rsquo;t know exactly how to solve this problem when I began, I needed to enable myself to explore the problem space.&lt;/p&gt;
+&lt;p&gt;This is where choice of technology becomes relevant.
+I needed a highly &lt;em&gt;interactive&lt;/em&gt; environment, in order to develop solutions (and failures) as I went along.&lt;/p&gt;
+&lt;p&gt;I chose Clojure as my implementation language, partly because I just wanted to use it (after binging Rich Hickey&amp;rsquo;s talks on YouTube), and partly because the REPL-driven development paradigm fit my problem nicely.&lt;/p&gt;
+&lt;p&gt;So, I fired up a repl with &lt;code&gt;clj&lt;/code&gt;, and got to work.&lt;/p&gt;
+&lt;h2 id=&#34;data&#34;&gt;Data&lt;/h2&gt;
+&lt;p&gt;Well, I got my repl started, and realized I had no data to work with.
+Data being the core of any program, I needed to make sure my sources would be sufficient.&lt;/p&gt;
+&lt;h3 id=&#34;dictionary&#34;&gt;Dictionary&lt;/h3&gt;
+&lt;p&gt;The first thing I knew I would need was an English dictionary.
+Because my program would have to consume English text, it needed a way to distinguish English words from non-English words.&lt;/p&gt;
+&lt;h3 id=&#34;phonemes&#34;&gt;Phonemes&lt;/h3&gt;
+&lt;p&gt;Unfortunately for the English language, the way a word is spelled has little to do with how it &lt;em&gt;sounds&lt;/em&gt;, and for Mondegreens, the &lt;strong&gt;most important&lt;/strong&gt; thing about the words is how they sound!&lt;/p&gt;
+&lt;p&gt;Luckily for me, I took an introduction to Linguistics course at my university, so I knew about &lt;em&gt;phonemes&lt;/em&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In phonology and linguistics, a phoneme &lt;em&gt;ˈfoʊniːm&lt;/em&gt; is a unit of sound that can distinguish one word from another in a particular language.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Phonemes are like the atoms of &lt;em&gt;phonetics&lt;/em&gt;, the indivisible &lt;em&gt;sounds&lt;/em&gt; a speaker makes to construct and distinguish words.&lt;/p&gt;
+&lt;p&gt;For example, even though &amp;ldquo;read&amp;rdquo; and &amp;ldquo;read&amp;rdquo; are spelled the same, the constituent &lt;em&gt;phonemes&lt;/em&gt; help listeners discriminate between them:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;read -&amp;gt; rēd
+read -&amp;gt; rĕd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first is the &amp;ldquo;long-e&amp;rdquo; sound, like in the word &amp;ldquo;reed&amp;rdquo;, while the other is the &amp;ldquo;short-e&amp;rdquo; sound, like in the word &amp;ldquo;red&amp;rdquo;.&lt;/p&gt;
+&lt;p&gt;For my program, I would also need a way to map a word to the list of phonemes that compose it.
+I searched Google (again) and came across the amazing &lt;strong&gt;Carnegie Melon Phonetic Dictionary&lt;/strong&gt;, which is free to use and download &lt;a href=&#34;http://www.speech.cs.cmu.edu/cgi-bin/cmudict&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h4 id=&#34;the-carnegie-melon-phonetic-dictionary&#34;&gt;The Carnegie Melon Phonetic Dictionary&lt;/h4&gt;
+&lt;p&gt;The dictionary actually solves both of my data needs! First, it is a dictionary, a function with the signature:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;word -&amp;gt; boolean
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;verifying if a word is valid English, and also a &lt;em&gt;phonetic dictionary&lt;/em&gt;, a function with the signature:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;word -&amp;gt; [phoneme]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;giving the list of phonemes that compose a valid English word.
+Lets explore the dictionary a bit.&lt;/p&gt;
+&lt;!--list-separator--&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Phones&lt;/p&gt;
+&lt;p&gt;This file (&lt;code&gt;cmudict-0.7b.phones&lt;/code&gt;) describes the phonemes in the English language, it isn&amp;rsquo;t very large, which is kind of amazing given the huge diversity of words their composition can produce:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;AA	vowel
+AE	vowel
+AH	vowel
+AO	vowel
+AW	vowel
+AY	vowel
+B	stop
+CH	affricate
+D	stop
+DH	fricative
+EH	vowel
+ER	vowel
+EY	vowel
+F	fricative
+G	stop
+HH	aspirate
+IH	vowel
+IY	vowel
+JH	affricate
+K	stop
+L	liquid
+M	nasal
+N	nasal
+NG	nasal
+OW	vowel
+OY	vowel
+P	stop
+R	liquid
+S	fricative
+SH	fricative
+T	stop
+TH	fricative
+UH	vowel
+UW	vowel
+V	fricative
+W	semivowel
+Y	semivowel
+Z	fricative
+ZH	fricative
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The first column is the symbol the dictionary uses to represent that phoneme.
+Using the examples from earlier, we could translate to phonemes like so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;read -&amp;gt; &amp;#34;R IY D&amp;#34;
+read -&amp;gt; &amp;#34;R EH D&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt; &lt;!--list-separator--&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Exploring through code&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s parse this file to get a list of all the valid phonemes in our repl session.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(slurp &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;resources/cmudict-0.7b.phones&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;#34;AA\tvowel\nAE\tvowel\nAH\tvowel\nAO\tvowel\nAW\tvowel\nAY\tvowel\nB\tstop\nCH\taffricate\nD\tstop\nDH\tfricative\nEH\tvowel\nER\tvowel\nEY\tvowel\nF\tfricative\nG\tstop\nHH\taspirate\nIH\tvowel\nIY\tvowel\nJH\taffricate\nK\tstop\nL\tliquid\nM\tnasal\nN\tnasal\nNG\tnasal\nOW\tvowel\nOY\tvowel\nP\tstop\nR\tliquid\nS\tfricative\nSH\tfricative\nT\tstop\nTH\tfricative\nUH\tvowel\nUW\tvowel\nV\tfricative\nW\tsemivowel\nY\tsemivowel\nZ\tfricative\nZH\tfricative\n&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Of course we will want to split the string by newlines:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split-lines&lt;/span&gt; (slurp &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;resources/cmudict-0.7b.phones&amp;#34;&lt;/span&gt;))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;[&amp;#34;AA\tvowel&amp;#34; &amp;#34;AE\tvowel&amp;#34; &amp;#34;AH\tvowel&amp;#34; &amp;#34;AO\tvowel&amp;#34; &amp;#34;AW\tvowel&amp;#34; &amp;#34;AY\tvowel&amp;#34; &amp;#34;B\tstop&amp;#34; &amp;#34;CH\taffricate&amp;#34; &amp;#34;D\tstop&amp;#34; &amp;#34;DH\tfricative&amp;#34; &amp;#34;EH\tvowel&amp;#34; &amp;#34;ER\tvowel&amp;#34; &amp;#34;EY\tvowel&amp;#34; &amp;#34;F\tfricative&amp;#34; &amp;#34;G\tstop&amp;#34; &amp;#34;HH\taspirate&amp;#34; &amp;#34;IH\tvowel&amp;#34; &amp;#34;IY\tvowel&amp;#34; &amp;#34;JH\taffricate&amp;#34; &amp;#34;K\tstop&amp;#34; &amp;#34;L\tliquid&amp;#34; &amp;#34;M\tnasal&amp;#34; &amp;#34;N\tnasal&amp;#34; &amp;#34;NG\tnasal&amp;#34; &amp;#34;OW\tvowel&amp;#34; &amp;#34;OY\tvowel&amp;#34; &amp;#34;P\tstop&amp;#34; &amp;#34;R\tliquid&amp;#34; &amp;#34;S\tfricative&amp;#34; &amp;#34;SH\tfricative&amp;#34; &amp;#34;T\tstop&amp;#34; &amp;#34;TH\tfricative&amp;#34; &amp;#34;UH\tvowel&amp;#34; &amp;#34;UW\tvowel&amp;#34; &amp;#34;V\tfricative&amp;#34; &amp;#34;W\tsemivowel&amp;#34; &amp;#34;Y\tsemivowel&amp;#34; &amp;#34;Z\tfricative&amp;#34; &amp;#34;ZH\tfricative&amp;#34;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And we also want to split on tabs (since this is a tab-separated file):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt; (mapcat &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split&lt;/span&gt; % &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\t&amp;#34;&lt;/span&gt;) (&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split-lines&lt;/span&gt; (slurp &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;resources/cmudict-0.7b.phones&amp;#34;&lt;/span&gt;)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;(&amp;#34;AA&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;AO&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;AW&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;B&amp;#34; &amp;#34;stop&amp;#34; &amp;#34;CH&amp;#34; &amp;#34;affricate&amp;#34; &amp;#34;D&amp;#34; &amp;#34;stop&amp;#34; &amp;#34;DH&amp;#34; &amp;#34;fricative&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;EY&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;F&amp;#34; &amp;#34;fricative&amp;#34; &amp;#34;G&amp;#34; &amp;#34;stop&amp;#34; &amp;#34;HH&amp;#34; &amp;#34;aspirate&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;JH&amp;#34; &amp;#34;affricate&amp;#34; &amp;#34;K&amp;#34; &amp;#34;stop&amp;#34; &amp;#34;L&amp;#34; &amp;#34;liquid&amp;#34; &amp;#34;M&amp;#34; &amp;#34;nasal&amp;#34; &amp;#34;N&amp;#34; &amp;#34;nasal&amp;#34; &amp;#34;NG&amp;#34; &amp;#34;nasal&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;OY&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;P&amp;#34; &amp;#34;stop&amp;#34; &amp;#34;R&amp;#34; &amp;#34;liquid&amp;#34; &amp;#34;S&amp;#34; &amp;#34;fricative&amp;#34; &amp;#34;SH&amp;#34; &amp;#34;fricative&amp;#34; &amp;#34;T&amp;#34; &amp;#34;stop&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;fricative&amp;#34; &amp;#34;UH&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;UW&amp;#34; &amp;#34;vowel&amp;#34; &amp;#34;V&amp;#34; &amp;#34;fricative&amp;#34; &amp;#34;W&amp;#34; &amp;#34;semivowel&amp;#34; &amp;#34;Y&amp;#34; &amp;#34;semivowel&amp;#34; &amp;#34;Z&amp;#34; &amp;#34;fricative&amp;#34; &amp;#34;ZH&amp;#34; &amp;#34;fricative&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You know what, let&amp;rsquo;s ignore the second column entirely, i.e. every 2nd entry (since we are only after the phonemes themselves):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(take-nth &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; (mapcat &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split&lt;/span&gt; % &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\t&amp;#34;&lt;/span&gt;) (&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split-lines&lt;/span&gt; (slurp &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;resources/cmudict-0.7b.phones&amp;#34;&lt;/span&gt;))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;(&amp;#34;AA&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;AO&amp;#34; &amp;#34;AW&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;B&amp;#34; &amp;#34;CH&amp;#34; &amp;#34;D&amp;#34; &amp;#34;DH&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EY&amp;#34; &amp;#34;F&amp;#34; &amp;#34;G&amp;#34; &amp;#34;HH&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;JH&amp;#34; &amp;#34;K&amp;#34; &amp;#34;L&amp;#34; &amp;#34;M&amp;#34; &amp;#34;N&amp;#34; &amp;#34;NG&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;OY&amp;#34; &amp;#34;P&amp;#34; &amp;#34;R&amp;#34; &amp;#34;S&amp;#34; &amp;#34;SH&amp;#34; &amp;#34;T&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;UH&amp;#34; &amp;#34;UW&amp;#34; &amp;#34;V&amp;#34; &amp;#34;W&amp;#34; &amp;#34;Y&amp;#34; &amp;#34;Z&amp;#34; &amp;#34;ZH&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Finally, I think we will want a Set of phonemes, instead of a list, since there is really no order to these entries.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(set (take-nth &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; (mapcat &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split&lt;/span&gt; % &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\t&amp;#34;&lt;/span&gt;) (&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split-lines&lt;/span&gt; (slurp &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;resources/cmudict-0.7b.phones&amp;#34;&lt;/span&gt;)))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#{&amp;#34;T&amp;#34; &amp;#34;CH&amp;#34; &amp;#34;K&amp;#34; &amp;#34;HH&amp;#34; &amp;#34;UH&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;L&amp;#34; &amp;#34;JH&amp;#34; &amp;#34;UW&amp;#34; &amp;#34;G&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;OY&amp;#34; &amp;#34;S&amp;#34; &amp;#34;Y&amp;#34; &amp;#34;EY&amp;#34; &amp;#34;Z&amp;#34; &amp;#34;R&amp;#34; &amp;#34;F&amp;#34; &amp;#34;AW&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;B&amp;#34; &amp;#34;SH&amp;#34; &amp;#34;P&amp;#34; &amp;#34;V&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;AA&amp;#34; &amp;#34;AO&amp;#34; &amp;#34;N&amp;#34; &amp;#34;DH&amp;#34; &amp;#34;W&amp;#34; &amp;#34;ZH&amp;#34; &amp;#34;NG&amp;#34; &amp;#34;D&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;AE&amp;#34;}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That looks pretty good, let&amp;rsquo;s save it into a variable:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;phonemes (set (take-nth &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; (mapcat &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split&lt;/span&gt; % &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\t&amp;#34;&lt;/span&gt;) (&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split-lines&lt;/span&gt; (slurp &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;resources/cmudict-0.7b.phones&amp;#34;&lt;/span&gt;))))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ &lt;!--list-separator--&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Fixing the &amp;ldquo;nested s-expressions&amp;rdquo; problem&lt;/p&gt;
+&lt;p&gt;One ugly thing about the solution we just composed is that every time we want to apply a new function to the previous result, we have to nest that previous result &lt;em&gt;inside&lt;/em&gt; the new function call.
+This leads to deeply nested expressions which can be difficult to read.&lt;/p&gt;
+&lt;p&gt;Clojure&amp;rsquo;s answer to this problem is called the &amp;ldquo;threading macro&amp;rdquo; &lt;code&gt;-&amp;gt;&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The below expression is equivalent to what we created above:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;phonemes
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;-&amp;gt;&amp;gt;&lt;/span&gt;
+   (slurp &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;resources/cmudict-0.7b.phones&amp;#34;&lt;/span&gt;)
+   (&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split-lines&lt;/span&gt;)
+   (mapcat &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split&lt;/span&gt; % &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\t&amp;#34;&lt;/span&gt;))
+   (take-nth &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
+   (&lt;span style=&#34;color:#a6e22e&#34;&gt;set&lt;/span&gt;)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--list-separator--&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Dict&lt;/p&gt;
+&lt;p&gt;This is the mapping of English words to their phonemes, using the phones described above.&lt;/p&gt;
+&lt;p&gt;It begins with a few lines of licensing comments (denoted by &amp;lsquo;;;;&#39;).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;;;; # CMUdict  --  Major Version: 0.07
+;;;
+;;; # $HeadURL: http://svn.code.sf.net/p/cmusphinx/code/trunk/cmudict/cmudict-0.7b $
+;;; # $Date:: 2015-02-18 20:42:08 -0500 (Wed, 18 Feb 2015)      $:
+;;; # $Id:: cmudict-0.7b 12857 2015-02-19 01:42:08Z air         $:
+;;; # $Rev:: 12857                                              $:
+;;; # $Author:: air                                             $:
+;;;
+;;; #
+;;; # ========================================================================
+;;; # Copyright (C) 1993-2015 Carnegie Mellon University. All rights reserved.
+;;; #
+;;; # Redistribution and use in source and binary forms, with or without
+;;; # modification, are permitted provided that the following conditions
+;;; # are met:
+;;; #
+;;; # 1. Redistributions of source code must retain the above copyright
+;;; #    notice, this list of conditions and the following disclaimer.
+;;; #    The contents of this file are deemed to be source code.
+;;; #
+;;; # 2. Redistributions in binary form must reproduce the above copyright
+;;; #    notice, this list of conditions and the following disclaimer in
+;;; #    the documentation and/or other materials provided with the
+;;; #    distribution.
+;;; #
+;;; # This work was supported in part by funding from the Defense Advanced
+;;; # Research Projects Agency, the Office of Naval Research and the National
+;;; # Science Foundation of the United States of America, and by member
+;;; # companies of the Carnegie Mellon Sphinx Speech Consortium. We acknowledge
+;;; # the contributions of many volunteers to the expansion and improvement of
+;;; # this dictionary.
+;;; #
+;;; # THIS SOFTWARE IS PROVIDED BY CARNEGIE MELLON UNIVERSITY ``AS IS&amp;#39;&amp;#39; AND
+;;; # ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+;;; # THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+;;; # PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL CARNEGIE MELLON UNIVERSITY
+;;; # NOR ITS EMPLOYEES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+;;; # SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+;;; # LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+;;; # DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+;;; # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+;;; # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+;;; # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+;;; #
+;;; # ========================================================================
+;;; #
+;;;
+;;;  NOTES  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;  [20080401] (air)  New dict file format introduced
+;;;   - comments (like this section) are allowed
+;;;   - file name is major version; vers/rev information is now in the header
+;;;
+;;;
+;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And then continues to the dictionary itself, &lt;code&gt;cmudict-0.7b&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The first few-dozen lines are actually the phonetic pronunciations of symbols like &amp;ldquo;!&amp;rdquo;, &amp;ldquo;#&amp;rdquo;, etc. so they are a bit strange, but we can still see the structure the dictionary:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;!EXCLAMATION-POINT  EH2 K S K L AH0 M EY1 SH AH0 N P OY2 N T
+&amp;#34;CLOSE-QUOTE  K L OW1 Z K W OW1 T
+&amp;#34;DOUBLE-QUOTE  D AH1 B AH0 L K W OW1 T
+&amp;#34;END-OF-QUOTE  EH1 N D AH0 V K W OW1 T
+&amp;#34;END-QUOTE  EH1 N D K W OW1 T
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You might be asking &amp;ldquo;Why do some of the phonemes have numbers?&amp;rdquo;,
+this is meant to indicate which phonemes are stressed, something I want to completely disregard (the whole point of a mondegreen is to stress different phonemes from the statement being deciphered).&lt;/p&gt;
+&lt;p&gt;So, when we parse the dictionary, let&amp;rsquo;s make sure not to include those characters:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;dictionary-chars &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;^[A-Z&amp;#39;\-\.\_]+&amp;#34;&lt;/span&gt;)
+
+(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;normalize-string
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Converts a symbol found in the dictionary to just it&amp;#39;s phonetic part
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;  (i.e. no stress)&amp;#34;&lt;/span&gt;
+  [sym]
+  (re-find dictionary-chars sym))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;normalize-string&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AH0&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;#34;AH&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s test some examples in the repl to make sure the substitutions produce valid phonemes.
+First, we need to get a list of all the lines in the dictionary:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;dictionary-lines
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;-&amp;gt;&amp;gt;&lt;/span&gt;
+  (slurp &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;resources/cmudict-0.7b&amp;#34;&lt;/span&gt;)
+   (&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split-lines&lt;/span&gt;)
+   (filter (complement &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;.startsWith&lt;/span&gt; % &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;;&amp;#34;&lt;/span&gt;)))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/dictionary-lines
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(take &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt; dictionary-lines)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;(&amp;#34;!EXCLAMATION-POINT  EH2 K S K L AH0 M EY1 SH AH0 N P OY2 N T&amp;#34; &amp;#34;\&amp;#34;CLOSE-QUOTE  K L OW1 Z K W OW1 T&amp;#34; &amp;#34;\&amp;#34;DOUBLE-QUOTE  D AH1 B AH0 L K W OW1 T&amp;#34; &amp;#34;\&amp;#34;END-OF-QUOTE  EH1 N D AH0 V K W OW1 T&amp;#34; &amp;#34;\&amp;#34;END-QUOTE  EH1 N D K W OW1 T&amp;#34; &amp;#34;\&amp;#34;IN-QUOTES  IH1 N K W OW1 T S&amp;#34; &amp;#34;\&amp;#34;QUOTE  K W OW1 T&amp;#34; &amp;#34;\&amp;#34;UNQUOTE  AH1 N K W OW1 T&amp;#34; &amp;#34;#HASH-MARK  HH AE1 M AA2 R K&amp;#34; &amp;#34;#POUND-SIGN  P AW1 N D S AY2 N&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now, what happens when a word has multiple possible pronunciations?
+Let&amp;rsquo;s look at the entry for &amp;ldquo;THE&amp;rdquo;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;THE  DH AH0
+THE(1)  DH AH1
+THE(2)  DH IY0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We need to remove the &lt;code&gt;(1)&lt;/code&gt; and &lt;code&gt;(2)&lt;/code&gt; so that these spellings will be the same.
+Luckily, we can normalize the spellings in the same way we normalized the phonemes, by disallowing numerics and parentheses.&lt;/p&gt;
+&lt;p&gt;Then, we ought to split the dictionary lines into &lt;code&gt;(spelling phonemes)&lt;/code&gt; pairs, being sure to transform the spellings and phonemes into the normalized form we want (no numbered spellings, and no stress indicators on phonemes):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;spellings+phonemes
+  (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[line]
+         (&lt;span style=&#34;color:#a6e22e&#34;&gt;-&amp;gt;&amp;gt;&lt;/span&gt;
+          (&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split&lt;/span&gt; line &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\s&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#75715e&#34;&gt;; split lines by space&lt;/span&gt;
+          (filter &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;not-empty&lt;/span&gt; %))           &lt;span style=&#34;color:#75715e&#34;&gt;; remove empty strings (from whitespace separation)&lt;/span&gt;
+          (map normalize-string)            &lt;span style=&#34;color:#75715e&#34;&gt;; normalize&lt;/span&gt;
+          (split-at &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)                      &lt;span style=&#34;color:#75715e&#34;&gt;; split into spelling + phonemes&lt;/span&gt;
+          ((&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[[spelling] phonemes]] [spelling phonemes])))) &lt;span style=&#34;color:#75715e&#34;&gt;; destructure the spelling list&lt;/span&gt;
+       dictionary-lines))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/spellings+phonemes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;rand-nth&lt;/span&gt; spellings+phonemes)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;[&amp;#34;KWAZULU&amp;#34; (&amp;#34;K&amp;#34; &amp;#34;W&amp;#34; &amp;#34;AA&amp;#34; &amp;#34;Z&amp;#34; &amp;#34;UW&amp;#34; &amp;#34;L&amp;#34; &amp;#34;UW&amp;#34;)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Much better.
+I should check that all the &amp;ldquo;spellings&amp;rdquo; and &amp;ldquo;phonemes&amp;rdquo; are each non-empty, in case there were some other data anomalies I didn&amp;rsquo;t find at the beginning of the file.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(filter (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[spelling phonemes]] (or (&lt;span style=&#34;color:#a6e22e&#34;&gt;empty?&lt;/span&gt; spelling) (&lt;span style=&#34;color:#a6e22e&#34;&gt;empty?&lt;/span&gt; phonemes))) spellings+phonemes)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;(EH K S K L AH M EY SH AH N P OY N T)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;(K L OW Z K W OW T)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(D AH B AH L K W OW T)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(EH N D AH V K W OW T)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(EH N D K W OW T)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(IH N K W OW T S)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(K W OW T)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(AH N K W OW T)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(HH AE M AA R K)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(P AW N D S AY N)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(SH AA R P S AY N)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(P ER S EH N T)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(AE M P ER S AE N D)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(B IH G IH N P ER EH N Z)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(IH N P ER EH N TH AH S IY Z)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(L EH F T P ER EH N)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(OW P AH N P ER EH N TH AH S IY Z)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(P ER EH N)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(P ER EH N Z)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(P ER EH N TH AH S IY Z)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(K L OW Z P ER EH N)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(K L OW Z P ER EH N TH AH S IY Z)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(EH N D P ER EH N)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(EH N D P ER EH N Z)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(EH N D P ER EH N TH AH S IY Z)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(EH N D DH AH P ER EH N)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(P ER EH N)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(P ER EH N Z)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(R AY T P EH R AH N)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(AH N P ER EH N TH AH S IY Z)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(P L UH S)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(K AA M AH)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(S L AE SH)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(TH R IY D IY)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(TH R IY D IY)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(K OW L AH N)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(K W EH S CH AH N M AA R K)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(B R EY S)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(L EH F T B R EY S)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(OW P EH N B R EY S)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(K L OW Z B R EY S)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(R AY T B R EY S)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Ah, because those first bunch of entries in the dictionary contain special characters, their spelling maps to &lt;code&gt;nil&lt;/code&gt;. That&amp;rsquo;s fine, we can adjust our definition to simply omit the pairs starting with &lt;code&gt;nil&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;spellings+phonemes
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;-&amp;gt;&amp;gt;&lt;/span&gt;
+   dictionary-lines
+   (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[line]
+          (&lt;span style=&#34;color:#a6e22e&#34;&gt;-&amp;gt;&amp;gt;&lt;/span&gt;
+           (&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split&lt;/span&gt; line &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\s&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#75715e&#34;&gt;; split lines by space&lt;/span&gt;
+           (filter &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;not-empty&lt;/span&gt; %))           &lt;span style=&#34;color:#75715e&#34;&gt;; remove empty strings (from whitespace separation)&lt;/span&gt;
+           (map normalize-string)            &lt;span style=&#34;color:#75715e&#34;&gt;; normalize&lt;/span&gt;
+           (split-at &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)                      &lt;span style=&#34;color:#75715e&#34;&gt;; split into spelling + phonemes&lt;/span&gt;
+           ((&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[[spelling] phonemes]] [spelling phonemes]))))) &lt;span style=&#34;color:#75715e&#34;&gt;; destructure the spelling list&lt;/span&gt;
+   (filter &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;((complement nil?) (first %)))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/spellings+phonemes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;homo-phone-graph-s&#34;&gt;Homo[phone|graph]s&lt;/h2&gt;
+&lt;p&gt;Something we haven&amp;rsquo;t contended with yet are &lt;em&gt;homophones&lt;/em&gt;, that is, words which have the same pronunciation, but distinct spellings (e.g. red and read).&lt;/p&gt;
+&lt;p&gt;Dually, there is the problem of &lt;em&gt;homographs&lt;/em&gt;, that is, words which have the same spelling, but distinct pronunciations (e.g. the &amp;ldquo;long-e&amp;rdquo; read and the &amp;ldquo;short-e&amp;rdquo; read).&lt;/p&gt;
+&lt;p&gt;Our dictionary has entries of each kind, let&amp;rsquo;s check them out&lt;/p&gt;
+&lt;h3 id=&#34;homophones&#34;&gt;Homophones&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s look at homophones first.
+Finding these things is not actually a trivial thing with such a large data set.
+A naive solution might go through each entry and check the rest of the list to see if that spelling occurs again.&lt;/p&gt;
+&lt;p&gt;However, because &lt;code&gt;spellings+phonemes&lt;/code&gt; is a list, this would mean &lt;code&gt;n&lt;/code&gt; comparisons for each of the &lt;code&gt;n&lt;/code&gt; entries, that&amp;rsquo;s &lt;code&gt;O(n^2)&lt;/code&gt;, and in this case &lt;code&gt;n&lt;/code&gt; is a large number (all words in the English dictionary), so that&amp;rsquo;s not quite going to work out for us.&lt;/p&gt;
+&lt;p&gt;Luckily this is a &lt;em&gt;classic&lt;/em&gt; algorithms problem, and probably, like, question 3 on hackerrank or leetcode. I&amp;rsquo;ll spoil it for you.&lt;/p&gt;
+&lt;p&gt;The answer is to use a map.&lt;/p&gt;
+&lt;p&gt;As we traverse the list of &lt;code&gt;[spelling phonemes]&lt;/code&gt;, we insert each &lt;code&gt;spelling&lt;/code&gt; as the key of a map (ostensibly a constant-time operation), and use the &lt;code&gt;[phonemes]&lt;/code&gt; as the value. If we find another &lt;code&gt;spelling&lt;/code&gt; which is exactly the same, the key will match in our list, and we can append the newer &lt;code&gt;phonemes&lt;/code&gt; to the value.&lt;/p&gt;
+&lt;p&gt;Clojure has an awesome standard library, and maps are bread-and-butter Clojure data structures, so I can avoid the whole &amp;ldquo;look up the key in the map, if it does not exist insert an array, otherwise append to that array&amp;rdquo; by using the standard function &lt;code&gt;merge-with&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s the clojuredoc for &lt;code&gt;merge-with&lt;/code&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;clojure.core/merge-with
+[f &amp;amp; maps]
+Added in 1.0
+Returns a map that consists of the rest of the maps conj-ed onto
+the first.  If a key occurs in more than one map, the mapping(s)
+from the latter (left-to-right) will be combined with the mapping in
+the result by calling (f val-in-result val-in-latter).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ok, so how am I going to use this function to solve my problem?
+I am going to convert each &lt;code&gt;[spelling phonemes]&lt;/code&gt; pair (which at this point more accurately represents a &lt;code&gt;[spelling pronunciation]&lt;/code&gt; pair) into a map of &lt;code&gt;{spelling [pronunciation]}&lt;/code&gt;, and then merge &lt;em&gt;all of those maps&lt;/em&gt; using the &lt;code&gt;into&lt;/code&gt; function to conjoin all the &lt;code&gt;[pronunciations]&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(into [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;] [&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;[1 2 3 4 5 6]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s try it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;rand-nth&lt;/span&gt; (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt; [[spelling pronunciation]] {spelling [pronunciation]}) spellings+phonemes))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;{&amp;#34;JESSICA&amp;#39;S&amp;#34; [(&amp;#34;JH&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;S&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;K&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;Z&amp;#34;)]}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Cool, so now we have a list of maps with 1 key-value pair each, we have to &lt;code&gt;reduce&lt;/code&gt; that to a single map with &lt;code&gt;merge-with&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;word-&amp;gt;pronunciations
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;reduce&lt;/span&gt;
+   (partial merge-with into)
+   (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt; [[spelling pronunciation]] {spelling [pronunciation]}) spellings+phonemes)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;.get&lt;/span&gt; word-&amp;gt;pronunciations &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ICE&amp;#34;&lt;/span&gt;)
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;.get&lt;/span&gt; word-&amp;gt;pronunciations &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CREAM&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;[(&amp;ldquo;AY&amp;rdquo; &amp;ldquo;S&amp;rdquo;)]&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;[(&amp;ldquo;K&amp;rdquo; &amp;ldquo;R&amp;rdquo; &amp;ldquo;IY&amp;rdquo; &amp;ldquo;M&amp;rdquo;)]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Hooray! We can now find the pronunciation for any English word.&lt;/p&gt;
+&lt;h4 id=&#34;exploring-the-pronunciations&#34;&gt;Exploring the pronunciations&lt;/h4&gt;
+&lt;p&gt;Let&amp;rsquo;s see if we can get a word with multiple pronunciations:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;rand-nth&lt;/span&gt; (filter (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (&amp;gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v) &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)) word-&amp;gt;pronunciations))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;[&amp;#34;GAMBLING&amp;#34; [(&amp;#34;G&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;M&amp;#34; &amp;#34;B&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;L&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;NG&amp;#34;) (&amp;#34;G&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;M&amp;#34; &amp;#34;B&amp;#34; &amp;#34;L&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;NG&amp;#34;)]]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hmm, I&amp;rsquo;m curious which word has the most pronunciations?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;[maxlen (apply max (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v)) word-&amp;gt;pronunciations))]
+  (filter (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (&lt;span style=&#34;color:#a6e22e&#34;&gt;.equals&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v) maxlen)) word-&amp;gt;pronunciations))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;([&amp;#34;M&amp;#34; [(&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;W&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;T&amp;#34; &amp;#34;UW&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;R&amp;#34; &amp;#34;IY&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;F&amp;#34; &amp;#34;AO&amp;#34; &amp;#34;R&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;F&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;V&amp;#34;)]] [&amp;#34;C&amp;#34; [(&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34;) (&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;W&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;T&amp;#34; &amp;#34;UW&amp;#34;) (&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;R&amp;#34; &amp;#34;IY&amp;#34;) (&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;F&amp;#34; &amp;#34;AO&amp;#34; &amp;#34;R&amp;#34;) (&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;F&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;V&amp;#34;)]])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Oh, I guess &amp;ldquo;M1&amp;rdquo;, &amp;ldquo;M2&amp;rdquo;, &amp;ldquo;M3&amp;rdquo;&amp;hellip; and &amp;ldquo;C1&amp;rdquo;, &amp;ldquo;C2&amp;rdquo;, &amp;ldquo;C3&amp;rdquo; &amp;hellip; are all valid words in the dictionary and I broke them by removing the numbers. Whatever.&lt;/p&gt;
+&lt;p&gt;How about the next-most pronunciations?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;[maxlen (apply max (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v)) word-&amp;gt;pronunciations))]
+  (filter (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (= (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v) (- maxlen &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;))) word-&amp;gt;pronunciations))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;([&amp;#34;CAT-&amp;#34; [(&amp;#34;K&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;T&amp;#34; &amp;#34;W&amp;#34; &amp;#34;AO&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;T&amp;#34; &amp;#34;T&amp;#34; &amp;#34;UW&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;T&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;R&amp;#34; &amp;#34;IY&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;T&amp;#34; &amp;#34;F&amp;#34; &amp;#34;AO&amp;#34; &amp;#34;R&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;T&amp;#34; &amp;#34;S&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;K&amp;#34; &amp;#34;S&amp;#34;)]])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hurricanes, cool. Again, I removed the numeric value from the word itself, but that shouldn&amp;rsquo;t really matter.&lt;/p&gt;
+&lt;p&gt;I want to find the first real word though&amp;hellip;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;[maxlen (apply max (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v)) word-&amp;gt;pronunciations))]
+  (take &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; (filter (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (= (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v) (- maxlen &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;))) word-&amp;gt;pronunciations)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;([&amp;#34;GRANTED&amp;#34; [(&amp;#34;G&amp;#34; &amp;#34;R&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;N&amp;#34; &amp;#34;T&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;G&amp;#34; &amp;#34;R&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;N&amp;#34; &amp;#34;T&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;G&amp;#34; &amp;#34;R&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;N&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;G&amp;#34; &amp;#34;R&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;N&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;D&amp;#34;)]])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is pretty interesting! The last two pronunciations completely omit the &amp;ldquo;T&amp;rdquo; sound from &amp;ldquo;GRANTED&amp;rdquo;, which is known linguistically as &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Elision&#34;&gt;elision&lt;/a&gt;&lt;/em&gt;.
+We say that the &amp;ldquo;T&amp;rdquo; was &lt;em&gt;elided&lt;/em&gt; from the pronunciation of &amp;ldquo;GRANTED&amp;rdquo;.&lt;/p&gt;
+&lt;h4 id=&#34;what-makes-a-map&#34;&gt;What makes a Map?&lt;/h4&gt;
+&lt;p&gt;Why did I name our data structure &lt;code&gt;word-&amp;gt;pronunciations&lt;/code&gt;?
+The &lt;code&gt;A-&amp;gt;B&lt;/code&gt; naming convention is common in Lisp-like languages to describe functions which map one data type to another, but what we&amp;rsquo;ve created is supposed to be a map, not a function, right?
+Well, Clojure doesn&amp;rsquo;t make the distinction so severe, since the map data structure is basically a function that converts from the &lt;code&gt;key&lt;/code&gt; type to the &lt;code&gt;value&lt;/code&gt; type.&lt;/p&gt;
+&lt;p&gt;In most languages, (like JavaScript), if you want to get a value out of a map (object in JavaScript), you have to write code that looks like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;my_map&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;key&lt;/span&gt;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and to call a function you have to write code that looks like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;my_function&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;key&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;but in Clojure, if you have a map, you can call it like you would a function (since it &lt;em&gt;is&lt;/em&gt; a function):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;({&lt;span style=&#34;color:#e6db74&#34;&gt;:a&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;} &lt;span style=&#34;color:#e6db74&#34;&gt;:a&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We are using this fact to our advantage in our definition of &lt;code&gt;word-&amp;gt;pronunciations&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;;; A map is a data structure (object)...&lt;/span&gt;
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;.get&lt;/span&gt; word-&amp;gt;pronunciations &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ICE&amp;#34;&lt;/span&gt;)
+&lt;span style=&#34;color:#75715e&#34;&gt;;; ...but also a function!&lt;/span&gt;
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;word-&amp;gt;pronunciations&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ICE&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;[(&amp;ldquo;AY&amp;rdquo; &amp;ldquo;S&amp;rdquo;)]&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;[(&amp;ldquo;AY&amp;rdquo; &amp;ldquo;S&amp;rdquo;)]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;homographs&#34;&gt;Homographs&lt;/h3&gt;
+&lt;p&gt;Now, homographs are a very similar problem, except in reverse. This time, we want words which have the same pronunciation to be associated.&lt;/p&gt;
+&lt;p&gt;Lucky for us, Clojure&amp;rsquo;s maps and lists are fantastic data structures, and compose beautifully.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(= &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is awesome. If two lists contain the same strings, then they&amp;rsquo;re treated as equivalent!&lt;/p&gt;
+&lt;p&gt;JavaScript (arrays, since there are no &amp;ldquo;lists&amp;rdquo;) is not so friendly:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;===&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;]);
+&lt;span style=&#34;color:#a6e22e&#34;&gt;console&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;log&lt;/span&gt;([&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;]);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;false
+false
+undefined
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The implication here is that our lists &lt;strong&gt;will collide in our map&lt;/strong&gt;, meaning to get a function mapping &lt;code&gt;pronunciation-&amp;gt;words&lt;/code&gt;, all we need to do is reverse the keys and values:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;pronunciation-&amp;gt;words
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;reduce&lt;/span&gt;
+   (partial merge-with into)
+   (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt; [[spelling pronunciation]] {pronunciation [spelling]}) spellings+phonemes)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/pronunciation-&amp;gt;words
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;pronunciation-&amp;gt;words&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;[&amp;#34;ICE&amp;#34;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;sentence-pronunciations&#34;&gt;&lt;code&gt;sentence-&amp;gt;pronunciations&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Now that we can go from a word to a list of pronunciations (&lt;code&gt;word-&amp;gt;pronunciation&lt;/code&gt;), it shouldn&amp;rsquo;t be too hard to go from a list of words (AKA a sentence) to a list of pronunciations (&lt;code&gt;sentence-&amp;gt;pronunciations&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;The only complication: what should we do if a word has multiple pronunciations? How should you pronounce that sentence?&lt;/p&gt;
+&lt;p&gt;Well, each time a word has multiple pronunciations, we should probably return a new pronunciation for the whole sentence.
+The word &amp;ldquo;READ&amp;rdquo; has 2 pronunciations:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;word-&amp;gt;pronunciations&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;READ&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;[(&amp;#34;R&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;D&amp;#34;)]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So the (nonsensical) sentence &amp;ldquo;READ READ&amp;rdquo; should produce 4 pronunciations:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;(&amp;#34;R&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;D&amp;#34; &amp;#34;R&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;D&amp;#34;)
+(&amp;#34;R&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;D&amp;#34; &amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;D&amp;#34;)
+(&amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;D&amp;#34; &amp;#34;R&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;D&amp;#34;)
+(&amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;D&amp;#34; &amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;D&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This type of combination is a &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Cartesian_product&#34;&gt;cartesian product&lt;/a&gt;&lt;/em&gt;, and Clojure has an implementation built into the &lt;code&gt;clojure.math.combinatorics&lt;/code&gt; &lt;a href=&#34;https://github.com/clojure/math.combinatorics&#34;&gt;namespace&lt;/a&gt;.
+Unfortunately that namespace needs to be included as a leiningen dependency, and I haven&amp;rsquo;t figured out yet how to get that to work correctly with the literate programming environment I&amp;rsquo;m using (org-babel), so I&amp;rsquo;ll just include a cartesian-product function in this script&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;cart [colls]
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cartesian product on the list of collections&amp;#34;&lt;/span&gt;
+  (&lt;span style=&#34;color:#66d9ef&#34;&gt;if &lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;empty?&lt;/span&gt; colls)
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(())
+    (for [more (&lt;span style=&#34;color:#a6e22e&#34;&gt;cart&lt;/span&gt; (rest colls))
+          x (first colls)]
+      (cons x more))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/cart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;cart&lt;/span&gt; [[]])
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;cart&lt;/span&gt; [[] [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;]])
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;cart&lt;/span&gt; [[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;]])
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;cart&lt;/span&gt; [[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;] [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;]])
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;cart&lt;/span&gt; [[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;] [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;]])
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;cart&lt;/span&gt; [[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;] [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;] [&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;6&lt;/span&gt;]])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;()&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;()&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;((1 2))&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;((1 2) (3 2))&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;((1 2) (3 2) (1 4) (3 4))&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;((1 2 5) (3 2 5) (1 4 5) (3 4 5) (1 2 6) (3 2 6) (1 4 6) (3 4 6))&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Given this definition, the pronunciations of a sentence are merely the cartesian product of the pronunciations of all the words (normalized to capital letters and split by spaces, of course):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;sentence-&amp;gt;words
+  [sentence]
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;-&amp;gt;&lt;/span&gt;
+   sentence
+   (&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/upper-case&lt;/span&gt;)
+   (&lt;span style=&#34;color:#a6e22e&#34;&gt;clojure.string/split&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\s&amp;#34;&lt;/span&gt;)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/sentence-&amp;gt;words
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;words&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Luke I am your father.&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;[&amp;#34;LUKE&amp;#34; &amp;#34;I&amp;#34; &amp;#34;AM&amp;#34; &amp;#34;YOUR&amp;#34; &amp;#34;FATHER.&amp;#34;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;sentence-&amp;gt;pronunciation
+  [sentence]
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;cart&lt;/span&gt; (map word-&amp;gt;pronunciations (&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;words&lt;/span&gt; sentence))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/sentence-&amp;gt;pronunciation
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;pronunciation&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;READ READ&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;(((&amp;#34;R&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;R&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;D&amp;#34;)) ((&amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;R&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;D&amp;#34;)) ((&amp;#34;R&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;D&amp;#34;)) ((&amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;D&amp;#34;)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Actually, we should flatten each of those results as well, to get a list of strings instead:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;sentence-&amp;gt;pronunciation
+  [sentence]
+  (map flatten (&lt;span style=&#34;color:#a6e22e&#34;&gt;cart&lt;/span&gt; (map word-&amp;gt;pronunciations (&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;words&lt;/span&gt; sentence)))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/sentence-&amp;gt;pronunciation
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;pronunciation&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;READ READ&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;R&lt;/th&gt;
+&lt;th&gt;EH&lt;/th&gt;
+&lt;th&gt;D&lt;/th&gt;
+&lt;th&gt;R&lt;/th&gt;
+&lt;th&gt;EH&lt;/th&gt;
+&lt;th&gt;D&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;R&lt;/td&gt;
+&lt;td&gt;IY&lt;/td&gt;
+&lt;td&gt;D&lt;/td&gt;
+&lt;td&gt;R&lt;/td&gt;
+&lt;td&gt;EH&lt;/td&gt;
+&lt;td&gt;D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R&lt;/td&gt;
+&lt;td&gt;EH&lt;/td&gt;
+&lt;td&gt;D&lt;/td&gt;
+&lt;td&gt;R&lt;/td&gt;
+&lt;td&gt;IY&lt;/td&gt;
+&lt;td&gt;D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R&lt;/td&gt;
+&lt;td&gt;IY&lt;/td&gt;
+&lt;td&gt;D&lt;/td&gt;
+&lt;td&gt;R&lt;/td&gt;
+&lt;td&gt;IY&lt;/td&gt;
+&lt;td&gt;D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;pronunciation&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Please not while I&amp;#39;m eating&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;P&lt;/th&gt;
+&lt;th&gt;L&lt;/th&gt;
+&lt;th&gt;IY&lt;/th&gt;
+&lt;th&gt;Z&lt;/th&gt;
+&lt;th&gt;N&lt;/th&gt;
+&lt;th&gt;AA&lt;/th&gt;
+&lt;th&gt;T&lt;/th&gt;
+&lt;th&gt;W&lt;/th&gt;
+&lt;th&gt;AY&lt;/th&gt;
+&lt;th&gt;L&lt;/th&gt;
+&lt;th&gt;AY&lt;/th&gt;
+&lt;th&gt;M&lt;/th&gt;
+&lt;th&gt;IY&lt;/th&gt;
+&lt;th&gt;T&lt;/th&gt;
+&lt;th&gt;IH&lt;/th&gt;
+&lt;th&gt;NG&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;P&lt;/td&gt;
+&lt;td&gt;L&lt;/td&gt;
+&lt;td&gt;IY&lt;/td&gt;
+&lt;td&gt;Z&lt;/td&gt;
+&lt;td&gt;N&lt;/td&gt;
+&lt;td&gt;AA&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;HH&lt;/td&gt;
+&lt;td&gt;W&lt;/td&gt;
+&lt;td&gt;AY&lt;/td&gt;
+&lt;td&gt;L&lt;/td&gt;
+&lt;td&gt;AY&lt;/td&gt;
+&lt;td&gt;M&lt;/td&gt;
+&lt;td&gt;IY&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;IH&lt;/td&gt;
+&lt;td&gt;NG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P&lt;/td&gt;
+&lt;td&gt;L&lt;/td&gt;
+&lt;td&gt;IY&lt;/td&gt;
+&lt;td&gt;Z&lt;/td&gt;
+&lt;td&gt;N&lt;/td&gt;
+&lt;td&gt;AA&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;W&lt;/td&gt;
+&lt;td&gt;AY&lt;/td&gt;
+&lt;td&gt;L&lt;/td&gt;
+&lt;td&gt;AH&lt;/td&gt;
+&lt;td&gt;M&lt;/td&gt;
+&lt;td&gt;IY&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;IH&lt;/td&gt;
+&lt;td&gt;NG&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;P&lt;/td&gt;
+&lt;td&gt;L&lt;/td&gt;
+&lt;td&gt;IY&lt;/td&gt;
+&lt;td&gt;Z&lt;/td&gt;
+&lt;td&gt;N&lt;/td&gt;
+&lt;td&gt;AA&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;HH&lt;/td&gt;
+&lt;td&gt;W&lt;/td&gt;
+&lt;td&gt;AY&lt;/td&gt;
+&lt;td&gt;L&lt;/td&gt;
+&lt;td&gt;AH&lt;/td&gt;
+&lt;td&gt;M&lt;/td&gt;
+&lt;td&gt;IY&lt;/td&gt;
+&lt;td&gt;T&lt;/td&gt;
+&lt;td&gt;IH&lt;/td&gt;
+&lt;td&gt;NG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;pronunciation-sentence&#34;&gt;&lt;code&gt;pronunciation-&amp;gt;sentence&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Now that we can generate the pronunciation of a sentence, we will want to be able to go from a pronunciation to a sentence.&lt;/p&gt;
+&lt;p&gt;The way I imagine the mondegreen generator working is roughly:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;sentence -&amp;gt; pronunciation -&amp;gt; sentence
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;where the first &lt;code&gt;sentence&lt;/code&gt; and last &lt;code&gt;sentence&lt;/code&gt; are different.
+Consider the classic:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;I scream -&amp;gt; ice cream
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As we can see, their pronunciations match exactly:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;pronunciation&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;I scream&amp;#34;&lt;/span&gt;)
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;pronunciation&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ice cream&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;((&amp;ldquo;AY&amp;rdquo; &amp;ldquo;S&amp;rdquo; &amp;ldquo;K&amp;rdquo; &amp;ldquo;R&amp;rdquo; &amp;ldquo;IY&amp;rdquo; &amp;ldquo;M&amp;rdquo;))&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;((&amp;ldquo;AY&amp;rdquo; &amp;ldquo;S&amp;rdquo; &amp;ldquo;K&amp;rdquo; &amp;ldquo;R&amp;rdquo; &amp;ldquo;IY&amp;rdquo; &amp;ldquo;M&amp;rdquo;))&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;So how can we go from that representation to either of the two sentences?&lt;/p&gt;
+&lt;h3 id=&#34;trie&#34;&gt;Trie&lt;/h3&gt;
+&lt;p&gt;What we will need is a way to, given a phoneme, get a list of the possible phonemes which are &lt;strong&gt;part of a valid English word&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;So, if given just &lt;code&gt;&amp;quot;AY&amp;quot;&lt;/code&gt;, this function should tell us that, indeed &lt;code&gt;&amp;quot;AY&amp;quot;&lt;/code&gt; is part of the valid word &lt;code&gt;I&lt;/code&gt;, but &lt;em&gt;also&lt;/em&gt; that &lt;code&gt;&amp;quot;S&amp;quot;&lt;/code&gt; is a valid continuation after &lt;code&gt;&amp;quot;AY&amp;quot;&lt;/code&gt; (since &lt;code&gt;&amp;quot;S&amp;quot;&lt;/code&gt; is the next phoneme in &lt;code&gt;&amp;quot;ICE&amp;quot;&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;I think it was my freshman-year &lt;em&gt;Fundamentals of Computer Programming&lt;/em&gt; professor &lt;a href=&#34;https://www.ccs.neu.edu/home/shivers/&#34;&gt;Olin Shivers&lt;/a&gt; (but he might have been quoting someone) who said (and I&amp;rsquo;m probably poorly paraphrasing):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Your data structures must be smart so your algorithms can be dumb.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I thought this was a &lt;em&gt;&lt;a href=&#34;http://www.cs.yale.edu/homes/perlis-alan/quotes.html&#34;&gt;perlism&lt;/a&gt;&lt;/em&gt; (whom professor Shivers was fond of), but I couldn&amp;rsquo;t find it in the list.&lt;/p&gt;
+&lt;p&gt;Well, what we want here is a data structure which is smart enough to answer our question.&lt;/p&gt;
+&lt;p&gt;I immediately considered the &lt;em&gt;trie&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s awesome, just a nested map, but powerful enough to be the core data structure powering &lt;a href=&#34;https://lucene.apache.org/&#34;&gt;Lucene&lt;/a&gt; (which in turn &lt;a href=&#34;https://www.endava.com/en/blog/Engineering/2021/Elasticsearch-and-apache-lucene-fundamentals-behind-the-relevance-score&#34;&gt;powers ElasticSearch&lt;/a&gt;).
+Tries are all about &lt;em&gt;re(trie)val&lt;/em&gt;, they retrieve information based on partial data.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://mjdiloreto.github.io/ox-hugo/2021-12-27_17-59-32_.jpeg&#34; alt=&#34;&#34;&gt;
+(excuse the German, it was the best diagram I could find on DuckDuckGo)&lt;/p&gt;
+&lt;p&gt;Our trie will be a potentially 26-ary tree (one for each possible next letter), which we will choose to represent as nested maps, with nodes representing either letters or complete terms.&lt;/p&gt;
+&lt;p&gt;In our case though, the nodes won&amp;rsquo;t be letters, but phonemes!
+That way, we can traverse the trie, looking for the next phoneme in our sentence.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s try constructing the trie.
+We can use the same map-merging trick we used to create &lt;code&gt;word-&amp;gt;phonemes&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I want to create the following map for the word &amp;ldquo;READ&amp;rdquo;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;{ &amp;#34;R&amp;#34; { &amp;#34;EH&amp;#34; { &amp;#34;D&amp;#34; &amp;#34;What to associate here?&amp;#34; }}}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This should embed the phoneme structure, but when we actually finish a word we have to indicate that, while not blocking any further phonemes.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ll choose to use the keyword &lt;code&gt;:word&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;{ &amp;#34;R&amp;#34; { &amp;#34;EH&amp;#34; { &amp;#34;D&amp;#34; { :word &amp;#34;RED&amp;#34; &amp;#34;IY&amp;#34; { :word &amp;#34;READY&amp;#34; ... more phonemes ... } } }}}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;word-&amp;gt;nested-map
+  [phones word]
+  (&lt;span style=&#34;color:#66d9ef&#34;&gt;if &lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;empty?&lt;/span&gt; phones)
+    { &lt;span style=&#34;color:#e6db74&#34;&gt;:word&lt;/span&gt; word }
+    { &lt;span style=&#34;color:#e6db74&#34;&gt;:word&lt;/span&gt; nil
+      (first phones) (&lt;span style=&#34;color:#a6e22e&#34;&gt;word-&amp;gt;nested-map&lt;/span&gt; (rest phones) word)}))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/word-&amp;gt;nested-map
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;word-&amp;gt;nested-map&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;R&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;EH&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;D&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;RED&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;{:word , &amp;#34;R&amp;#34; {:word , &amp;#34;EH&amp;#34; {:word , &amp;#34;D&amp;#34; {:word &amp;#34;RED&amp;#34;}}}}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now to merge.&lt;/p&gt;
+&lt;p&gt;Unfortunately Clojure&amp;rsquo;s &lt;code&gt;merge-with&lt;/code&gt; function only works for a single level of map, but we will want to &lt;code&gt;deep-merge&lt;/code&gt; them.
+Actually, we&amp;rsquo;ll have to &lt;code&gt;deep-merge-with&lt;/code&gt; them, since some of the phoneme maps are bound to collide.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not above using other people&amp;rsquo;s code, and the &lt;a href=&#34;https://clojuredocs.org&#34;&gt;clojuredocs&lt;/a&gt; website has awesome comments with community suggestions.
+I pulled this implementation from the comments on the built-in &lt;code&gt;merge-with&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;deep-merge-with
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://clojuredocs.org/clojure.core/merge-with#example-5b80843ae4b00ac801ed9e74
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;  Like merge-with, but merges maps recursively, applying the given fn
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;  only when there&amp;#39;s a non-map at a particular level.&amp;#34;&lt;/span&gt;
+  [f &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; maps]
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;apply&lt;/span&gt;
+   (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;m [&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; maps]
+     (&lt;span style=&#34;color:#66d9ef&#34;&gt;if &lt;/span&gt;(every? map? maps)
+       (apply merge-with m maps)
+       (apply f maps)))
+   maps))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/deep-merge-with
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;deep-merge-with&lt;/span&gt; + {&lt;span style=&#34;color:#e6db74&#34;&gt;:a&lt;/span&gt; {&lt;span style=&#34;color:#e6db74&#34;&gt;:b&lt;/span&gt; {&lt;span style=&#34;color:#e6db74&#34;&gt;:c&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;:d&lt;/span&gt; {&lt;span style=&#34;color:#e6db74&#34;&gt;:x&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;:y&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;}} &lt;span style=&#34;color:#e6db74&#34;&gt;:e&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;} &lt;span style=&#34;color:#e6db74&#34;&gt;:f&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;}
+                   {&lt;span style=&#34;color:#e6db74&#34;&gt;:a&lt;/span&gt; {&lt;span style=&#34;color:#e6db74&#34;&gt;:b&lt;/span&gt; {&lt;span style=&#34;color:#e6db74&#34;&gt;:c&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;:d&lt;/span&gt; {&lt;span style=&#34;color:#e6db74&#34;&gt;:z&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;} &lt;span style=&#34;color:#e6db74&#34;&gt;:z&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;} &lt;span style=&#34;color:#e6db74&#34;&gt;:e&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;}})
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;{:a {:b {:c 3, :d {:x 1, :y 2, :z 9}, :z 3}, :e 103}, :f 4}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now, we will also need a way to handle our &lt;em&gt;homophones&lt;/em&gt;, so &lt;code&gt;:word&lt;/code&gt; will actually have to be an array, and the function we &lt;code&gt;merge-with&lt;/code&gt; will have to be able to handle insert into that array.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;merge-with-nil
+  [a b]
+  (cond (nil? a) b
+        (nil? b) a
+        &lt;span style=&#34;color:#e6db74&#34;&gt;:else&lt;/span&gt; (into a b)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/merge-with-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;merge-with-nil&lt;/span&gt; nil nil)
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;merge-with-nil&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] nil)
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;merge-with-nil&lt;/span&gt; nil [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;])
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;merge-with-nil&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;[1]&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;[1]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;[1 2]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;So now creating our trie is simple:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;pronunciations-trie
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;apply&lt;/span&gt;
+   deep-merge-with
+   merge-with-nil
+   (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[pronunciation word]] (&lt;span style=&#34;color:#a6e22e&#34;&gt;word-&amp;gt;nested-map&lt;/span&gt; pronunciation word)) pronunciation-&amp;gt;words)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/pronunciations-trie
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To get at words in the trie, we need to recursively &lt;code&gt;get&lt;/code&gt; phonemes, and finally select the word:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;-&amp;gt;&lt;/span&gt;
+ pronunciations-trie
+ (&lt;span style=&#34;color:#a6e22e&#34;&gt;.get&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;R&amp;#34;&lt;/span&gt;)
+ (&lt;span style=&#34;color:#a6e22e&#34;&gt;.get&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;EH&amp;#34;&lt;/span&gt;)
+ (&lt;span style=&#34;color:#a6e22e&#34;&gt;.get&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;D&amp;#34;&lt;/span&gt;)
+ (&lt;span style=&#34;color:#e6db74&#34;&gt;:word&lt;/span&gt;))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;[&amp;#34;READ&amp;#34; &amp;#34;READE&amp;#34; &amp;#34;RED&amp;#34; &amp;#34;REDD&amp;#34;]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can use Clojure&amp;rsquo;s &lt;code&gt;loop&lt;/code&gt; macro to define a function which will check if a list of phonemes is a valid pronunciation of some English word.&lt;/p&gt;
+&lt;p&gt;In our case we don&amp;rsquo;t just want to return &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;, but the actual trie structure that the pronunciation results in.
+This will let us continue to look up words based on where we leave off.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;lookup-pronunciation
+  [pronunciation]
+  (&lt;span style=&#34;color:#66d9ef&#34;&gt;loop &lt;/span&gt;[remaining pronunciation
+         trie pronunciations-trie]
+    (cond (&lt;span style=&#34;color:#a6e22e&#34;&gt;empty?&lt;/span&gt; remaining) trie
+          (nil? trie) nil
+          &lt;span style=&#34;color:#e6db74&#34;&gt;:else&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;recur&lt;/span&gt; (rest remaining) (&lt;span style=&#34;color:#a6e22e&#34;&gt;trie&lt;/span&gt; (first remaining))))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;:word&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;lookup-pronunciation&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;R&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;EH&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;D&amp;#34;&lt;/span&gt;]))
+(&lt;span style=&#34;color:#e6db74&#34;&gt;:word&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;lookup-pronunciation&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;D&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;EY&amp;#34;&lt;/span&gt;]))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;[&amp;ldquo;READ&amp;rdquo; &amp;ldquo;READE&amp;rdquo; &amp;ldquo;RED&amp;rdquo; &amp;ldquo;REDD&amp;rdquo;]&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;[&amp;ldquo;DAE&amp;rdquo; &amp;ldquo;DAY&amp;rdquo; &amp;ldquo;DAYE&amp;rdquo; &amp;ldquo;DE&amp;rdquo; &amp;ldquo;DEY&amp;rdquo;]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;weird-results&#34;&gt;Weird Results&lt;/h4&gt;
+&lt;p&gt;Honestly, some of  these results are weird.
+If I was playing this game and came across &amp;ldquo;DE&amp;rdquo; I would probably pronounce it as &lt;code&gt;[&amp;quot;D&amp;quot; &amp;quot;EE&amp;quot;]&lt;/code&gt; not &lt;code&gt;[&amp;quot;D&amp;quot; &amp;quot;EY&amp;quot;]&lt;/code&gt;.
+One way we can consider fixing this is by finding a list of the &lt;em&gt;most common&lt;/em&gt; English words, and filter our original dictionary to only include those words.
+That &lt;em&gt;ought&lt;/em&gt; to exclude the weirder words like &lt;code&gt;&amp;quot;DE&amp;quot;, &amp;quot;READE&amp;quot;, &amp;quot;REDD&amp;quot;&lt;/code&gt; etc.&lt;/p&gt;
+&lt;!--list-separator--&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;org-todo todo TODO&#34;&gt;TODO&lt;/span&gt;  Do that. I don&amp;rsquo;t have a list of the most common words yet.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;substitutions&#34;&gt;Substitutions&lt;/h3&gt;
+&lt;p&gt;A key aspect of the Mondegreens which I haven&amp;rsquo;t discussed yet are sound substitutions.
+For example, many Mondegreens will slightly change a syllable here or there to through the reader off slightly, but usually the sound will be sufficiently close so the reader can still guess correctly.
+The type of substitutions I see are usually phonetically similar, like &lt;code&gt;&amp;quot;D&amp;quot;-&amp;gt;&amp;quot;T&amp;quot;&lt;/code&gt; (both are known linguistically as &lt;code&gt;frontal stops&lt;/code&gt;, where &lt;code&gt;&amp;quot;D&amp;quot;&lt;/code&gt; is the &lt;em&gt;alveolar stop&lt;/em&gt; and &lt;code&gt;&amp;quot;T&amp;quot;&lt;/code&gt; is the &lt;em&gt;dental stop&lt;/em&gt;. &lt;code&gt;&amp;quot;D&amp;quot;&lt;/code&gt; is &lt;em&gt;voiced&lt;/em&gt; (your throat hums when you pronounce it), and &lt;code&gt;&amp;quot;T&amp;quot;&lt;/code&gt; is &lt;em&gt;unvoiced&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;Mathematically, when we want to express equivalence between objects, we can put them in the same &lt;em&gt;Set&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve created a list of Sets of phonemes which I consider to be valid substitutions for each other in our game, but these, while guided by my limited knowledge of phonetics, are more or less arbitrary.&lt;/p&gt;
+&lt;p&gt;Singleton classes represent phonemes which I don&amp;rsquo;t think should be replaced with anything else.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;equivalence-classes
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;It would be better to base these substitutions on some kind of linguistic data. I bet it exists.&amp;#34;&lt;/span&gt;
+  [&lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AA&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AO&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AW&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AH&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;UH&amp;#34;&lt;/span&gt;} &lt;span style=&#34;color:#75715e&#34;&gt;; all pretty similar vowel sounds&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;B&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CH&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;D&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;DH&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TH&amp;#34;&lt;/span&gt;} &lt;span style=&#34;color:#75715e&#34;&gt;; The difference in the &amp;#34;TH&amp;#34; sound between &amp;#34;these&amp;#34; and &amp;#34;teeth&amp;#34;&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;EH&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;IH&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;EY&amp;#34;&lt;/span&gt;} &lt;span style=&#34;color:#75715e&#34;&gt;; Maybe can be paired up?&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ER&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;R&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;F&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;G&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;K&amp;#34;&lt;/span&gt;} &lt;span style=&#34;color:#75715e&#34;&gt;; voiced vs. unvoiced glottal stops&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;HH&amp;#34;&lt;/span&gt; nil} &lt;span style=&#34;color:#75715e&#34;&gt;; The &amp;#34;H&amp;#34; sounds often gets deleted from mondegreens, so this indicates it is equivalent to no sound.&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;IY&amp;#34;&lt;/span&gt;} &lt;span style=&#34;color:#75715e&#34;&gt;; Maybe goes with &amp;#34;IH&amp;#34;, but probably not &amp;#34;EH&amp;#34;... Maybe these shouldn&amp;#39;t be sets?&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;JH&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ZH&amp;#34;&lt;/span&gt;} &lt;span style=&#34;color:#75715e&#34;&gt;; I forget the linguistic difference between these, but it&amp;#39;s &amp;#34;EDGE&amp;#34; vs. &amp;#34;JACQUE&amp;#34;&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;L&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;M&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;N&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;NG&amp;#34;&lt;/span&gt;} &lt;span style=&#34;color:#75715e&#34;&gt;; Can go with N+G when splitting one phoneme into multiple is allowed.&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;OW&amp;#34;&lt;/span&gt;} &lt;span style=&#34;color:#75715e&#34;&gt;; All diphthongs can probably go with their constituent monophthongs. e.g. AA+UW&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;OY&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;P&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SH&amp;#34;&lt;/span&gt;} &lt;span style=&#34;color:#75715e&#34;&gt;; Maybe belongs with &amp;#34;S&amp;#34;&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;T&amp;#34;&lt;/span&gt;} &lt;span style=&#34;color:#75715e&#34;&gt;; Can this go with &amp;#34;D&amp;#34;? Is that too jarring?&lt;/span&gt;
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;V&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;W&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Y&amp;#34;&lt;/span&gt;}
+   &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Z&amp;#34;&lt;/span&gt;}])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/equivalence-classes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is honestly a pretty conservative interpretation of which phonemes are close enough for our game, and if I were to really perfect this program, this is where I would focus.&lt;/p&gt;
+&lt;p&gt;Now that we have the classes, we can answer the question &amp;ldquo;Given a phoneme, what are its valid replacements for our game?&amp;quot;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;valid-replacements
+  [phoneme]
+  (mapcat (partial apply vector) (filter &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;%&lt;/span&gt; phoneme) equivalence-classes)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/valid-replacements
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;valid-replacements&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt;)
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;valid-replacements&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AA&amp;#34;&lt;/span&gt;)
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;valid-replacements&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;)
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;valid-replacements&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Z&amp;#34;&lt;/span&gt;)
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;valid-replacements&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;HH&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;(&amp;ldquo;AY&amp;rdquo;)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;(&amp;ldquo;UH&amp;rdquo; &amp;ldquo;AH&amp;rdquo; &amp;ldquo;AW&amp;rdquo; &amp;ldquo;AA&amp;rdquo; &amp;ldquo;AO&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(&amp;ldquo;S&amp;rdquo; &amp;ldquo;Z&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(&amp;ldquo;S&amp;rdquo; &amp;ldquo;Z&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;( &amp;ldquo;HH&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;finding-a-sentence-given-a-pronunciation&#34;&gt;Finding a sentence given a pronunciation&lt;/h3&gt;
+&lt;p&gt;Now to combine what we have done so far.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s manually walk through an example sentence that we know works so that we can piece together our algorithm.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;#34;I SCREAM&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;First, we turn it into a pronunciation:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;pronunciation&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;I SCREAM&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;((&amp;#34;AY&amp;#34; &amp;#34;S&amp;#34; &amp;#34;K&amp;#34; &amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;M&amp;#34;))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Cool, only 1 possible pronunciation to worry about.&lt;/p&gt;
+&lt;p&gt;Next, we need to recursively ask whether our phonemes make up a word:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;lookup-pronunciation&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt;])
+ &lt;span style=&#34;color:#75715e&#34;&gt;; no?&lt;/span&gt;
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;lookup-pronunciation&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt;])
+ &lt;span style=&#34;color:#75715e&#34;&gt;; no?&lt;/span&gt;
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;lookup-pronunciation&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;K&amp;#34;&lt;/span&gt;])
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Or whether any of the valid replacements for each of our phonemes make up a word:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;pronunciation-&amp;gt;sentence
+  [pronunciation]
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;letfn&lt;/span&gt; [(&lt;span style=&#34;color:#a6e22e&#34;&gt;find-pronuns&lt;/span&gt;
+            [prev-phones next-phones]
+            (&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;[answer (&lt;span style=&#34;color:#e6db74&#34;&gt;:word&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;lookup-pronunciation&lt;/span&gt; prev-phones))]
+              (cond (&lt;span style=&#34;color:#a6e22e&#34;&gt;empty?&lt;/span&gt; next-phones) answer  &lt;span style=&#34;color:#75715e&#34;&gt;; whether or not it is valid, we have no more phonemes to work with&lt;/span&gt;
+                    answer (cons answer (&lt;span style=&#34;color:#a6e22e&#34;&gt;find-pronuns&lt;/span&gt; [] next-phones)) &lt;span style=&#34;color:#75715e&#34;&gt;; we found a real word, just worry about the next set of phonemes then&lt;/span&gt;
+                    &lt;span style=&#34;color:#e6db74&#34;&gt;:else&lt;/span&gt; (reduce (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[acc x] (or acc (&lt;span style=&#34;color:#a6e22e&#34;&gt;find-pronuns&lt;/span&gt; (conj prev-phones x) (rest next-phones))))
+                                  nil
+                                  (&lt;span style=&#34;color:#a6e22e&#34;&gt;valid-replacements&lt;/span&gt; (first next-phones))))))]
+    (&lt;span style=&#34;color:#a6e22e&#34;&gt;find-pronuns&lt;/span&gt; [] pronunciation)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/pronunciation-&amp;gt;sentence
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;pronunciation-&amp;gt;sentence&lt;/span&gt; (first (&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;pronunciation&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;I SCREAM&amp;#34;&lt;/span&gt;)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;([&amp;#34;AI&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;AYE&amp;#34; &amp;#34;EYE&amp;#34; &amp;#34;I&amp;#34; &amp;#34;I.&amp;#34;] &amp;#34;SCREAM&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Ok, so we got our original sentence more or less.
+To prevent that, let&amp;rsquo;s pass in the a set of the words in the original sentence, and make sure we don&amp;rsquo;t return any of those.
+Technically this will exclude a set of potential solutions where a word in the original sentence occurs somewhere completely different in the Mondegreen sentence, e.g. if you had the sentence &amp;ldquo;I SCREAM ICE-CREAM&amp;rdquo;, a valid Mondegreen would technically be &amp;ldquo;ICE-CREAM I SCREAM&amp;rdquo;, but I&amp;rsquo;ll just ignore that set of solutions in favor of something which doesn&amp;rsquo;t contain &lt;em&gt;any&lt;/em&gt; words from the original.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;pronunciation-&amp;gt;sentence
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Can this series of phonemes be parsed as a collection of English words? Find one answer containing no words from the set of words in the original sentence.&amp;#34;&lt;/span&gt;
+  [pronunciation original-sentence]
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;letfn&lt;/span&gt; [(&lt;span style=&#34;color:#a6e22e&#34;&gt;word?&lt;/span&gt; [phones]
+            (&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;[words (&lt;span style=&#34;color:#e6db74&#34;&gt;:word&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;lookup-pronunciation&lt;/span&gt; phones))]
+              (and (not (some &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;original-sentence&lt;/span&gt; %) words)) (first words))))
+          (&lt;span style=&#34;color:#a6e22e&#34;&gt;search-substitutions&lt;/span&gt;
+            [prev-phones next-phones]
+            (reduce (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[acc x] (or acc (&lt;span style=&#34;color:#a6e22e&#34;&gt;find-pronuns&lt;/span&gt; (conj prev-phones x) (rest next-phones))))
+                    nil
+                    (&lt;span style=&#34;color:#a6e22e&#34;&gt;valid-replacements&lt;/span&gt; (first next-phones))))
+          (&lt;span style=&#34;color:#a6e22e&#34;&gt;find-pronuns&lt;/span&gt; [prev-phones next-phones]
+            (&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;[answer (&lt;span style=&#34;color:#a6e22e&#34;&gt;word?&lt;/span&gt; prev-phones)]
+              (&lt;span style=&#34;color:#a6e22e&#34;&gt;cond&lt;/span&gt;
+                (&lt;span style=&#34;color:#a6e22e&#34;&gt;empty?&lt;/span&gt; next-phones) (when answer (list answer))
+                answer (if-let [rest-of-sentence (&lt;span style=&#34;color:#a6e22e&#34;&gt;find-pronuns&lt;/span&gt; [] next-phones)]
+                         (cons answer rest-of-sentence)
+                         (&lt;span style=&#34;color:#a6e22e&#34;&gt;search-substitutions&lt;/span&gt; prev-phones next-phones))
+                &lt;span style=&#34;color:#e6db74&#34;&gt;:else&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;search-substitutions&lt;/span&gt; prev-phones next-phones))))]
+    (&lt;span style=&#34;color:#a6e22e&#34;&gt;find-pronuns&lt;/span&gt; [] pronunciation)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/pronunciation-&amp;gt;sentence
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We achieve this by taking the set of words from the original sentence and comparing the possible word for the phonemes so far against that set.&lt;/p&gt;
+&lt;p&gt;So in the &lt;code&gt;&amp;quot;I SCREAM&amp;quot;&lt;/code&gt; example:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;pronunciation-&amp;gt;sentence&lt;/span&gt; (first (&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;pronunciation&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;I SCREAM&amp;#34;&lt;/span&gt;)) (set (&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;words&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;I SCREAM&amp;#34;&lt;/span&gt;)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;(&amp;#34;ICE&amp;#34; &amp;#34;CREAM&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So in this case, the algorithm found &lt;code&gt;&amp;quot;I&amp;quot;&lt;/code&gt; as a possible word for the phoneme list  &lt;code&gt;&#39;(&amp;quot;AY&amp;quot;)&lt;/code&gt;, but since that was part of our original sentence, it disregarded it and continued until it found &lt;code&gt;&amp;quot;ICE&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(set (&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;words&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;I SCREAM&amp;#34;&lt;/span&gt;))
+(&lt;span style=&#34;color:#e6db74&#34;&gt;:word&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;lookup-pronunciation&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt;)))
+(some &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;((set (&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;words&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;I SCREAM&amp;#34;&lt;/span&gt;)) %) (&lt;span style=&#34;color:#e6db74&#34;&gt;:word&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;lookup-pronunciation&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;AY&amp;#34;&lt;/span&gt;))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;#{&amp;ldquo;SCREAM&amp;rdquo; &amp;ldquo;I&amp;rdquo;}&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;[&amp;ldquo;AI&amp;rdquo; &amp;ldquo;AY&amp;rdquo; &amp;ldquo;AYE&amp;rdquo; &amp;ldquo;EYE&amp;rdquo; &amp;ldquo;I&amp;rdquo; &amp;ldquo;I.&amp;quot;]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;ldquo;I&amp;rdquo;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;mondegreen&#34;&gt;Mondegreen&lt;/h2&gt;
+&lt;p&gt;Now that we have &lt;code&gt;pronunciation-&amp;gt;sentence&lt;/code&gt;, we basically have our entire mondegreen generator.
+All that&amp;rsquo;s left is to expose a convenient wrapper to do the parsing of inputs.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;defn &lt;/span&gt;mondegreen
+  [sentence]
+  (&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;[sentence-phonemes (&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;pronunciation&lt;/span&gt; sentence)
+        sentence-words (set (&lt;span style=&#34;color:#a6e22e&#34;&gt;sentence-&amp;gt;words&lt;/span&gt; sentence))]
+    (&lt;span style=&#34;color:#a6e22e&#34;&gt;pronunciation-&amp;gt;sentence&lt;/span&gt; (first sentence-phonemes) sentence-words)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#&amp;#39;user/mondegreen
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;mondegreen&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;I SCREAM&amp;#34;&lt;/span&gt;)
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;mondegreen&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ICE-CREAM&amp;#34;&lt;/span&gt;)
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;mondegreen&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;PLEASE NOT WHILE I&amp;#39;M EATING&amp;#34;&lt;/span&gt;)
+(&lt;span style=&#34;color:#a6e22e&#34;&gt;mondegreen&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SOMEONE STOLE MY LEMON TREE&amp;#34;&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;(&amp;ldquo;ICE&amp;rdquo; &amp;ldquo;CREAM&amp;rdquo;)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;(&amp;ldquo;AI&amp;rdquo; &amp;ldquo;SCREAM&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(&amp;ldquo;PLEA&amp;rdquo; &amp;ldquo;SNOUT&amp;rdquo; &amp;ldquo;WAI&amp;rdquo; &amp;ldquo;LAI&amp;rdquo; &amp;ldquo;ME&amp;rdquo; &amp;ldquo;TENG&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;(&amp;ldquo;SOME&amp;rdquo; &amp;ldquo;ONCE&amp;rdquo; &amp;ldquo;TOAL&amp;rdquo; &amp;ldquo;MILE&amp;rdquo; &amp;ldquo;EH&amp;rdquo; &amp;ldquo;MUN&amp;rdquo; &amp;ldquo;TER&amp;rdquo; &amp;ldquo;E&amp;rdquo;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;One of the implications of this particular algorithm is that it will prefer the shortest words first. This also decreases search time, but could lead to boring results over time. The same short words, like &amp;ldquo;EH&amp;rdquo;, &amp;ldquo;E&amp;rdquo;, &amp;ldquo;TER&amp;rdquo;, comprising only one or two phonemes will appear most often. You would be hard-pressed to find two- or three-syllable results ever appear. Maybe these will be improvements I will make, but I&amp;rsquo;m actually working on an implementation of the same exact program in SBCL Prolog, so I might never need to put in that work here ;)&lt;/p&gt;
+</description>
+       </item>
        
        <item>
          <title>Meditations: Selected Quotations</title>

@@ -1,0 +1,41 @@
+code {
+    background-color: inherit !important;
+    font-weight: bold;
+}
+
+main, header, nav {
+    width: clamp(700px, 80%, 900px) !important;
+}
+
+thead {
+    background-color: inherit !important;
+    text-align: left;
+}
+
+td {
+    font-weight: 700;
+}
+
+table {
+    border-bottom: none;
+    padding: 1em;
+
+    color: #f8f8f2;
+    background-color: #272822;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    overflow-x: auto;
+    padding: 0.8em;
+    font-size: 0.9em;
+
+}
+
+table, blockquote, pre {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px !important;
+    border-radius: 0.2em;
+}
+
+blockquote {
+    border-left: solid 0.4em #cecece;;
+}
