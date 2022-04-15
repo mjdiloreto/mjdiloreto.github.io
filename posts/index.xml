@@ -6,10 +6,52 @@
        <description>Recent content in Posts on Matthew DiLoreto</description>
        <generator>Hugo -- gohugo.io</generator>
        <language>en-us</language>
-       <lastBuildDate>Tue, 28 Dec 2021 00:00:00 -0600</lastBuildDate>
+       <lastBuildDate>Wed, 09 Feb 2022 09:17:00 -0600</lastBuildDate>
        
            <atom:link href="https://mjdiloreto.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
        
+       
+       <item>
+         <title>Thin Client</title>
+         <link>https://mjdiloreto.github.io/posts/thin-client/</link>
+         <pubDate>Wed, 09 Feb 2022 09:17:00 -0600</pubDate>
+         
+         <guid>https://mjdiloreto.github.io/posts/thin-client/</guid>
+         <description>&lt;p&gt;After working with React applications for almost 5 years, I have a certain morbid attraction to the idea that React - along with all other SPA libraries, development, and progress - is unnecessary.&lt;/p&gt;
+&lt;p&gt;Obviously React exists in a very complex ecosystem.
+To write the React applications the &lt;em&gt;right way&lt;/em&gt; requires:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;javascript transpilers/bundlers&lt;/li&gt;
+&lt;li&gt;hundreds of npm libraries,&lt;/li&gt;
+&lt;li&gt;(potentially) SSR, SSG frameworks and tools&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I can&amp;rsquo;t help but feel that the vast majority of web apps that use React do not actually need it.
+Most apps are just not that complex, and the amount of SPA features that most apps provide is actually pretty minimal.&lt;/p&gt;
+&lt;p&gt;Another feeling I can&amp;rsquo;t shake recently is that the robustness of React components, their reusability, is also not usually necessary.&lt;/p&gt;
+&lt;p&gt;Apart from the base UI components in whatever project I&amp;rsquo;m working on (buttons, modals, dropdowns, etc.), the vast majority of my components are not reused.
+Most web apps don&amp;rsquo;t really share that many features between different views, and if they do, it&amp;rsquo;s only in one or two other places.
+The cost benefit of React apps, considering the vast resources organizations spend to create them, just doesn&amp;rsquo;t seem worth it.&lt;/p&gt;
+&lt;p&gt;Then there&amp;rsquo;s the problem of AJAX.&lt;/p&gt;
+&lt;p&gt;When the backend of an application spits out JSON for the frontend to consume, only to convert it back to recreate the same types on the frontend (which is admittedly ameliorated by a NodeJs backend), there&amp;rsquo;s duplicated work - often very time-consuming work as well.&lt;/p&gt;
+&lt;p&gt;SPA frontends often end up resorting to something like Redux (or even the Apollo Client cache), as a global database.
+The problem is this frontend database needs to be kept in sync with the real backend database, which ends up being a cause for much of the complexity in these apps.
+Whenever I see Redux used in a project, I almost never see a well-laid out set of truly reactive data that percolates through the entire app. No, the store almost always becomes a sprawling hierarchy of nested data which inevitably ends up being used by a single page, and usually only a single component in a single instance. I&amp;rsquo;d estimate this is probably the case for 95% of the data in the Redux store for every project I&amp;rsquo;ve worked on.
+One could argue that the base domain objects (User, Cart, etc.) are invaluable pieces of global state usually kept in Redux state, so any changes to permissions for example would percolate through the app without the need for a refresh, but I wonder if that&amp;rsquo;s really worth it&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Almost all the features I see in the average SPA are actually reproducible with a simpler stack, and a little bit of conscientious page design, which is why I like to call them &amp;ldquo;SPA-lite&amp;rdquo; apps.&lt;/p&gt;
+&lt;p&gt;A lot of other people are noticing this too.
+The phenomenon is &amp;ldquo;SPA fatigue&amp;rdquo;, and it&amp;rsquo;s been stirring in the web development community.&lt;/p&gt;
+&lt;p&gt;There has been great progress over the last couple years in alternatives, like &lt;code&gt;htmx&lt;/code&gt;, supporting a true HATEOAS paradigm, and &lt;code&gt;elixir&lt;/code&gt; (especially paired with &lt;code&gt;LiveView&lt;/code&gt;), both of which provide almost all of the SPA features that most apps currently use.&lt;/p&gt;
+&lt;p&gt;GraphQL is almost the antithesis of the principles of &lt;code&gt;htmx&lt;/code&gt;, but it is still an improvement over the current state of REST-based SPAs.&lt;/p&gt;
+&lt;p&gt;Whereas htmx and elixir LiveView move most of the frontend&amp;rsquo;s responsibility back to the backend, graphql moves the most of the backend&amp;rsquo;s responsibility to the frontend.&lt;/p&gt;
+&lt;p&gt;As a frontend developer who works in an SPA-lite organization, I advocate for GraphQL so that my job (and my colleagues&#39;) becomes easier.
+As someone who is interested in building apps on his own, I reach for alternatives.
+Because I&amp;rsquo;m the only developer, I need to use the simplest tools available that provide the most power, and &lt;code&gt;htmx&lt;/code&gt; fits the bill.&lt;/p&gt;
+&lt;p&gt;Over and over I see folks overestimating the resources their servers require, overestimating the power and complexity their frontend application necessitates, overestimating the scale to which their organization will grow, overestimating the number of customers they will be able to reach and convert, overestimating the valuation of their startup&amp;hellip;&lt;/p&gt;
+&lt;p&gt;The tech world is obsessed with overestimating.
+If I&amp;rsquo;m going to be an anti-mimetic developer - if I&amp;rsquo;m going to be a 10x developer - if I&amp;rsquo;m going to be a solo developer - then I need to shrug the yoke of overestimation.
+I need to reach for the &lt;em&gt;simplest&lt;/em&gt; tools available.&lt;/p&gt;
+</description>
+       </item>
        
        <item>
          <title>Mondegreen Generator</title>

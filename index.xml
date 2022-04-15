@@ -6,7 +6,7 @@
        <description>Recent content on Matthew DiLoreto</description>
        <generator>Hugo -- gohugo.io</generator>
        <language>en-us</language>
-       <lastBuildDate>Tue, 28 Dec 2021 00:00:00 -0600</lastBuildDate>
+       <lastBuildDate>Wed, 09 Feb 2022 09:17:00 -0600</lastBuildDate>
        
            <atom:link href="https://mjdiloreto.github.io/index.xml" rel="self" type="application/rss+xml" />
        
@@ -14,10 +14,24 @@
        <item>
          <title>Posts</title>
          <link>https://mjdiloreto.github.io/posts/</link>
-         <pubDate>Tue, 28 Dec 2021 00:00:00 -0600</pubDate>
+         <pubDate>Wed, 09 Feb 2022 09:17:00 -0600</pubDate>
          
          <guid>https://mjdiloreto.github.io/posts/</guid>
          <description></description>
+       </item>
+       
+       <item>
+         <title>What Am Working On?</title>
+         <link>https://mjdiloreto.github.io/what_am_i_working_on/</link>
+         <pubDate>Fri, 15 Apr 2022 00:00:00 -0500</pubDate>
+         
+         <guid>https://mjdiloreto.github.io/what_am_i_working_on/</guid>
+         <description>&lt;h2 id=&#34;what-am-i-working-on&#34;&gt;What am I working on?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Learning Elixir through examples and a pet project&lt;/li&gt;
+&lt;li&gt;Improving my writing skills&lt;/li&gt;
+&lt;/ul&gt;
+</description>
        </item>
        
        <item>
@@ -115,30 +129,9 @@
        </item>
        
        <item>
-         <title>What Am Working On?</title>
-         <link>https://mjdiloreto.github.io/what_am_i_working_on/</link>
-         <pubDate>Mon, 06 Jul 2020 00:00:00 -0400</pubDate>
-         
-         <guid>https://mjdiloreto.github.io/what_am_i_working_on/</guid>
-         <description>&lt;h2 id=&#34;what-am-i-working-on&#34;&gt;What am I working on?&lt;/h2&gt;
-&lt;h3 id=&#34;mondegreen-generator-with-clojure&#34;&gt;Mondegreen generator with Clojure&lt;/h3&gt;
-&lt;p&gt;A fun linguistic phenomenon to find an algorithm for.
-&lt;a href=&#34;https://github.com/mjdiloreto/mondegreen&#34;&gt;Check out the source on GitHub!&lt;/a&gt;
-Dedicated site coming soon to &lt;a href=&#34;http://www.gibberishchallenge.com&#34;&gt;www.gibberishchallenge.com&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;textures-dot-js-demo-using-clojurescript&#34;&gt;Textures.js demo using ClojureScript&lt;/h3&gt;
-&lt;p&gt;An excuse to learn more Clojure and to try out the super neat &lt;a href=&#34;https://riccardoscalco.it/textures/&#34;&gt;Textures.js&lt;/a&gt; library.
-&lt;a href=&#34;https://github.com/mjdiloreto/paint-with-texture&#34;&gt;Source on GitHub.&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&#34;simple-puppeteer-based-site-scraper&#34;&gt;Simple Puppeteer-based site scraper&lt;/h3&gt;
-&lt;p&gt;What began as a Node.JS script to cheat in a browser game was also useful for building a price-tracker for an Apartment I was interested in.
-Expect a post about it.
-&lt;a href=&#34;https://github.com/mjdiloreto/PageNavigator&#34;&gt;Source on GitHub.&lt;/a&gt;&lt;/p&gt;
-</description>
-       </item>
-       
-       <item>
          <title>About Me</title>
          <link>https://mjdiloreto.github.io/about/</link>
-         <pubDate>Fri, 01 May 2020 00:00:00 -0400</pubDate>
+         <pubDate>Fri, 01 May 2020 00:00:00 -0500</pubDate>
          
          <guid>https://mjdiloreto.github.io/about/</guid>
          <description>&lt;p&gt;Check out &lt;a href=&#34;https://mjdiloreto.github.io/ox-hugo/resume.pdf&#34;&gt;my resume!&lt;/a&gt;&lt;/p&gt;
@@ -150,19 +143,9 @@ Functional programming excites me.
 I am constantly recommending music.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m always learning &lt;em&gt;something&lt;/em&gt;, right now it&amp;rsquo;s:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Clojure
-&lt;ul&gt;
-&lt;li&gt;Working through Norvig&amp;rsquo;s &lt;em&gt;Principles of AI Programming&lt;/em&gt; (PAIP)&lt;/li&gt;
-&lt;li&gt;re-frame/reagent&lt;/li&gt;
+&lt;li&gt;Elixir&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Emacs
-&lt;ul&gt;
-&lt;li&gt;blogging with org-mode&lt;/li&gt;
-&lt;li&gt;developing software with Cider&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;I&amp;rsquo;m always learning about Emacs.&lt;/p&gt;
 &lt;h2 id=&#34;about-this-blog&#34;&gt;About this Blog&lt;/h2&gt;
 &lt;p&gt;I write a lot for myself, and I want to formalize the process with a blog. I hope this effort has these effects:&lt;/p&gt;
 &lt;ol&gt;

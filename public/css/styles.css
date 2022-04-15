@@ -160,8 +160,8 @@ time {
 
 #container main article p code {
   padding: 0.2em;
-  background-color: #ffcccc;
   font-size: 0.9em;
+  font-weight: bold;
 }
 
 #container main article p kbd {
@@ -211,7 +211,7 @@ time {
 }
 
 a {
-  color: #666666;
+  color: #0d9f9f;
   text-decoration: none;
 }
 
@@ -371,4 +371,11 @@ ul.pagination {
 
 ul.pagination li {
   padding: 0 1em;
+}
+
+blockquote > p {
+  text-indent: 24px;
+  margin-top: 30px;
+  margin-left: 8px;
+  margin-right: 8px;
 }
