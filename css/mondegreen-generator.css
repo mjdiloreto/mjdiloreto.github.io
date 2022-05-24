@@ -34,3 +34,12 @@ table, blockquote, pre {
 blockquote {
     border-left: solid 0.4em #cecece;;
 }
+
+/* NB it's in the modified theme now */
+/* figure { */
+/*     text-align: center; */
+/* } */
+
+/* figure img { */
+/*     width: unset; */
+/* } */

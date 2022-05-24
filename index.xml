@@ -6,7 +6,7 @@
        <description>Recent content on Matthew DiLoreto</description>
        <generator>Hugo -- gohugo.io</generator>
        <language>en-us</language>
-       <lastBuildDate>Wed, 09 Feb 2022 09:17:00 -0600</lastBuildDate>
+       <lastBuildDate>Thu, 12 May 2022 08:25:00 -0500</lastBuildDate>
        
            <atom:link href="https://mjdiloreto.github.io/index.xml" rel="self" type="application/rss+xml" />
        
@@ -14,7 +14,7 @@
        <item>
          <title>Posts</title>
          <link>https://mjdiloreto.github.io/posts/</link>
-         <pubDate>Wed, 09 Feb 2022 09:17:00 -0600</pubDate>
+         <pubDate>Thu, 12 May 2022 08:25:00 -0500</pubDate>
          
          <guid>https://mjdiloreto.github.io/posts/</guid>
          <description></description>
@@ -43,6 +43,7 @@
          <description>&lt;h2 id=&#34;what-am-i-reading&#34;&gt;What am I Reading?&lt;/h2&gt;
 &lt;h3 id=&#34;thomas-jefferson-a-strange-case-of-mistaken-identity-alf-j-dot-mapp-jr-dot-1978&#34;&gt;&lt;em&gt;Thomas Jefferson: A Strange Case of Mistaken Identity&lt;/em&gt; - Alf J. Mapp, Jr. 1978&lt;/h3&gt;
 &lt;p&gt;I picked this book up at Goodwill recently, mostly because a friend of mine has been repeating polemics and character attacks against the 3rd president that seemed off-base and uninformed to me. So I figured I would get informed.&lt;/p&gt;
+&lt;p&gt;There was a sticker on it which read &lt;code&gt;03/14/05&lt;/code&gt;. Apparently it had waited 17 years for me.&lt;/p&gt;
 &lt;p&gt;So far I&amp;rsquo;m thoroughly enjoying the style of prose the author uses, which is reminiscent of the rhythmic writing of Jefferson himself.&lt;/p&gt;
 &lt;h3 id=&#34;the-sound-and-the-fury-william-faulkner-dot-1929&#34;&gt;&lt;em&gt;The Sound and the Fury&lt;/em&gt; - William Faulkner. 1929&lt;/h3&gt;
 &lt;p&gt;I picked this up at an estate sale along with four other old-looking hardcovers for $15:&lt;/p&gt;
@@ -66,7 +67,7 @@
 &lt;p&gt;I just recently finished this book. It has a lot of good advice - mostly what I would call &amp;ldquo;common sense&amp;rdquo; - but maybe I only find it common because I had good professors and mentors who taught me all those lessons early in my career.&lt;/p&gt;
 &lt;h3 id=&#34;the-passionate-programmer-chad-fowler-dot-2009&#34;&gt;&lt;em&gt;The Passionate Programmer&lt;/em&gt; - Chad Fowler. 2009&lt;/h3&gt;
 &lt;p&gt;This was recommended online as a spiritual successor to &lt;em&gt;The Pragmatic Programmer&lt;/em&gt;, so I figured it was worth a read. Honestly, I wasn&amp;rsquo;t a fan. It reiterated a lot of the common sense from &lt;em&gt;The Pragmatic Programmer&lt;/em&gt;, but where it diverged was mainly a lot of corporate boot-licking and self-congratulation on the author&amp;rsquo;s part.&lt;/p&gt;
-&lt;p&gt;I did enjoy the dozen or so short essays from other authors that were sprinkled throughout the chapters.&lt;/p&gt;
+&lt;p&gt;I did enjoy the dozen or so short essays from other authors that were sprinkled between the chapters.&lt;/p&gt;
 &lt;h3 id=&#34;deep-work-cal-newport-dot-2016&#34;&gt;&lt;em&gt;Deep Work&lt;/em&gt; - Cal Newport. 2016&lt;/h3&gt;
 &lt;p&gt;This was a fantastic read. I often struggled (especially during the initial work-from-home phase of the pandemic), to get into the &lt;em&gt;flow&lt;/em&gt; of work everyday. This book revealed what I already knew, but didn&amp;rsquo;t put into such plain terms. My problem was &lt;em&gt;distraction&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;This book resonated with me to such an extent that I implemented the scheduling practice Newport proposes as &lt;a href=&#34;https://github.com/mjdiloreto/simsched&#34;&gt;an emacs lisp package&lt;/a&gt;.&lt;/p&gt;
@@ -154,6 +155,15 @@ I am constantly recommending music.&lt;/p&gt;
 &lt;li&gt;Motivate me to finish more projects.&lt;/li&gt;
 &lt;/ol&gt;
 </description>
+       </item>
+       
+       <item>
+         <title>Posts [2022-05-24 Tue&gt;s</title>
+         <link>https://mjdiloreto.github.io/posts-2022-05-24-tue/</link>
+         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+         
+         <guid>https://mjdiloreto.github.io/posts-2022-05-24-tue/</guid>
+         <description></description>
        </item>
        
      </channel>
