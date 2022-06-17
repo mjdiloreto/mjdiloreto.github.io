@@ -6,10 +6,85 @@
        <description>Recent content in Posts on Matthew DiLoreto</description>
        <generator>Hugo -- gohugo.io</generator>
        <language>en-us</language>
-       <lastBuildDate>Thu, 12 May 2022 08:25:00 -0500</lastBuildDate>
+       <lastBuildDate>Fri, 17 Jun 2022 00:00:00 -0500</lastBuildDate>
        
            <atom:link href="https://mjdiloreto.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
        
+       
+       <item>
+         <title>Personal Philosophy: Pareto upside; More Good Role Models!</title>
+         <link>https://mjdiloreto.github.io/posts/personal-philosophy/</link>
+         <pubDate>Fri, 17 Jun 2022 00:00:00 -0500</pubDate>
+         
+         <guid>https://mjdiloreto.github.io/posts/personal-philosophy/</guid>
+         <description>&lt;h2 id=&#34;your-philosophy&#34;&gt;Your Philosophy&lt;/h2&gt;
+&lt;p&gt;It&amp;rsquo;s imperative to live by a set of philosophies. It doesn&amp;rsquo;t much matter which set, as long as it is not the &lt;em&gt;empty set&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;This applies to all aspects of life, and software development is no exception.
+Most people live by intrinsic philosophies, sometimes inconsistent, but you will be better served by your philosophies if you codify them.
+Spell them out deliberately and evolve them according to your experience and others&#39;.&lt;/p&gt;
+&lt;p&gt;It might seem like a useless exercise to literally write down the philosophies you live by, especially if you aren&amp;rsquo;t a person who writes frequently.
+That is, until you encounter someone else who perfectly communicates your philosophies, and even expounds on them, through their own writing, or oration, or music, etc.
+Have you ever read a book which perfectly encapsulates your intuitions, or fragmented thoughts on a subject, and paints them clearly and plainly?
+If not, it is a fantastically validating, and &lt;em&gt;humbling&lt;/em&gt; experience.
+Here I was, proudly clinging to my disjointed, unorganized, chaotic nuggets of insight, content to leave them in my own mind - never taking the necessary step of &lt;em&gt;consilience&lt;/em&gt; - and someone else had not only thought those thoughts earlier and better, but had solidified and shared them.
+Why &lt;em&gt;shouldn&amp;rsquo;t&lt;/em&gt; you write down these precious principles which ultimately guide the course of your life?&lt;/p&gt;
+&lt;h2 id=&#34;the-value-of-role-models-in-building-personal-philosophy&#34;&gt;The Value of Role Models in Building Personal Philosophy&lt;/h2&gt;
+&lt;p&gt;Role models can be very helpful in developing solid philosophies. Obviously I&amp;rsquo;m not the first - even among programmers - to point out the value of role models, but I will argue that they&amp;rsquo;re underrated.&lt;/p&gt;
+&lt;p&gt;I feel that software developers in my generation put too much emphasis on &lt;em&gt;mentors&lt;/em&gt;, and not enough on &lt;em&gt;role models&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Mentors are those people whose one-on-one attention brings pupils knowledge and hopefully success.
+This is opposed to &lt;em&gt;role models&lt;/em&gt; - individuals whom one can model themselves after (duh).&lt;/p&gt;
+&lt;p&gt;Good mentors are almost always role models, but one can only have a small number of (usually 0 or 1) mentors. The brilliant thing about role models is you can - and should! - have many of them.&lt;/p&gt;
+&lt;p&gt;The difference between valuing mentors vs. role models is a matter of &lt;a href=&#34;https://en.wikipedia.org/wiki/Locus_of_control&#34;&gt;locus of control&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Mentors appeal to the external locus of control.
+We look for an external force to mold us into something better than ourselves.
+Someone else has to spend the energy.
+In turn, one&amp;rsquo;s personal philosophies are actively shaped by the mentor; the mentee is the object in this situation.&lt;/p&gt;
+&lt;p&gt;Role models appeal to the internal locus of control. We have within us potential energy, which simply requires &lt;em&gt;something to aim at&lt;/em&gt; and, when unleashed, drives itself toward that end.
+One acquiesces the philosophies presented by the role model into their own.
+In this setup, the role model is the object - the thing being aimed at - and the role-modelee(?) is the subject - the one doing the aiming and spending the energy.&lt;/p&gt;
+&lt;p&gt;Role reversal. Put yourself in the driver&amp;rsquo;s seat.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not even convinced the value of a mentor/mentee relationship for the mentee outweighs that of a role model situation either (in fact, I believe it probably has much more value for the &lt;em&gt;mentor&lt;/em&gt;), because of the pareto principle.&lt;/p&gt;
+&lt;h2 id=&#34;role-models-and-the-pareto-principle&#34;&gt;Role Models and The Pareto Principle&lt;/h2&gt;
+&lt;p&gt;The value of role models is &lt;strong&gt;increasing&lt;/strong&gt;, and that of mentors is decreasing by comparison.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Pareto_principle&#34;&gt;pareto principle&lt;/a&gt; dominates many systems: wealth distribution, music popularity, dating, etc. The effect in some of these systems is exacerbated by the internet.
+When this fact is pointed out it is usually for negative reasons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;Dating apps have created a default dating landscape where a few super-attractive guys effectively have harems of hundreds of women on-demand, while the vast majority of men on those apps get absolutely no attention from women, with no good alternative. No wonder there&amp;rsquo;s so many incels!&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;Kids these days see Tik-Tok superstars making tons of money, and a huge number of those kids aspire to social media fame, but only a tiny number of TikTokers make enough to do it full-time, and all those kids are deluded.&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&amp;ldquo;A few super-billionaires control the majority of the world&amp;rsquo;s wealth, while the vast majority of regular folks control less and less because of the decades-long march of globalization!&amp;rdquo;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As systems become more interconnected, the pareto distribution becomes more skewed without deliberate protections.&lt;/p&gt;
+&lt;p&gt;This is usually the way the pareto principle is presented, but there&amp;rsquo;s also a bright side.&lt;/p&gt;
+&lt;p&gt;The interconnectedness of the world&amp;rsquo;s information means that there are more and more high-quality role models available!
+This is especially true for engineers, where many fantastic programmers gain fame and the platforms to present their eccentric philosophies.&lt;/p&gt;
+&lt;p&gt;Here&amp;rsquo;s the list of people I consider to be my role models in tech:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.infoq.com/search.action?queryString=rich+hickey&amp;amp;page=1&amp;amp;searchOrder=&#34;&gt;Rich Hickey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://worrydream.com/#!/InventingOnPrinciple&#34;&gt;Bret Victor&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=oKg1hTOQXoY&#34;&gt;Alan Kay&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/sponsors/daviwil&#34;&gt;David Wilson&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://paulgraham.com/articles.html&#34;&gt;Paul Graham&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thanks to the internet, I can actually expose myself to significant portions of those folks&#39; philosophies, presented rhetorically through conference talks, at length in blog posts, or intimately through hours-long livestreams.
+I would consider these people to be top-percentile in many important aspects of &amp;ldquo;success&amp;rdquo; in this industry, and so, as a heuristic, their philosophies are likely to be valuable in achieving those same aspects of success.
+This is the obvious intrinsic value of having role models in the first place.&lt;/p&gt;
+&lt;p&gt;On the other hand, the number of high-quality mentors one has access to is the same as it was in the days of medieval apprenticeships.
+This is a simple consequence of the 1-on-1 nature of the relationship.
+Additionally, the lessons a mentor can teach are most likely limited to the specifics of a particular job, and they are unlikely to have profound personal philosophies, at least compared to the top-quality role models which are available.&lt;/p&gt;
+&lt;p&gt;My advice to engineers my own age - especially those that search for mentorships:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you can&amp;rsquo;t create a list of your role models then start focusing on curating one, because you&amp;rsquo;ve been undervaluing them!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Don&amp;rsquo;t worry so much about finding mentors.
+Use these role models to codify your personal philosophies, you&amp;rsquo;ll find that path is empowering and fruitful.&lt;/p&gt;
+</description>
+       </item>
        
        <item>
          <title>Bees and Spiders; Software Developer Archetypes</title>
