@@ -40,37 +40,666 @@
          <pubDate>Thu, 14 Apr 2022 00:00:00 -0500</pubDate>
          
          <guid>https://mjdiloreto.github.io/books_i_like/</guid>
-         <description>&lt;h2 id=&#34;what-am-i-reading&#34;&gt;What am I Reading?&lt;/h2&gt;
-&lt;h3 id=&#34;thomas-jefferson-a-strange-case-of-mistaken-identity-alf-j-dot-mapp-jr-dot-1978&#34;&gt;&lt;em&gt;Thomas Jefferson: A Strange Case of Mistaken Identity&lt;/em&gt; - Alf J. Mapp, Jr. 1978&lt;/h3&gt;
-&lt;p&gt;I picked this book up at Goodwill recently, mostly because a friend of mine has been repeating polemics and character attacks against the 3rd president that seemed off-base and uninformed to me. So I figured I would get informed.&lt;/p&gt;
-&lt;p&gt;There was a sticker on it which read &lt;code&gt;03/14/05&lt;/code&gt;. Apparently it had waited 17 years for me.&lt;/p&gt;
-&lt;p&gt;So far I&amp;rsquo;m thoroughly enjoying the style of prose the author uses, which is reminiscent of the rhythmic writing of Jefferson himself.&lt;/p&gt;
-&lt;h3 id=&#34;the-sound-and-the-fury-william-faulkner-dot-1929&#34;&gt;&lt;em&gt;The Sound and the Fury&lt;/em&gt; - William Faulkner. 1929&lt;/h3&gt;
-&lt;p&gt;I picked this up at an estate sale along with four other old-looking hardcovers for $15:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;em&gt;The Apocrypha&lt;/em&gt; (King James Version). 1611&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;em&gt;The Life of Greece&lt;/em&gt; - Will Durant. 1939&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;em&gt;The World&amp;rsquo;s Great Thinkers; Man and Spirit - The Speculative Philosophers&lt;/em&gt; - 1947&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;em&gt;The World&amp;rsquo;s Great Thinkers; Man and State - The Political Philosophers&lt;/em&gt; - 1947&lt;/p&gt;
-&lt;p&gt;Whosever estate I had picked was obviously very well-read and a lover of history.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+         <description>&lt;style type=&#34;text/css&#34;&gt;
+:root {
+    --argyle: repeating-linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px,
+      transparent 60px
+    ),
+              repeating-linear-gradient(
+                60deg,
+                rgba(255, 255, 255, 0.1),
+                rgba(255, 255, 255, 0.1) 1px,
+                transparent 1px,
+                transparent 60px
+              ),
+              linear-gradient(
+                60deg,
+                rgba(0, 0, 0, 0.1) 25%,
+                transparent 25%,
+                transparent 75%,
+                rgba(0, 0, 0, 0.1) 75%,
+                rgba(0, 0, 0, 0.1)
+              ),
+              linear-gradient(
+                120deg,
+                rgba(0, 0, 0, 0.1) 25%,
+                transparent 25%,
+                transparent 75%,
+                rgba(0, 0, 0, 0.1) 75%,
+                rgba(0, 0, 0, 0.1)
+              );
+    background-size: 70px 120px;
+    --tartan: repeating-linear-gradient(
+      transparent,
+      transparent 50px,
+      rgba(0, 0, 0, 0.4) 50px,
+      rgba(0, 0, 0, 0.4) 53px,
+      transparent 53px,
+      transparent 63px,
+      rgba(0, 0, 0, 0.4) 63px,
+      rgba(0, 0, 0, 0.4) 66px,
+      transparent 66px,
+      transparent 116px,
+      rgba(0, 0, 0, 0.5) 116px,
+      rgba(0, 0, 0, 0.5) 166px,
+      rgba(255, 255, 255, 0.2) 166px,
+      rgba(255, 255, 255, 0.2) 169px,
+      rgba(0, 0, 0, 0.5) 169px,
+      rgba(0, 0, 0, 0.5) 179px,
+      rgba(255, 255, 255, 0.2) 179px,
+      rgba(255, 255, 255, 0.2) 182px,
+      rgba(0, 0, 0, 0.5) 182px,
+      rgba(0, 0, 0, 0.5) 232px,
+      transparent 232px
+    ),
+              repeating-linear-gradient(
+                270deg,
+                transparent,
+                transparent 50px,
+                rgba(0, 0, 0, 0.4) 50px,
+                rgba(0, 0, 0, 0.4) 53px,
+                transparent 53px,
+                transparent 63px,
+                rgba(0, 0, 0, 0.4) 63px,
+                rgba(0, 0, 0, 0.4) 66px,
+                transparent 66px,
+                transparent 116px,
+                rgba(0, 0, 0, 0.5) 116px,
+                rgba(0, 0, 0, 0.5) 166px,
+                rgba(255, 255, 255, 0.2) 166px,
+                rgba(255, 255, 255, 0.2) 169px,
+                rgba(0, 0, 0, 0.5) 169px,
+                rgba(0, 0, 0, 0.5) 179px,
+                rgba(255, 255, 255, 0.2) 179px,
+                rgba(255, 255, 255, 0.2) 182px,
+                rgba(0, 0, 0, 0.5) 182px,
+                rgba(0, 0, 0, 0.5) 232px,
+                transparent 232px
+              ),
+              repeating-linear-gradient(
+                125deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.2) 2px,
+                rgba(0, 0, 0, 0.2) 3px,
+                transparent 3px,
+                transparent 5px,
+                rgba(0, 0, 0, 0.2) 5px
+              );
+  }
+
+.bookshelf {
+    width: 100%;
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+.book {
+    cursor: pointer;
+    width: 50px;
+    height: 280px;
+    position: relative;
+    margin-left: 1px;
+    transform-style: preserve-3d;
+    transform: translateZ(0) rotateY(0);
+    transition: transform 1s, z-index 1s;
+    z-index: 0;
+  }
+
+.peek {
+    z-index: 2;
+    /* transform: rotateX(-25deg) rotateY(-40deg) rotateZ(-15deg) translateY(50px) */
+    transform: rotateX(-25deg) rotateY(-40deg) rotateZ(-15deg) translateY(50px)
+               translateX(-30px);
+  }
+
+.side {
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 3px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    transform-origin: center left;
+  }
+
+.spine {
+    position: relative;
+    width: 50px;
+    height: 280px;
+    /* Patterns from: https://projects.verou.me/css3patterns/ */
+    background-image: var(--tartan);
+    transform: rotateY(0deg) translateZ(0px);
+    transition: height 1s, width 1s, transform 1s;
+  }
+
+.spine-title {
+    margin: 2px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 12px;
+    color: gold;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding-bottom: 2em;
+    padding-top: 1em;
+    padding-left: 0.5em;
+  }
+
+.spine-author {
+    position: absolute;
+    color: goldenrod;
+    bottom: 0px;
+    left: 20%; /* no idea why 20% centers it */
+  }
+
+.top {
+    width: 50px;
+    height: 190px;
+    top: -2px;  /* hmm, why -2 and not 0? */
+    background-image: linear-gradient(90deg, white 90%, gray 10%);
+    background-size: 5px 5px;
+    transform: rotateX(90deg) translateZ(95px) translateY(-95px);
+    transition: height 1s, width 1s, transform 1s;
+  }
+
+.cover {
+    z-index: 2;
+    width: 190px;
+    height: 280px;
+    top: 0px;
+    background-size: cover;
+    background-repeat: round;
+    left: 50px;
+    transform: rotateY(90deg) translateZ(0);
+    transition: height 1s, width 1s, transform 1s;
+  }
+
+.summary {
+    display: none;
+    opacity: 0;
+    animation: fadeIn ease 1s forwards;
+    animation-delay: 1s;
+    padding: 1em;
+  }
+
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.1;
+    }
+    90% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+.open {
+    z-index: 1;
+    transform: rotateX(-15deg) rotateY(-90deg) rotateZ(-15deg) translateY(50px)
+               translateX(-30px);
+  }
+
+.open .spine {
+    height: calc(50vh + var(--height)) !important;
+  }
+.open .top {
+    z-index: -1;
+    height: min(60vw, calc(50vh + var(--top))) !important;
+    transform: rotateX(90deg) translateZ(calc(min(60vw, 50vh + var(--top)) / 2)) translateY(calc(-1 * min(60vw, 50vh + var(--top)) / 2)) !important;
+  }
+
+.open .cover {
+    z-index: 1;
+    width:  min(60vw, min(60vw, calc(50vh + var(--top)))) !important;
+    height: calc(50vh + var(--height)) !important;
+    background-color: white;
+    background-image: none !important;
+    overflow-y: scroll;
+  }
+
+.open .summary {
+    display: inline-block;
+  }
+&lt;/style&gt;
+&lt;h2 id=&#34;what-am-i-reading-now&#34;&gt;What am I Reading now?&lt;/h2&gt;
+&lt;div class=&#34;bookshelf&#34;&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;Thomas Jefferson: A Strange Case of Mistaken Identity&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;AM&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpcjhSJrYqJk2nkOdrc2WycvfhZRot0Ts6boaMqYuSUHlx750v&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-org8fba561&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;org8fba561&#34;&gt;Thomas Jefferson: A Strange Case of Mistaken Identity&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-org8fba561&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-org2c36701&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;org2c36701&#34;&gt;Alf J. Mapp, Jr. 1987&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-org2c36701&#34;&gt;
+&lt;p&gt;
+I picked this book up at Goodwill recently, mostly because a friend of mine has been repeating polemics and character attacks against the 3rd president that seemed off-base and uninformed to me. So I figured I would get informed.
+&lt;/p&gt;
+&lt;p&gt;
+There was a sticker on it which read &lt;code&gt;03/14/05&lt;/code&gt;. Apparently it had waited 17 years for me.
+&lt;/p&gt;
+&lt;p&gt;
+So far I&amp;rsquo;m thoroughly enjoying the style of prose the author uses, which is reminiscent of the rhythmic writing of Jefferson himself.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;h2 id=&#34;what-have-i-finished-recently&#34;&gt;What Have I Finished Recently?&lt;/h2&gt;
-&lt;h3 id=&#34;the-pragmatic-programmer-20th-anniversary-edition-david-thomas-and-andrew-hunt-dot-2019&#34;&gt;&lt;em&gt;The Pragmatic Programmer, 20th Anniversary Edition&lt;/em&gt; - David Thomas &amp;amp; Andrew Hunt. 2019&lt;/h3&gt;
-&lt;p&gt;I just recently finished this book. It has a lot of good advice - mostly what I would call &amp;ldquo;common sense&amp;rdquo; - but maybe I only find it common because I had good professors and mentors who taught me all those lessons early in my career.&lt;/p&gt;
-&lt;h3 id=&#34;the-passionate-programmer-chad-fowler-dot-2009&#34;&gt;&lt;em&gt;The Passionate Programmer&lt;/em&gt; - Chad Fowler. 2009&lt;/h3&gt;
-&lt;p&gt;This was recommended online as a spiritual successor to &lt;em&gt;The Pragmatic Programmer&lt;/em&gt;, so I figured it was worth a read. Honestly, I wasn&amp;rsquo;t a fan. It reiterated a lot of the common sense from &lt;em&gt;The Pragmatic Programmer&lt;/em&gt;, but where it diverged was mainly a lot of corporate boot-licking and self-congratulation on the author&amp;rsquo;s part.&lt;/p&gt;
-&lt;p&gt;I did enjoy the dozen or so short essays from other authors that were sprinkled between the chapters.&lt;/p&gt;
-&lt;h3 id=&#34;deep-work-cal-newport-dot-2016&#34;&gt;&lt;em&gt;Deep Work&lt;/em&gt; - Cal Newport. 2016&lt;/h3&gt;
-&lt;p&gt;This was a fantastic read. I often struggled (especially during the initial work-from-home phase of the pandemic), to get into the &lt;em&gt;flow&lt;/em&gt; of work everyday. This book revealed what I already knew, but didn&amp;rsquo;t put into such plain terms. My problem was &lt;em&gt;distraction&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;This book resonated with me to such an extent that I implemented the scheduling practice Newport proposes as &lt;a href=&#34;https://github.com/mjdiloreto/simsched&#34;&gt;an emacs lisp package&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;bookshelf&#34;&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;The Sound and the Fury&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;WF&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi8opeeTA5F1KaKPTqoWWPqYI3bUUpXwcdkg&amp;usqp=CAU&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-org1fb48a4&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;org1fb48a4&#34;&gt;The Sound and the Fury&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-org1fb48a4&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-org432e1e9&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;org432e1e9&#34;&gt;William Faulkner. 1929&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-org432e1e9&#34;&gt;
+&lt;p&gt;
+I picked this up at an estate sale along with four other old-looking hardcovers for $15:
+&lt;/p&gt;
+&lt;ul class=&#34;org-ul&#34;&gt;
+&lt;li&gt;&lt;i&gt;The Apocrypha&lt;/i&gt; (King James Version). 1611&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;The Life of Greece&lt;/i&gt; - Will Durant. 1939&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;The World&amp;rsquo;s Great Thinkers; Man and Spirit - The Speculative Philosophers&lt;/i&gt;. 1947&lt;/li&gt;
+&lt;li&gt;&lt;i&gt;The World&amp;rsquo;s Great Thinkers; Man and State - The Political Philosophers&lt;/i&gt;. 1947&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+Whosever estate I had picked was obviously very well-read and a lover of history.
+&lt;/p&gt;
+&lt;p&gt;
+The book itself was challenging, especially during the first half, which was mostly stream-of-consciousness from the perspective of a severely mentally handicapped person. I see why English teachers would like to assign this book (I&amp;rsquo;m convinced they all have a sadistic streak in them), but I don&amp;rsquo;t feel particularly enlightened after reading it. I now understand why it&amp;rsquo;s considered a great work of literature, but to me it isn&amp;rsquo;t a &lt;i&gt;good&lt;/i&gt; work of literature.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;Consilience; The Unity of Knowledge&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;EW&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://duckduckgo.com/i/0facea0b.jpg&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-orgcdf5561&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;orgcdf5561&#34;&gt;Consilience; The Unity of Knowledge&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-orgcdf5561&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-orgfdf41bb&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;orgfdf41bb&#34;&gt;Edward O. Wilson. 1998&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-orgfdf41bb&#34;&gt;
+&lt;p&gt;
+I read excerpts from &lt;i&gt;The Ants&lt;/i&gt; by E. O. Wilson in high school during a science project, which involved working with ants. The more I researched, the more I kept seeing this name pop up over and over. It was clear to me from that point that Wilson was a prolific and impactful biologist, so when I saw his name pop up on HackerNews I was intrigued.
+&lt;/p&gt;
+&lt;p&gt;
+Unfortunately the post was about his recent death, and some of the commenters touched on his &amp;ldquo;controversial&amp;rdquo; opinions. None really dug into anything concrete about his beliefs, but many others pointed out that &lt;i&gt;Consilience&lt;/i&gt; was a brilliant masterpiece.
+&lt;/p&gt;
+&lt;p&gt;
+After having read it, I&amp;rsquo;m inclined to agree with the readers who found the work brilliant. I understand exactly why many also find some of the opinions controversial, but to me the whole book was so carefully and accurately worded, and everywhere reflected the fields where scientific consensus exists, and where opinions and politics dominate, that I find opponents of the book/its author either ignorant of the actual contents of the book, or simply bitter partisans.
+&lt;/p&gt;
+&lt;p&gt;
+The book is a pithy guided tour of all the intellectual accomplishments since the enlightenment, and &lt;i&gt;also&lt;/i&gt; a cogent argument for a unified perspective of science. I wish I had read this book in Sophomore or Junior year of high school, because it would have saved me a lot of introductory research into many different fields. The way I learned about pretty much everything since high school consisted of randomly encountering a concept, name, philosophical movement, historical event, etc., and, if I was feeling curious, a deep-dive on the internet to learn the very basics and historical context. This book accomplishes the same introduction to hundreds of different concepts in a way that&amp;rsquo;s beautifully written and perfectly understandable, even to a high-schooler.
+&lt;/p&gt;
+&lt;p&gt;
+I&amp;rsquo;m not sure if consilience of Science and The Arts is really possible, or more importantly, within the capacity of mankind. I have to admit I&amp;rsquo;m skeptical, but I really loved this book, and would consider it one of the greatest I&amp;rsquo;ve ever read.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;The Passionate Programmer&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;CF&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.ekaexdGKqg8YLZXoEzTxdQAAAA%26pid%3DApi&amp;f=1&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-orgd87c629&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;orgd87c629&#34;&gt;The Passionate Programmer&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-orgd87c629&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-org91cde0c&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;org91cde0c&#34;&gt;Chad Fowler. 2009&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-org91cde0c&#34;&gt;
+&lt;p&gt;
+This was recommended online as a spiritual successor to &lt;i&gt;The Pragmatic Programmer&lt;/i&gt;, so I figured it was worth a read. Honestly, I wasn&amp;rsquo;t a fan. It reiterated a lot of the common sense from &lt;i&gt;The Pragmatic Programmer&lt;/i&gt;, but where it diverged was mainly a lot of corporate boot-licking and self-congratulation on the author&amp;rsquo;s part.
+&lt;/p&gt;
+&lt;p&gt;
+I did enjoy the dozen or so short essays from other authors that were sprinkled between the chapters.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;The Pragmatic Programmer, 20th Anniversary Edition&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;DT&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.L41hKmR2w411Z5qSn-vEeQAAAA%26pid%3DApi&amp;f=1&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-org65d079f&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;org65d079f&#34;&gt;The Pragmatic Programmer, 20th Anniversary Edition&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-org65d079f&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-org8ee329a&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;org8ee329a&#34;&gt;David Thomas &amp;amp; Andrew Hunt. 2019&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-org8ee329a&#34;&gt;
+&lt;p&gt;
+I just recently finished this book. It has a lot of good advice - mostly what I would call &amp;ldquo;common sense&amp;rdquo; - but maybe I only find it common because I had good professors and mentors who taught me all those lessons early in my career.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;Deep Work&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;CN&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.bL35AgQpYxEr9m8mQ88mzwAAAA%26pid%3DApi&amp;f=1&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-org446f92e&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;org446f92e&#34;&gt;Deep Work&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-org446f92e&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-orgb064eff&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;orgb064eff&#34;&gt;Cal Newport. 2016&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-orgb064eff&#34;&gt;
+&lt;p&gt;
+This was a fantastic read. I often struggled (especially during the initial work-from-home phase of the pandemic), to get into the &lt;i&gt;flow&lt;/i&gt; of work everyday. This book revealed what I already knew, but didn&amp;rsquo;t put into such plain terms. My problem was &lt;i&gt;distraction&lt;/i&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+This book resonated with me to such an extent that I implemented the scheduling practice Newport proposes as &lt;a href=&#34;https://github.com/mjdiloreto/simsched&#34;&gt;an emacs lisp package&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;what-do-i-plan-on-reading&#34;&gt;What do I Plan on Reading?&lt;/h2&gt;
+&lt;div class=&#34;bookshelf&#34;&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;Noise&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;DK&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.H2iz06_iWsCQr0bN02eBVgAAAA%26pid%3DApi&amp;f=1&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-orgc59e228&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;orgc59e228&#34;&gt;Noise&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-orgc59e228&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-orgd329115&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;orgd329115&#34;&gt;Daniel Kahneman. 2021&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-orgd329115&#34;&gt;
+&lt;p&gt;
+Kahneman&amp;rsquo;s work seems fascinating to me, and I haven&amp;rsquo;t read him yet. From the synopsis this book appears to be in line with the thinking of Wilson&amp;rsquo;s &lt;i&gt;Consilience&lt;/i&gt;, and I am always intrigued by the more mechanistic explanations of human psychology, which Kahneman&amp;rsquo;s work seems to align with.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;Thinking, Fast and Slow&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;DK&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.9OzH313CEHwQg_bwuVy4cgAAAA%26pid%3DApi&amp;f=1&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-org59d85ba&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;org59d85ba&#34;&gt;Thinking, Fast and Slow&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-org59d85ba&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-org84073c5&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;org84073c5&#34;&gt;Daniel Kahneman. 2011&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-org84073c5&#34;&gt;
+&lt;p&gt;
+I&amp;rsquo;ve seen this recommended in tech circles over and over again, and I&amp;rsquo;m familiar with the basic premises of the book. Since I enjoyed Cal Newport&amp;rsquo;s &lt;i&gt;Deep Work&lt;/i&gt; so much, I figure I would continue down that vein with this book.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;The American Spirit: Who We Are and What We Stand For&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;DM&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.W0h_QFYHtEUC3ZT-xXrn1wAAAA%26pid%3DApi&amp;f=1&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-org980fdac&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;org980fdac&#34;&gt;The American Spirit: Who We Are and What We Stand For&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-org980fdac&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-orgd8c3c6a&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;orgd8c3c6a&#34;&gt;David McCullough. 2017&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-orgd8c3c6a&#34;&gt;
+&lt;p&gt;
+I really enjoyed the HBO adaptation of McCullough&amp;rsquo;s John Adams, and from what I can tell he seems pretty prolific on the topic of early American history, so I&amp;rsquo;m interested to hear what he has to say about the American Spirit.
+&lt;/p&gt;
+&lt;p&gt;
+I wonder what he will say about Jefferson or Thoreau, and what his commentary on modern America will be.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;The Overstory&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;RP&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://duckduckgo.com/i/da45648a.png&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-org93a316d&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;org93a316d&#34;&gt;The Overstory&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-org93a316d&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-org658cb22&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;org658cb22&#34;&gt;Richard Powers. 2018&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-org658cb22&#34;&gt;
+&lt;p&gt;
+An arboreal drama? Count me in. What can I say, I really like trees. From what I skimmed in the book store, this seems like a very interesting read, and I don&amp;rsquo;t read enough novels, so I&amp;rsquo;ll give it a shot.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;books-that-made-an-impression-on-me&#34;&gt;Books that Made an Impression on Me&lt;/h2&gt;
+&lt;div class=&#34;bookshelf&#34;&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;Meditations&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;MA&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.00UPxumteCcuyv6w_VB9FgAAAA%26pid%3DApi&amp;f=1&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-orgc86ea06&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;orgc86ea06&#34;&gt;Meditations&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-orgc86ea06&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-org7246666&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;org7246666&#34;&gt;Marcus Aurelius&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-org5b4f2b5&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;org5b4f2b5&#34;&gt;Translated by Gregory Hays. 2003&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-org5b4f2b5&#34;&gt;
+&lt;p&gt;
+This is my favorite book of all time, and has influenced me more than any other. I&amp;rsquo;ve written about it &lt;a href=&#34;https://mjdiloreto.github.io/posts/meditations-quotations&#34;&gt;before&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;The Dangerous Book for Boys&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;CI&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://upload.wikimedia.org/wikipedia/en/4/46/Iggulden_%26_Iggulden_-_The_Dangerous_Book_for_Boys_coverart.jpg&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-org2592d62&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;org2592d62&#34;&gt;The Dangerous Book for Boys&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-org2592d62&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-orgc4f590c&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;orgc4f590c&#34;&gt;Hal Iggulden. 2007&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-orgc4f590c&#34;&gt;
+&lt;p&gt;
+This book&amp;rsquo;s Wikipedia entry contains a section called &lt;i&gt;Reception&lt;/i&gt; that covers it pretty well (emphasis mine):
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
+Some reviewers have criticised the book for encouraging its young readers to &lt;b&gt;partake in activities that could result in injury&lt;/b&gt;, although there is a liability warning below the copyright information, as well as for promoting gendered stereotypes.[5] Others have praised it for helping to counter &amp;ldquo;PlayStation Culture&amp;rdquo;[2] through its promotion of outdoor activities and games.
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;
+Activities that could result in injury? Uh yeah, that&amp;rsquo;s the whole point. This book was so awesome for me as a kid. I reread every single page and did just about every single activity the book mentions for years, probably from the ages of 8 to 12. Camping, whittling, navigation, knots, flags, games, history, making weapons, you name it, everything fun to do indoors and outdoors seemed to be in that book. They even taught you how to do the paper marbling effect that was on the front page of the book.
+&lt;/p&gt;
+&lt;p&gt;
+It was completely empowering, and rereading the opening statement of the book now, I realize how profound an impact this book actually had on my intellectual and emotional development.
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
+Don&amp;rsquo;t worry about genius and don&amp;rsquo;t worry about not being clever. Trust rather to hard work, perseverance, and determination. The best motto for a long march is ‘Don’t grumble. Plug on.’
+“You hold your future in your own hands. Never waver in this belief. Don’t swagger. The boy who swaggers—like the man who swaggers—has little else that he can do. He is a cheap-Jack crying his own paltry wares. It is the empty tin that rattles most. Be honest. Be loyal. Be kind. Remember that the hardest thing to acquire is the faculty of being unselfish. As a quality it is one of the finest attributes of manliness.
+“Love the sea, the ringing beach and the open downs.
+“Keep clean, body and mind.’”
+&lt;/p&gt;
+&lt;p&gt;
+—Sir Frederick Treves, Bart, KCVO, CB, Sergeant in Ordinary to HM the King, Surgeon in Ordinary to HRH Prince of Wales, written at 6 Wimpole Street, Cavendish Sqare, London, on September 2, 1903, on the occasion of the twenty-fifth anniversary of the Boy&amp;rsquo;s Own Paper
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;
+As for gendered stereotypes, I remember they had one small section called &amp;ldquo;Girls&amp;rdquo; which seemed odd to me even at the time, and reading back, certainly does contain stereotypes you would only hear repeated by an old uncle today, or probably great-uncle. However, this is one page among over 200, and the general gist I remembered was essentially - be nice, listen, don&amp;rsquo;t be vulgar, don&amp;rsquo;t worry too much about them, and be yourself.
+&lt;/p&gt;
+&lt;p&gt;
+My sisters had &lt;i&gt;The Dangerous Book for Girls&lt;/i&gt;, which I remember didn&amp;rsquo;t cover nearly as many cool topics, and which they didn&amp;rsquo;t enjoy nearly as much as I enjoyed mine. If I ever had a daughter, I would definitely just give her this book instead.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;Siddhartha&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;HH&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://duckduckgo.com/i/606fd151.jpg&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-org4e08652&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;org4e08652&#34;&gt;Siddhartha&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-org4e08652&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-org7e01ab4&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;org7e01ab4&#34;&gt;Herman Hesse. 1922&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-org7e01ab4&#34;&gt;
+&lt;p&gt;
+I had a fantastic English teacher my Sophomore year of high school, and this was one of the books we read in her class. It might have been part of the stardard curriculum, but she definitely &lt;i&gt;got it&lt;/i&gt;, and wasn&amp;rsquo;t just regurgitating some shallow standard lesson plan. I remember she told us one Monday that she had spent the entire weekend at a some kind of silence retreat, where she spent all day in complete silence in a cell on some compound somewhere, which at the time seemed pretty badass to me. She challenged the class to sit in silence, without thoughts, for just one minute, and told us we probably wouldn&amp;rsquo;t be able to. This, combined with reading both &lt;i&gt;Siddhartha&lt;/i&gt; and &lt;i&gt;Teddy&lt;/i&gt; were my introduction to meditation and the themes of eastern spiritual thought.
+&lt;/p&gt;
+&lt;p&gt;
+The book deals with consciousness and spiritual awakening, which made it stand out among the sterile book choices of the rest of the standard curriculum in high school. I remember deeply admiring Siddhartha and the simple ascetic lifestyle he lived.
+&lt;/p&gt;
+&lt;p&gt;
+I credit this book as being probably the most influential on me during my underclassman years.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;Teddy&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;JDS&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.-WlnKso6th9jymEC0ZWYzAAAAA%26pid%3DApi&amp;f=1&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-org129bf2f&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;org129bf2f&#34;&gt;Teddy&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-org129bf2f&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-orgfeedc00&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;orgfeedc00&#34;&gt;J.D. Salinger. 1953&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-orgfeedc00&#34;&gt;
+&lt;p&gt;
+This was another required reading from that awesome Sophomore year English teacher, following the themes of &lt;i&gt;Siddhartha&lt;/i&gt; with more eastern philosophy tempered for Western ears. J.D. Salinger&amp;rsquo;s prose in this short story was captivating, and I distinctly remember multiple girls crying over the ending in front of the whole class. Not in an embarrassing way though, because every single person in the room was deeply moved by the group reading. I&amp;rsquo;m not sure I will ever experience anything quite like it again, but I&amp;rsquo;m glad I had the experience.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;Self-Reliance&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;RWE&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.UObX7H8SSgAD-Ncvm_HoFwAAAA%26pid%3DApi&amp;f=1&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-orge1e54b0&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;orge1e54b0&#34;&gt;Self-Reliance&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-orge1e54b0&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-orgc82c4d8&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;orgc82c4d8&#34;&gt;Ralph Waldo Emerson&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-orgc82c4d8&#34;&gt;
+&lt;p&gt;
+Absolutely the most influential essay I read my Freshman year of high school. We were only required to read it once (which most of the class didn&amp;rsquo;t do), but I remember rereading it a second time right after finishing it. The Transcendentalist movement for some reason resonated deeply with me, and still does to this day. I remember reading Emerson&amp;rsquo;s &lt;i&gt;The Oversoul&lt;/i&gt; and thinking how absolutely bizarre it was to hear such complete and unforgiving metaphysical speculation in &lt;i&gt;school&lt;/i&gt; of all places.
+&lt;/p&gt;
+&lt;p&gt;
+I&amp;rsquo;m glad my class read Emerson&amp;rsquo;s essays over Thoreau&amp;rsquo;s &lt;i&gt;Walden Pond&lt;/i&gt;, because I never felt the visceral connection to the surrounding intellectual movement reading that book. &lt;i&gt;Self-Reliance&lt;/i&gt; itself shaped my personal philosophy early on, and I have not since renounced the lessons I learned in it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;Everything That Rises Must Converge&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;FO&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://upload.wikimedia.org/wikipedia/en/9/90/EverythingThatRises.JPG&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-org8cb8187&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;org8cb8187&#34;&gt;Everything That Rises Must Converge&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-org8cb8187&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-orgcaf09ad&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;orgcaf09ad&#34;&gt;Flannery O&amp;rsquo;Connor. 1965&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-orgcaf09ad&#34;&gt;
+&lt;p&gt;
+This was another standout book from my Sophomore year of high school. I remember actually looking forward to reading and discussing these stories in class, because some of them were absolutely wild. The teacher focused a lot on the imagery and symbolism in the different stories (as every English teacher does), but I remember these being powerful and interesting symbols, not the bland kind found in some other high school book choices.
+&lt;/p&gt;
+&lt;p&gt;
+In particular I remember &amp;ldquo;Parker&amp;rsquo;s Back&amp;rdquo;, &amp;ldquo;The Lame Shall Enter First&amp;rdquo;, and &amp;ldquo;Everything That Rises Must Converge&amp;rdquo; from this collection of short stories.
+&lt;/p&gt;
+&lt;p&gt;
+In &amp;ldquo;Parker&amp;rsquo;s Back&amp;rdquo; I remember learning the word &lt;code&gt;hoary&lt;/code&gt;, which someone made a joke about in class.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;div class=&#34;book&#34;&gt; &lt;div class=&#34;side spine&#34;&gt; &lt;span class=&#34;spine-title&#34;&gt;The Pleasure of Finding Things Out&lt;/span&gt; &lt;span class=&#34;spine-author&#34;&gt;RF&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;side top&#34;&gt;&lt;/div&gt; &lt;div class=&#34;side cover&#34; style=&#34;background-image: url(&#39;https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.I91nKKkzuIQXtMDUDTumfwAAAA%26pid%3DApi&amp;f=1&#39;)&#34;&gt; &lt;div class=&#34;summary&#34;&gt;&lt;div id=&#34;outline-container-orge1954b9&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;orge1954b9&#34;&gt;The Pleasure of Finding Things Out&lt;/h2&gt;
+&lt;div class=&#34;outline-text-2&#34; id=&#34;text-orge1954b9&#34;&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-orgc53ba83&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;orgc53ba83&#34;&gt;Richard Feynman. 1999&lt;/h3&gt;
+&lt;div class=&#34;outline-text-3&#34; id=&#34;text-orgc53ba83&#34;&gt;
+&lt;p&gt;
+I remember in high school an old mentor of mine, who was a physics professor, had taught me about genius. I had made some comment about those &amp;ldquo;geniuses&amp;rdquo; (because in my mind at that time, anyone smarter than me was a genius) Bill Gates and Steve Jobs, and my mentor quickly corrected me.
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
+&amp;ldquo;Those men are not geniuses. They didn&amp;rsquo;t discover anything &lt;i&gt;new&lt;/i&gt;. They just perfected something already existing. That&amp;rsquo;s commendable, but it isn&amp;rsquo;t &lt;i&gt;genius&lt;/i&gt;. Geniuses are people like &lt;b&gt;Bach&lt;/b&gt;, &lt;b&gt;Newton&lt;/b&gt;, or &lt;b&gt;Richard Feynman&lt;/b&gt;&amp;rdquo;.
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;
+I specifically remember him calling out Feynman as one of the small group of people he considered genius, so I set out to figure out why. I came across his lectures on YouTube and they were completely enthralling.
+&lt;/p&gt;
+&lt;p&gt;
+Feynman has a way of explaining things which is so utterly &lt;i&gt;simple&lt;/i&gt; that you can&amp;rsquo;t help but understand exactly what he says. It doesn&amp;rsquo;t matter if it&amp;rsquo;s an advanced concept in physics or mathematics, or simply something he noticed about people, it&amp;rsquo;s so easy and entertaining to listen to him talk. This book reads exactly the same way - his voice comes through so clearly that I was even reading with his distinct accent in my mind most of the time.
+&lt;/p&gt;
+&lt;p&gt;
+This book is overflowing with an earnest and eager excitement for learning. Feynman has a childlike wonder about the world, and he shares it here using vivid imagery and humorous anecdotes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt; &lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;about-this-page&#34;&gt;About this Page&lt;/h2&gt;
+&lt;p&gt;This page uses Peter Gyurov&amp;rsquo;s &lt;a href=&#34;https://petargyurov.com/bookshelf/&#34;&gt;virtual library implementation&lt;/a&gt;. I took him up on his offer to incorporate the code into my own site. The only difference is I added a summary section you can view when you click each book. It&amp;rsquo;s a bit convoluted, since I use a custom org-mode exporter to render Hugo markdown to render html in the end.&lt;/p&gt;
+&lt;p&gt;The transition to the open state can probably be more elegant, with the book moving to a fixed position centered in the viewport, since this would look better on smaller screens, but the day for that is not today.&lt;/p&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomChoice(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+let availablePatterns = [&#34;argyle&#34;, &#34;tartan&#34;]; // we could probably get these programatically
+let availableColours = [
+  &#34;maroon&#34;,
+  &#34;darkgreen&#34;,
+  &#34;darkolivegreen&#34;,
+  &#34;olivedrab&#34;,
+  &#34;brown&#34;,
+  &#34;saddlebrown&#34;,
+  &#34;sienna&#34;,
+  &#34;midnightblue&#34;,
+  &#34;steelblue&#34;,
+  &#34;tomato&#34;,
+  &#34;teal&#34;,
+  &#34;slategray&#34;,
+  &#34;sienna&#34;,
+  &#34;saddlebrown&#34;,
+  &#34;rebeccapurple&#34;,
+  &#34;palevioletred&#34;,
+  &#34;lightseagreen&#34;,
+  &#34;firebrick&#34;,
+];
+
+const setStyleAndCustomProperty = (style, property, value) =&gt; {
+  style.setProperty(property, value);
+  style.setProperty(`--${property}`, value);
+};
+
+const bookshelves = document.querySelectorAll(&#39;.bookshelf&#39;)
+
+bookshelves.forEach((bookshelf) =&gt; {
+    const books = Object.values(bookshelf.getElementsByClassName(&#34;book&#34;));
+    const spines = Object.values(bookshelf.getElementsByClassName(&#34;spine&#34;));
+    const covers = Object.values(bookshelf.getElementsByClassName(&#34;cover&#34;));
+    const tops = Object.values(bookshelf.getElementsByClassName(&#34;top&#34;));
+    const summaries = Object.values(bookshelf.getElementsByClassName(&#34;summary&#34;));
+
+    // assign a random height, pattern and colour to each book
+    spines.map(function (s, i) {
+        let randomHeight = getRandomInt(220, 290);
+
+        books[i].style.setProperty(&#39;--height&#39;, `${randomHeight}px`);
+        books[i].style.setProperty(&#39;--top&#39;, `${280 - randomHeight}px`);
+
+        setStyleAndCustomProperty(s.style, &#39;height&#39;, `${randomHeight}px`);
+        setStyleAndCustomProperty(s.style, &#39;top&#39;, `${280 - randomHeight}px`);
+
+        s.style.backgroundImage = `var(--${randomChoice(availablePatterns)})`;
+        s.style.backgroundColor = randomChoice(availableColours);
+
+        setStyleAndCustomProperty(covers[i].style, &#39;height&#39;, `${randomHeight}px`);
+        setStyleAndCustomProperty(covers[i].style, &#39;top&#39;, `${280 - randomHeight}px`);
+
+        setStyleAndCustomProperty(tops[i].style, &#39;top&#39;, `${280 - randomHeight}px`);
+    });
+
+});
+
+const allBooks = document.querySelectorAll(&#39;.book&#39;);
+
+/* Peek/view state machine */
+allBooks.forEach((book) =&gt; {
+    book.addEventListener(&#39;click&#39;, () =&gt; {
+        allBooks.forEach((otherBook) =&gt; {
+            if (book === otherBook) return;
+            otherBook.classList.remove(&#39;open&#39;);
+        });
+        book.classList.remove(&#39;peek&#39;);
+        book.classList.toggle(&#39;open&#39;);
+    });
+    // Can&#39;t simply be :hover because opening book should be different
+    book.addEventListener(&#39;mouseover&#39;, () =&gt; {
+        book.classList.add(&#39;peek&#39;);
+    });
+    book.addEventListener(&#39;mouseout&#39;, () =&gt; {
+        book.classList.remove(&#39;peek&#39;);
+    });
+});
+
+
+&lt;/script&gt;
 </description>
        </item>
        
