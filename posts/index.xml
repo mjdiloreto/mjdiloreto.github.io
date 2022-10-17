@@ -6,10 +6,461 @@
        <description>Recent content in Posts on Matthew DiLoreto</description>
        <generator>Hugo -- gohugo.io</generator>
        <language>en-us</language>
-       <lastBuildDate>Fri, 17 Jun 2022 00:00:00 -0500</lastBuildDate>
+       <lastBuildDate>Sun, 16 Oct 2022 17:14:00 -0500</lastBuildDate>
        
            <atom:link href="https://mjdiloreto.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
        
+       
+       <item>
+         <title>Literate Import</title>
+         <link>https://mjdiloreto.github.io/posts/literate-import/</link>
+         <pubDate>Sun, 16 Oct 2022 17:14:00 -0500</pubDate>
+         
+         <guid>https://mjdiloreto.github.io/posts/literate-import/</guid>
+         <description>&lt;p&gt;The following is a literate program written in emacs-lisp.&lt;/p&gt;
+&lt;h2 id=&#34;rationale&#34;&gt;Rationale&lt;/h2&gt;
+&lt;p&gt;I like to write literate programs using org-babel-tangle.
+It&amp;rsquo;s an excellent workflow for literate programming which allows me to write an entire project in a single file, then tangle all the source blocks to their own files in the project.&lt;/p&gt;
+&lt;p&gt;Sometimes though I want to incorporate some external files into the project, and this leads to a problem.
+The literate programming flow with org-babel is &lt;em&gt;always&lt;/em&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;write source code in org file src blocks&lt;/li&gt;
+&lt;li&gt;tangle source code out to individual project files&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Once I add a file to the project directly, the org file describing my literate program will be missing some of the program, it will be incomplete.&lt;/p&gt;
+&lt;p&gt;I could copy the source code into the org file, and tangle it out, just like all the internal project files, but sometimes I want to add a &lt;em&gt;ton&lt;/em&gt; of files to my project, e.g. initializing a project with a starter template like &lt;code&gt;create-react-app&lt;/code&gt; for React projects, &lt;code&gt;lein new&lt;/code&gt; for Clojure projects, &lt;code&gt;mix new&lt;/code&gt; for Elixir projects, etc.&lt;/p&gt;
+&lt;p&gt;Almost all professional programming languages have some sort of code generation mechanism that becomes useful at some point.
+Reincorporating those generated files into the literate document is a necessary feature for me because I want to be able to use these tools while &lt;em&gt;also&lt;/em&gt; maintaining my project as a literate program in a single org file.&lt;/p&gt;
+&lt;p&gt;My solution is to create a command to &lt;em&gt;reincorporate&lt;/em&gt; a project&amp;rsquo;s file structure back into the root org file.
+From there I can use all the org-mode features I&amp;rsquo;m used to (folding, navigation, editing, moving, etc) to reorganize the code into a cohesive narrative, which is the entire point of writing literate programs in the first place.&lt;/p&gt;
+&lt;h2 id=&#34;implementation&#34;&gt;Implementation&lt;/h2&gt;
+&lt;p&gt;First, we create a group for the new functionality. I added this because I will need a customizable variable, which we will see next. One interesting thing to note is that I can associate this new group with existing groups, here &lt;code&gt;org-babel&lt;/code&gt; and &lt;code&gt;org&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-emacs-lisp&#34; data-lang=&#34;emacs-lisp&#34;&gt;(defgroup literate-import &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Import missing project files into a top-level literate org-file&amp;#34;&lt;/span&gt;
+  :tag &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;literate-import&amp;#34;&lt;/span&gt;
+  :group &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;org-babel&lt;/span&gt;
+  :group &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;org&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Next is the custom variable. I realized that, when importing source blocks from files in a project, it is not immediately clear which language is being used.
+I found &lt;a href=&#34;https://gist.github.com/ppisarczyk/43962d06686722d26d176fad46879d41%20&#34;&gt;this gist&lt;/a&gt; which gives a pretty decent mapping of &lt;code&gt;file extension-&amp;gt;source language&lt;/code&gt;, and I supplemented it a bit with other sources.
+Of course, when using org-babel, the source language can be anything you want, and it will still get tangled properly, so even:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#+begin_src nonexistent-language :tangle ./something.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;will still tangle the source block contents to the file &lt;code&gt;something.txt&lt;/code&gt;, so this feature isn&amp;rsquo;t strictly necessary, but it will be convenient to automatically fill in the source language in the majority of cases.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-emacs-lisp&#34; data-lang=&#34;emacs-lisp&#34;&gt;(defcustom literate-import-language-extensions
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Awk&amp;#34; . &amp;#34;awk&amp;#34;)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.awk&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;awk&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.auk&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;awk&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.gawk&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;awk&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.mawk&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;awk&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.nawk&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;awk&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;C&amp;#34; . C)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.c&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cats&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.h&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.idc&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.w&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;R&amp;#34; . R)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.r&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;R&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.rd&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;R&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.rsx&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;R&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; IDK what this language is, but it isn&amp;#39;t in the list in the gist&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Calc&amp;#34; . calc)&lt;/span&gt;
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Clojure&amp;#34; . clojure)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.clj&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;clojure&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.boot&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;clojure&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cl2&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;clojure&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cljc&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;clojure&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cljs&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;clojure&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cljs.hl&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;clojure&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cljscm&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;clojure&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cljx&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;clojure&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.hic&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;clojure&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Css&amp;#34; . css)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.css&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;css&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; SCSS isn&amp;#39;t in the org-babel list, but I will include it here anyway&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Scss&amp;#34; . scss)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.scss&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;scss&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; I actually am familiar with ditaa and it probably wouldn&amp;#39;t be used in isolation, so won&amp;#39;t have a file extension&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Ditaa&amp;#34; . ditaa)&lt;/span&gt;
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; Don&amp;#39;t know dot&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Dot&amp;#34; . dot)&lt;/span&gt;
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Emacs lisp&amp;#34; . emacs-lisp)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.el&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;emacs-lisp&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.emacs&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;emacs-lisp&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.emacs.desktop&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;emacs-lisp&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Forth&amp;#34; . forth)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.fth&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;forth&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.4th&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;forth&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.f&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;forth&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.for&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;forth&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.forth&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;forth&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.fr&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;forth&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.frt&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;forth&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.fs&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;forth&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Fortran&amp;#34; . fortran)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.f90&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fortran&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.f&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fortran&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.f03&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fortran&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.f08&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fortran&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.f77&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fortran&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.f95&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fortran&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.for&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fortran&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.fpp&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fortran&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Gnuplot&amp;#34; . gnuplot)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.gp&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gnuplot&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.gnu&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gnuplot&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.gnuplot&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gnuplot&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.plot&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gnuplot&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.plt&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;gnuplot&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Haskell&amp;#34; . haskell)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.hs&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;haskell&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.hsc&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;haskell&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Java&amp;#34; . java)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.java&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;java&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.jsp&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;java&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Javascript&amp;#34; . js)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.js&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;._js&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.bones&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.es&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.es6&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.frag&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.gs&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.jake&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.jsb&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.jscad&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.jsfl&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.jsm&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.jss&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.njs&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.pac&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sjs&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ssjs&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime-build&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime-commands&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime-completions&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime-keymap&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime-macro&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime-menu&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime-mousemap&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime-project&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime-settings&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime-theme&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime-workspace&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime_metrics&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sublime_session&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.xsjs&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.xsjslib&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;js&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; This one isn&amp;#39;t present in the list, but I know it&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;LaTeX&amp;#34; . latex)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.tex&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;latex&amp;#34;&lt;/span&gt;)
+
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Lilypond&amp;#34; . lilypond)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ly&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lilypond&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ily&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lilypond&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; Assuming common lisp&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Lisp&amp;#34; . lisp)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.lisp&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lisp&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.asd&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lisp&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cl&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lisp&amp;#34;&lt;/span&gt;)
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;.l&amp;#34; . lisp)                       ; collision with Pico Lisp&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.lsp&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lisp&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ny&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lisp&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.podsl&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lisp&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sexp&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;lisp&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Makefile&amp;#34; . makefile)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.mak&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;makefile&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.d&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;makefile&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.mk&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;makefile&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.mkfile&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;makefile&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; Can&amp;#39;t find anything online about this other than wxMaxima&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Maxima&amp;#34; . maxima)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;wxmx&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;maxima&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Matlab&amp;#34; . matlab)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.matlab&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;matlab&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.m&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;matlab&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Ocaml&amp;#34; . ocaml)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ml&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ocaml&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.eliom&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ocaml&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.eliomi&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ocaml&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ml4&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ocaml&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.mli&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ocaml&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.mll&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ocaml&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.mly&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ocaml&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; IDK what this is&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Octave&amp;#34; . octave)&lt;/span&gt;
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Org&amp;#34; . org)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.org&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;org&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Perl&amp;#34; . perl)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.pl&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;perl&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.al&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;perl&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cgi&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;perl&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.fcgi&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;perl&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.perl&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;perl&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ph&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;perl&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.plx&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;perl&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.pm&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;perl&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.pod&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;perl&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.psgi&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;perl&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.t&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;perl&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Pico Lisp&amp;#34; . picolisp)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.l&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;picolisp&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; Not in the list&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;PlantUML&amp;#34; . plantuml)&lt;/span&gt;
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Python&amp;#34; . python)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.py&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.bzl&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cgi&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.fcgi&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.gyp&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.lmi&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.pyde&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.pyp&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.pyt&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.pyw&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.rpy&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.tac&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.wsgi&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.xpy&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Ruby&amp;#34; . ruby)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.rb&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.builder&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.fcgi&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.gemspec&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.god&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.irbrc&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.jbuilder&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.mspec&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.pluginspec&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.podspec&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.rabl&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.rake&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.rbuild&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.rbw&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.rbx&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ru&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ruby&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.thor&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.watchr&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;ruby&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Sass&amp;#34; . sass)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sass&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sass&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Scala&amp;#34; . scala)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.scala&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;scala&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sbt&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;scala&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sc&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;scala&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Scheme&amp;#34; . scheme)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.scm&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;scheme&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sld&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;scheme&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sls&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;scheme&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sps&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;scheme&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ss&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;scheme&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; Not in the list&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Screen&amp;#34; . screen)&lt;/span&gt;
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Shell Script&amp;#34; . shell)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sh&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.bash&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.bats&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cgi&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.command&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.fcgi&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ksh&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sh.in&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.tmux&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.tool&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.zsh&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;shell&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Sql&amp;#34; . sql)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.sql&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sql&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.cql&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sql&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.ddl&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sql&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.inc&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sql&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.prc&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sql&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.tab&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sql&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.udf&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sql&amp;#34;&lt;/span&gt;)
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.viw&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sql&amp;#34;&lt;/span&gt;)
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; IDK why they make the distinction&lt;/span&gt;
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Sqlite&amp;#34; . sqlite)&lt;/span&gt;
+
+
+    &lt;span style=&#34;color:#75715e&#34;&gt;;; (&amp;#34;Stan&amp;#34; . stan)&lt;/span&gt;
+    (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.stan&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stan&amp;#34;&lt;/span&gt;)
+    )
+  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Should be kept up to date with &amp;#39;org-babel-load-languages, and the version
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;should also match.
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;This list detects the correct language to use in a generated src block
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;based on the extension of the original file.
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;Transliterated from https://gist.github.com/ppisarczyk/43962d06686722d26d176fad46879d41
+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+  :group &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;literate-import&lt;/span&gt;
+  :version &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;24.1&amp;#34;&lt;/span&gt;
+  :type &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;(alist :key-type &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt; :value-type (group &lt;span style=&#34;color:#a6e22e&#34;&gt;string&lt;/span&gt;)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;utilities&#34;&gt;Utilities&lt;/h3&gt;
+&lt;p&gt;This next function reads the &lt;code&gt;:tangle&lt;/code&gt; property (the second returned from &lt;code&gt;org-babel-get-src-block-info&lt;/code&gt;) of a src block, which is a file name.
+Conveniently, this also works when the &lt;code&gt;:tangle&lt;/code&gt; property is defined somewhere other than the line of the src block itself, such as a parent heading or root document property. E.g.&lt;/p&gt;
+&lt;p&gt;At the heading level:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;* Some heading
+:PROPERTIES:
+:header-args:emacs-lisp: :tangle ./config.el
+:END:
+
+Below are some code blocks that will both be tangled to ./config.el, even though they do not specify it directly on the begin_src line.
+
+#+begin_src emacs-lisp
+...
+#+end_src
+
+
+#+begin_src emacs-lisp
+...
+#+end_src
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;At the file level:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;#+title: Doom Emacs Config
+#+PROPERTY: header-args:emacs-lisp :tangle ./config.el
+
+Every emacs-lisp source block in this whole file will be tangled to ./config.el unless otherwise specified.
+
+#+begin_src emacs-lisp
+...
+#+end_src
+
+#+begin_src emacs-lisp
+...
+#+end_src
+
+#+begin_src emacs-lisp
+...
+#+end_src
+
+#+begin_src emacs-lisp
+...
+#+end_src
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-emacs-lisp&#34; data-lang=&#34;emacs-lisp&#34;&gt;(defun literate-import/src-block-tangle-target ()
+  (&lt;span style=&#34;color:#a6e22e&#34;&gt;expand-file-name&lt;/span&gt; (alist-get :tangle (&lt;span style=&#34;color:#a6e22e&#34;&gt;nth&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; (org-babel-get-src-block-info)))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And this (clumsy) function simply collects those tangle targets for every source block in the entire org file. I say clumsy because I&amp;rsquo;m ignoring errors from &lt;code&gt;org-babel-next-src-block&lt;/code&gt; and tracking point location to determine if there are any more src blocks, and recursively collecting the results. This could all probably be nicely expressed in a loop, but I didn&amp;rsquo;t want to figure that out.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-emacs-lisp&#34; data-lang=&#34;emacs-lisp&#34;&gt;(defun literate-import/list-tangle-targets-in-current-buffer (&lt;span style=&#34;color:#66d9ef&#34;&gt;&amp;amp;optional&lt;/span&gt; p acc)
+  (let ((loc (or p (&lt;span style=&#34;color:#a6e22e&#34;&gt;point-min&lt;/span&gt;)))
+        (res (or acc &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#39;&lt;/span&gt;())))
+    (&lt;span style=&#34;color:#a6e22e&#34;&gt;goto-char&lt;/span&gt; loc)
+    (ignore-errors (org-babel-next-src-block))
+    (if (&lt;span style=&#34;color:#a6e22e&#34;&gt;eq&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;point&lt;/span&gt;) loc)
+        (seq-filter &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;file-exists-p&lt;/span&gt; res)
+      (literate-import/list-tangle-targets-in-current-buffer (&lt;span style=&#34;color:#a6e22e&#34;&gt;point&lt;/span&gt;) (&lt;span style=&#34;color:#a6e22e&#34;&gt;cons&lt;/span&gt; (literate-import/src-block-tangle-target) res)))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;core&#34;&gt;Core&lt;/h3&gt;
+&lt;p&gt;Now the real meat of the program. The outline I initially wrote explains my thought process pretty well:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;;; OUTLINE:
+;; ----------
+;; let tree = empty tree
+;; Get all project files
+;; Get all :tangle targets
+;; for each project file
+;;      if file not in targets
+;;              merge file hierarchy to tree
+;; convert tree to org mode tree
+;; print tree at end of current buffer
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The only deviation I ended up making in the actual implementation was to not collect the file hierarchy in a tree, and then convert that to an org-mode tree, but instead to simply collect the files in a list, and traverse that list, building up the org tree using the standard insertion commands e.g.&lt;/p&gt;
+&lt;p&gt;Original idea:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;#39;(root (a (file1.txt) b (file2.txt) c (file3.txt)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;somehow converts to:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;* root
+** a
+*** file1.txt
+** b
+*** file2.txt
+** c
+*** file3.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Instead just start with:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&amp;#39;(root/a/file1.txt root/b/file2.txt root/c/file3.txt)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;and iterate through that list and use org-mode&amp;rsquo;s navigation/insertion commands to produce the result directly in a temporary buffer.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-emacs-lisp&#34; data-lang=&#34;emacs-lisp&#34;&gt;(defun literate-import/import-project ()
+  (interactive)
+  (save-excursion
+    (let ((tree &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)                    &lt;span style=&#34;color:#75715e&#34;&gt;; let tree = empty tree&lt;/span&gt;
+          (proj-files (completing-read-multiple &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Select file(s) to import: &amp;#34;&lt;/span&gt;
+                                           (projectile-project-files (projectile-acquire-root)))) &lt;span style=&#34;color:#75715e&#34;&gt;; Get all project files&lt;/span&gt;
+          (tangle-targets (delete-dups (literate-import/list-tangle-targets-in-current-buffer)))) &lt;span style=&#34;color:#75715e&#34;&gt;; Get all :tangle targets&lt;/span&gt;
+      (cl-loop for file in proj-files do              &lt;span style=&#34;color:#75715e&#34;&gt;; for each project file&lt;/span&gt;
+               (when (not (&lt;span style=&#34;color:#a6e22e&#34;&gt;memq&lt;/span&gt; file tangle-targets)) &lt;span style=&#34;color:#75715e&#34;&gt;; if file not in targets&lt;/span&gt;
+                 (setq tree (&lt;span style=&#34;color:#a6e22e&#34;&gt;cons&lt;/span&gt; file tree)))) &lt;span style=&#34;color:#75715e&#34;&gt;; merge file hierarchy to tree&lt;/span&gt;
+      &lt;span style=&#34;color:#75715e&#34;&gt;;; convert tree to org mode tree&lt;/span&gt;
+      &lt;span style=&#34;color:#75715e&#34;&gt;;; print tree at end of current buffer as org mode tree&lt;/span&gt;
+      (&lt;span style=&#34;color:#a6e22e&#34;&gt;insert&lt;/span&gt; (literate-import/convert-to-org-tree tree)))))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;One awesome feature here comes from the use of &lt;code&gt;completing-read-multiple&lt;/code&gt;, in combination with &lt;a href=&#34;https://projectile.mx/&#34;&gt;projectile&lt;/a&gt;&amp;rsquo;s project file collecting function &lt;code&gt;projectile-project-files&lt;/code&gt;.
+This lets me super easily mark the exact set of files I want to include in the import, and only generate the src blocks for those files.
+Of course this also means that this project is dependent on projectile (&lt;code&gt;completing-read-multiple&lt;/code&gt; on the other hand is built-in to emacs), so won&amp;rsquo;t be as reusable for other folks, but this literate style workflow is so niche anyway that I doubt this will be very useful for anyone other than myself.&lt;/p&gt;
+&lt;p&gt;The above function uses this next one to print the list of files into the org mode heading hierarchy, insert the src block and the file content between.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-emacs-lisp&#34; data-lang=&#34;emacs-lisp&#34;&gt;(defun literate-import/convert-to-org-tree (file-list)
+  (with-temp-buffer
+    (org-mode)
+    (cl-loop for file in file-list do
+             (let* ((subdirs (split-string file &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;))
+                    (file-name (first (last subdirs))))
+               (cl-loop for dir in subdirs do
+                        (when (and (not (&lt;span style=&#34;color:#a6e22e&#34;&gt;string-equal&lt;/span&gt; dir &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.&amp;#34;&lt;/span&gt;)) (&lt;span style=&#34;color:#a6e22e&#34;&gt;&amp;gt;&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt; dir) &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;))
+                          (if-let ((starting-point (ignore-errors (org-find-exact-headline-in-buffer dir))))
+                              (&lt;span style=&#34;color:#a6e22e&#34;&gt;goto-char&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;marker-position&lt;/span&gt; starting-point))
+                            (progn
+                              (org-insert-subheading &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;)
+                              (&lt;span style=&#34;color:#a6e22e&#34;&gt;insert&lt;/span&gt; dir)
+                              (when (&lt;span style=&#34;color:#a6e22e&#34;&gt;string-equal&lt;/span&gt; dir file-name)
+                                (newline)
+                                (&lt;span style=&#34;color:#a6e22e&#34;&gt;insert&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#+begin_src &amp;#34;&lt;/span&gt;)
+                                (&lt;span style=&#34;color:#a6e22e&#34;&gt;insert&lt;/span&gt; (if-let ((src-lang (&lt;span style=&#34;color:#a6e22e&#34;&gt;assoc&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;concat&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.&amp;#34;&lt;/span&gt; (file-name-extension file-name)) literate-import-language-extensions)))
+                                            (&lt;span style=&#34;color:#a6e22e&#34;&gt;cdr&lt;/span&gt; src-lang)
+                                          &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TODO_REPLACE_ME&amp;#34;&lt;/span&gt;))
+                                (&lt;span style=&#34;color:#a6e22e&#34;&gt;insert&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; :tangle &amp;#34;&lt;/span&gt;)
+                                (&lt;span style=&#34;color:#a6e22e&#34;&gt;insert&lt;/span&gt; file)
+                                (newline)
+                                (&lt;span style=&#34;color:#a6e22e&#34;&gt;insert&lt;/span&gt; (with-temp-buffer
+                                          (&lt;span style=&#34;color:#a6e22e&#34;&gt;insert-file-contents&lt;/span&gt; file)
+                                          (&lt;span style=&#34;color:#a6e22e&#34;&gt;buffer-string&lt;/span&gt;)))
+                                (&lt;span style=&#34;color:#a6e22e&#34;&gt;insert&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#+end_src&amp;#34;&lt;/span&gt;)
+                                (newline))))))))
+    (&lt;span style=&#34;color:#a6e22e&#34;&gt;buffer-string&lt;/span&gt;)))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;lessons-learned&#34;&gt;Lessons learned&lt;/h3&gt;
+&lt;p&gt;Overall this was a fun project to work on during the weekend, and I needed it for a personal project I&amp;rsquo;m writing (in a literate style of course) which includes code generated by both &lt;a href=&#34;https://blitzjs.com/&#34;&gt;blitz.js&lt;/a&gt; and &lt;a href=&#34;https://leiningen.org/&#34;&gt;leiningen&lt;/a&gt;, so I&amp;rsquo;m glad I was able to finish it and actually make use of it to return the beautiful literate style to my project!&lt;/p&gt;
+&lt;h3 id=&#34;future-work&#34;&gt;Future work&lt;/h3&gt;
+&lt;p&gt;My main idea here was to generate my project structure &lt;em&gt;once&lt;/em&gt;, import it into my literate document, then rearrange the generated org mode structure and mark it up with prose.
+With blitzjs though, the code generation tool is &lt;em&gt;integral&lt;/em&gt; to the day-to-day workflow, and new code is added all the time with it.
+My next step will be to set up a listener in the project to automatically import missing files into the literate document once the files are generated on the command-line, potentially with a different heading structure, such that the generated queries/mutations/components/schemas are co-located under the same org heading, instead of having the headings simply mirror the file system hierarchy.&lt;/p&gt;
+</description>
+       </item>
        
        <item>
          <title>Personal Philosophy: Pareto upside; More Good Role Models!</title>
