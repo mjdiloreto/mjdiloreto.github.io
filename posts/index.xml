@@ -12,7 +12,7 @@
        
        
        <item>
-         <title>Make Yasnippet new-snippet Buffer More Helpful</title>
+         <title>Making the Yasnippet *​new-snippet​* Buffer More Helpful</title>
          <link>https://mjdiloreto.github.io/posts/yasnippet-helpful-buffer/</link>
          <pubDate>Sat, 05 Nov 2022 23:47:00 -0500</pubDate>
          
@@ -24,71 +24,64 @@
 ,# key:
 ,# --
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;That&amp;rsquo;s all you&amp;rsquo;re presented with.
-You have to remember what the difference between name and key is (key is the abbreviation you type before invoking &lt;code&gt;yas-expand&lt;/code&gt;, name is just a human-readable description of the snippet), and then you type your snippet below.&lt;/p&gt;
-&lt;p&gt;You are seriously expected to remember the &lt;a href=&#34;http://joaotavora.github.io/yasnippet/snippet-development.html#org9801aa7&#34;&gt;entire templating&lt;/a&gt; syntax here?
+You have to remember the difference between &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;key&lt;/code&gt; (&lt;code&gt;key&lt;/code&gt; is the abbreviation you type before invoking &lt;code&gt;yas-expand&lt;/code&gt;, &lt;code&gt;name&lt;/code&gt; is just a human-readable description of the snippet), and then you type the snippet to be inserted below.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve used yasnippets for a couple years now, and I realize I&amp;rsquo;m never going to remember the &lt;a href=&#34;http://joaotavora.github.io/yasnippet/snippet-development.html#org9801aa7&#34;&gt;entire templating&lt;/a&gt; syntax here.
 I mean, it isn&amp;rsquo;t anything crazy, but there are plenty of idiosyncrasies to make each read-through of the documentation feel like the first time (a bad sign for any kind of syntax you want to be familiar to users).&lt;/p&gt;
 &lt;p&gt;So I came up with a simple solution, just have the initial buffer created by &lt;code&gt;yas-new-snippet&lt;/code&gt; be more useful:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# key: what the user types to expand this snippet
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# name: what the user sees the snippet listed as
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# For more information visit http://joaotavora.github.io/yasnippet/snippet-development.html#org9801aa7
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# * Embed elisp - back quotes:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #+begin_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# ifndef ${1:_[backquote](upcase (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))[backquote]_H_}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #+end_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# NB: DON&amp;#39;T MODIFY THE BUFFER INSIDE BACKQUOTES!
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# * Tab stops - $N
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# $0 is the last, $1 is the first, $2 is second, etc.
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# * Placeholders - ${N:default}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #+begin_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# ${N:default value}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #+end_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# * Mirrors - just reuse a tabstop with placeholder
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #+begin_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# \begin{${1:enumerate}}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;#     $0
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# \end{$1}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #+end_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# * Transforming Mirrors - $(
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #+begin_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# ${2:foo}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# ${2:$(capitalize yas-text)}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;#   #+end_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# * Transforming fields - ${N:name:$(elisp)} or ${N:$$(elisp)}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #+begin_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #define &amp;#34;${1:$$(upcase yas-text)}&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #+end_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# * Choose a value from a list of options
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #+begin_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# &amp;lt;div align=&amp;#34;${2:$$(yas-choose-value &amp;#39;(&amp;#34;right&amp;#34; &amp;#34;center&amp;#34; &amp;#34;left&amp;#34;))}&amp;#34;&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# #+end_example
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# * Bound inside evaluated elisp
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# | variable         | description                                             |
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# |------------------+---------------------------------------------------------|
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# | yas-text         | the current text of this field                          |
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# | yas-field-value  | the current text of $1 (or $2, etc.)                    |
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# | yas-modified-p   | whether the field is modified                           |
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# | yas-choose-value | user chooses from a list of options                     |
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# | yas-verify-value | Verify that the current field value is in POSSIBILITIES |
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;# --
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$0
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;${1:default value}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;${1:$(capitalize yas-text)}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;${2:$$(yas-choose-value &amp;#39;(&amp;#34;right&amp;#34; &amp;#34;center&amp;#34; &amp;#34;left&amp;#34;))}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I saved this in a file in my emacs directory called &lt;code&gt;yasnippet-prompt.txt&lt;/code&gt;.
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;# key: what the user types to expand this snippet
+# name: what the user sees the snippet listed as
+
+# For more information visit
+# http://joaotavora.github.io/yasnippet/snippet-development.html#org9801aa7
+
+## Embed elisp - back quotes:
+# ifndef ${1:_[backquote](upcase (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))[backquote]_H_}
+
+# NB: DON&amp;#39;T MODIFY THE BUFFER INSIDE BACKQUOTES!
+
+
+## Tab stops - $N
+# $0 is the last, $1 is the first, $2 is second, etc.
+
+
+## Placeholders - ${N:default}
+# ${N:default value}
+
+
+## Mirrors - just reuse a tabstop with placeholder
+# \begin{${1:enumerate}}
+#     $0
+# \end{$1}
+
+
+## Transforming Mirrors - $(
+# ${2:foo}
+# ${2:$(capitalize yas-text)}
+
+
+## Transforming fields - ${N:name:$(elisp)} or ${N:$$(elisp)}
+# #define &amp;#34;${1:$$(upcase yas-text)}&amp;#34;
+
+
+## Choose a value from a list of options
+# &amp;lt;div align=&amp;#34;${2:$$(yas-choose-value &amp;#39;(&amp;#34;right&amp;#34; &amp;#34;center&amp;#34; &amp;#34;left&amp;#34;))}&amp;#34;&amp;gt;
+
+
+## Useful things bound inside evaluated elisp
+# | variable         | description                                             |
+# |------------------+---------------------------------------------------------|
+# | yas-text         | the current text of this field                          |
+# | yas-field-value  | the current text of $1 (or $2, etc.)                    |
+# | yas-modified-p   | whether the field is modified                           |
+# | yas-choose-value | user chooses from a list of options                     |
+# | yas-verify-value | Verify that the current field value is in POSSIBILITIES |
+# --
+
+$0
+${1:default value}
+${1:$(capitalize yas-text)}
+${2:$$(yas-choose-value &amp;#39;(&amp;#34;right&amp;#34; &amp;#34;center&amp;#34; &amp;#34;left&amp;#34;))}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I saved this new prompt in my emacs directory in a file called &lt;code&gt;yasnippet-prompt.txt&lt;/code&gt;.
 This is essentially just a pared-down version of the &lt;a href=&#34;http://joaotavora.github.io/yasnippet/snippet-development.html#org9801aa7&#34;&gt;official docs&lt;/a&gt;, and includes some useful examples to get started with.&lt;/p&gt;
 &lt;p&gt;To use this as the &lt;code&gt;yas-new-snippet&lt;/code&gt; prompt, I won&amp;rsquo;t bother customizing the yasnippet group or anything like that (I&amp;rsquo;m not sure they even expose the prompt as a customization variable), but this is emacs-lisp!
 I don&amp;rsquo;t need the yasnippet author&amp;rsquo;s permission or cooperation to use their code any way I see fit, and it&amp;rsquo;s trivial to replace the original &lt;code&gt;yas-new-snippet&lt;/code&gt; command with a version that does what I want &amp;ldquo;the manual way&amp;rdquo;, the way I would accomplish the goal myself&amp;hellip; manually.&lt;/p&gt;
@@ -110,6 +103,7 @@ I don&amp;rsquo;t need the yasnippet author&amp;rsquo;s permission or cooperatio
 &lt;/ol&gt;
 &lt;p&gt;And that&amp;rsquo;s it!&lt;/p&gt;
 &lt;p&gt;It&amp;rsquo;s very cathartic to have the editor do exactly what I want the way I want it to, and emacs is the only software available that even comes close to this level of program-ability.&lt;/p&gt;
+&lt;h2 id=&#34;comparing-to-jetbrains&#34;&gt;Comparing to Jetbrains&lt;/h2&gt;
 &lt;p&gt;I also use the Jetbrains IDEs, which are some of the most widely used editors and arguably the most powerful IDEs for many programming languages, and they have a feature called &lt;a href=&#34;https://www.jetbrains.com/help/idea/using-live-templates.html&#34;&gt;Live templates&lt;/a&gt; which is analogous to yasnippets.&lt;/p&gt;
 &lt;p&gt;Live templates use the &lt;a href=&#34;https://velocity.apache.org/engine/devel/user-guide.html#velocity-template-language-vtl-an-introduction&#34;&gt;Apache Velocity Templating Engine&lt;/a&gt; to program and expand templates, and that system is WAY more complex than yasnippet&amp;rsquo;s simple syntax.
 &lt;strong&gt;And&lt;/strong&gt; yasnippets are way more powerful than Live Templates, because instead of stupid, STUPID arbitrary limitations on what are &amp;ldquo;valid&amp;rdquo; transformations in templates, yasnippet treats me like an adult and just lets me use &lt;strong&gt;any elisp&lt;/strong&gt; inside the snippets.&lt;/p&gt;
@@ -144,8 +138,8 @@ The following functions can be used to define live template variables:&lt;/p&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Granted there is a bunch of stuff there, but seriously, you shouldn&amp;rsquo;t have to (and cannot possibly) enumerate all the possible editing operations I might want to do with my code.&lt;/p&gt;
-&lt;p&gt;Whereas with yasnippets your imagination is you only limitation:&lt;/p&gt;
+&lt;p&gt;Granted there are a bunch of possibilities there, but seriously, you shouldn&amp;rsquo;t have to (and cannot possibly) enumerate all the possible editing operations I might want to do with my code.&lt;/p&gt;
+&lt;p&gt;Whereas with yasnippets my imagination is my only limitation:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Maybe I want to give snippets choices based on live information, e.g.
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;${2:$$(yas-choose-value (get-list-of-live-docker-images))}
@@ -164,16 +158,17 @@ I&amp;rsquo;m not even a RMS fan or super zealous about the FOSS ideology or any
 It&amp;rsquo;s certainly the most free software.&lt;/p&gt;
 &lt;p&gt;FOSS ideologues don&amp;rsquo;t get that most people don&amp;rsquo;t really want or &lt;em&gt;need&lt;/em&gt; that much freedom, and that&amp;rsquo;s fine.
 They wouldn&amp;rsquo;t get much value from using emacs.&lt;/p&gt;
-&lt;p&gt;But, what I&amp;rsquo;ve learned this past year is that you won&amp;rsquo;t ever leverage that freedom without writing emacs-lisp.
+&lt;p&gt;But, what I&amp;rsquo;ve learned this past year is that you won&amp;rsquo;t ever leverage the freedom emacs affords without writing emacs-lisp.
 I&amp;rsquo;m sorry&amp;hellip; I&amp;rsquo;m convinced there&amp;rsquo;s just no way around it.
 Sure, you can &lt;em&gt;use&lt;/em&gt; emacs just fine without writing any code (heck I did for a long time&amp;hellip;), but then you will always be limited to what other people &lt;em&gt;think&lt;/em&gt; you want.&lt;/p&gt;
 &lt;p&gt;The truth is that editing with emacs and learning emacs-lisp are two distinct processes, very long and arduous, that only together unlock the power of emacs.&lt;/p&gt;
 &lt;p&gt;Finally committing to really learning emacs-lisp and the systems that compose emacs leveled-up my editing beyond what the other systems can provide me, but it&amp;rsquo;s been a really intense investment.&lt;/p&gt;
 &lt;p&gt;Over the 4 years I&amp;rsquo;ve used emacs it has consumed every text-editing activity I do (blogging, side projects in all sorts of different programming languages, &lt;a href=&#34;https://github.com/mjdiloreto/simsched&#34;&gt;day-planning&lt;/a&gt;, organizing all my various things with org-mode) &lt;em&gt;except&lt;/em&gt; professional web development.
-I still use Jetbrain&amp;rsquo;s WebStorm for that, because it has so many features out-of-the-box I use daily that I haven&amp;rsquo;t configured emacs for (yet), but even many parts of that are slowly losing to my ever-growing emacs configuration, such as git interaction, which I now only use emacs&amp;rsquo;s &lt;code&gt;magit&lt;/code&gt; for.&lt;/p&gt;
-&lt;p&gt;Might seem ironic given all the chest-thumping for emacs, but I don&amp;rsquo;t think it&amp;rsquo;s hypocritical.
-I see emacs as one of the few callous-forming instruments available to programmers, as Rich Hickey would say.
-It &lt;em&gt;hurts&lt;/em&gt; to use sometimes, takes ages to learn, and is quirky, but there&amp;rsquo;s no limit to your potential with it, and if you&amp;rsquo;re willing to invest wisely it pays dividends, I&amp;rsquo;m just not &lt;em&gt;quite&lt;/em&gt; enough of a virtuoso yet to make it play better than WebStorm.&lt;/p&gt;
+I still use Jetbrain&amp;rsquo;s WebStorm for that, because it has so many features out-of-the-box I use daily that I haven&amp;rsquo;t configured emacs for (yet), but even many parts of that are slowly losing to my ever-growing emacs configuration, such as git interaction with &lt;a href=&#34;https://magit.vc/&#34;&gt;magit&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;That might seem ironic given all the chest-thumping for emacs, but I don&amp;rsquo;t think it&amp;rsquo;s hypocritical.
+I see emacs as one of the few callus-forming instruments available to programmers, as Rich Hickey would say in his &amp;ldquo;&lt;a href=&#34;https://www.infoq.com/presentations/Design-Composition-Performance/&#34;&gt;Design, Composition and Performance&lt;/a&gt;&amp;rdquo; talk (he makes this particular point at the 32:00 mark).&lt;/p&gt;
+&lt;p&gt;It &lt;em&gt;hurts&lt;/em&gt; to use sometimes, takes ages to learn, and is quirky, but there&amp;rsquo;s no limit to your potential with it, and if you&amp;rsquo;re willing to invest wisely it pays dividends.
+So no, I don&amp;rsquo;t &lt;em&gt;have&lt;/em&gt; to use emacs for professional coding work just yet, as I&amp;rsquo;m not &lt;em&gt;quite&lt;/em&gt; enough of a virtuoso to make it play better than WebStorm.&lt;/p&gt;
 </description>
        </item>
        
