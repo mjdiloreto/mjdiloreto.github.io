@@ -6,7 +6,7 @@
        <description>Recent content on Matthew DiLoreto</description>
        <generator>Hugo -- gohugo.io</generator>
        <language>en-us</language>
-       <lastBuildDate>Sun, 16 Oct 2022 17:14:00 -0500</lastBuildDate>
+       <lastBuildDate>Sat, 05 Nov 2022 23:47:00 -0500</lastBuildDate>
        
            <atom:link href="https://mjdiloreto.github.io/index.xml" rel="self" type="application/rss+xml" />
        
@@ -14,7 +14,7 @@
        <item>
          <title>Posts</title>
          <link>https://mjdiloreto.github.io/posts/</link>
-         <pubDate>Sun, 16 Oct 2022 17:14:00 -0500</pubDate>
+         <pubDate>Sat, 05 Nov 2022 23:47:00 -0500</pubDate>
          
          <guid>https://mjdiloreto.github.io/posts/</guid>
          <description></description>
@@ -897,6 +897,7 @@ document.body.addEventListener(&#39;click&#39;, (e) =&gt; {
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;jack-rusher-http-jackrusher-dot-com&#34;&gt;Jack Rusher &lt;a href=&#34;http://jackrusher.com/&#34;&gt;http://jackrusher.com/&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Generative art, Clojure, interactive software.&lt;/p&gt;
 &lt;h4 id=&#34;favorite-examples&#34;&gt;Favorite examples:&lt;/h4&gt;
 &lt;!--list-separator--&gt;
 &lt;ul&gt;
@@ -906,15 +907,22 @@ document.body.addEventListener(&#39;click&#39;, (e) =&gt; {
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://jackrusher.com/journal/geometer.html&#34;&gt;http://jackrusher.com/journal/geometer.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;maggie-appleton-https-maggieappleton-dot-com&#34;&gt;Maggie Appleton &lt;a href=&#34;https://maggieappleton.com/&#34;&gt;https://maggieappleton.com/&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Software and UX design, evolution, and fascinating visual essays.&lt;/p&gt;
+&lt;h4 id=&#34;favorite-examples&#34;&gt;Favorite examples:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://maggieappleton.com/programming-portals&#34;&gt;https://maggieappleton.com/programming-portals&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://maggieappleton.com/folk-interfaces&#34;&gt;https://maggieappleton.com/folk-interfaces&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;jezen-thomas-https-jezenthomas-dot-com-posts&#34;&gt;* Jezen Thomas &lt;a href=&#34;https://jezenthomas.com/posts/&#34;&gt;https://jezenthomas.com/posts/&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id=&#34;software-development-haskell-conversational-writing-style-dot&#34;&gt;Software development, Haskell, conversational writing style.&lt;/h4&gt;
+&lt;p&gt;Software development, Haskell, conversational writing style.&lt;/p&gt;
 &lt;h3 id=&#34;dragan-djuric-https-dragan-dot-rocks&#34;&gt;* Dragan Djuric &lt;a href=&#34;https://dragan.rocks/&#34;&gt;https://dragan.rocks/&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id=&#34;clojure-specifically-high-performance-and-gpu-programming-with-clojure-dot&#34;&gt;Clojure, specifically high performance and GPU programming with Clojure.&lt;/h4&gt;
+&lt;p&gt;Clojure, specifically high performance and GPU programming with Clojure.&lt;/p&gt;
 &lt;h3 id=&#34;steven-wittens-http-acko-dot-net&#34;&gt;Steven Wittens &lt;a href=&#34;http://acko.net/&#34;&gt;http://acko.net/&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id=&#34;beatiful-visualizations-interacive-math-and-neat-hacks-dot&#34;&gt;Beatiful visualizations, interacive math, and neat hacks.&lt;/h4&gt;
+&lt;p&gt;Beatiful visualizations, interacive math, and neat hacks.&lt;/p&gt;
 &lt;h3 id=&#34;lambda-walks-http-lambdaway-dot-free-dot-fr-lambdawalks-view-start&#34;&gt;Lambda Walks &lt;a href=&#34;http://lambdaway.free.fr/lambdawalks/?view=start&#34;&gt;http://lambdaway.free.fr/lambdawalks/?view=start&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id=&#34;not-a-blog-per-se-but-an-absolute-adventure-in-the-lambda-calculaus-and-computation-dot&#34;&gt;Not a blog per-se, but an absolute adventure in the lambda calculaus and computation.&lt;/h4&gt;
-&lt;h4 id=&#34;a-particularly-intriguing-post-http-lambdaway-dot-free-dot-fr-lambdawalks-view-meta4&#34;&gt;A particularly intriguing post &lt;a href=&#34;http://lambdaway.free.fr/lambdawalks/?view=meta4&#34;&gt;http://lambdaway.free.fr/lambdawalks/?view=meta4&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Not a blog per-se, but an absolute adventure in the lambda calculaus and computation.&lt;/p&gt;
+&lt;p&gt;A particularly intriguing post &lt;a href=&#34;http://lambdaway.free.fr/lambdawalks/?view=meta4&#34;&gt;http://lambdaway.free.fr/lambdawalks/?view=meta4&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;\* I first found out about this blog via &lt;a href=&#34;https://www.reddit.com/r/hnblogs&#34;&gt;hnblogs on reddit&lt;/a&gt;.&lt;/p&gt;
 </description>
        </item>

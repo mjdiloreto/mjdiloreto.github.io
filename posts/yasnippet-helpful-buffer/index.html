@@ -1,0 +1,297 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>Matthew DiLoreto</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="[Matthew DiLoreto]" /><meta name="generator" content="Hugo 0.104.2" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <script src="https://kit.fontawesome.com/b76b73e8e8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+  <script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"mjdiloreto",utcoffset:"-5"}))};sessionStorage.setItem("_swa","1");</script>
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Matthew DiLoreto</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://www.linkedin.com/in/matthew-diloreto-410510150"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://github.com/mjdiloreto"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+      </ul>
+      
+      <p><em>A place to keep track of some of my things.</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="active" href="/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About Me</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/blogs_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>Blogs I Like</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/books_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>My Reading</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/music_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>What Am I Listening to?</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/what_am_i_working_on/">
+                <i class="fa-li fa  fa-lg"></i><span>What Am Working On?</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Make Yasnippet new-snippet Buffer More Helpful</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2022-11-05T23:47:00-05:00">Nov 5, 2022</time>
+        </li>
+        
+
+        
+
+        <li>7 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    <p>Yasnippets are a powerful text templating system for emacs, with a convenient interface based on <em>snippets</em>.</p>
+<p>The templating language itself is&hellip; fine, but it can be difficult to remember exactly what the syntax is, and yasnippet doesn&rsquo;t help you out that much when you run <code>yas-new-snippet</code>:</p>
+<pre tabindex="0"><code class="language-nil" data-lang="nil">,# -*- mode: snippet -*-
+,# name:
+,# key:
+,# --
+</code></pre><p>That&rsquo;s all you&rsquo;re presented with.
+You have to remember what the difference between name and key is (key is the abbreviation you type before invoking <code>yas-expand</code>, name is just a human-readable description of the snippet), and then you type your snippet below.</p>
+<p>You are seriously expected to remember the <a href="http://joaotavora.github.io/yasnippet/snippet-development.html#org9801aa7">entire templating</a> syntax here?
+I mean, it isn&rsquo;t anything crazy, but there are plenty of idiosyncrasies to make each read-through of the documentation feel like the first time (a bad sign for any kind of syntax you want to be familiar to users).</p>
+<p>So I came up with a simple solution, just have the initial buffer created by <code>yas-new-snippet</code> be more useful:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span># key: what the user types to expand this snippet
+</span></span><span style="display:flex;"><span># name: what the user sees the snippet listed as
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># For more information visit http://joaotavora.github.io/yasnippet/snippet-development.html#org9801aa7
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># * Embed elisp - back quotes:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># #+begin_example
+</span></span><span style="display:flex;"><span># ifndef ${1:_[backquote](upcase (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))[backquote]_H_}
+</span></span><span style="display:flex;"><span># #+end_example
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># NB: DON&#39;T MODIFY THE BUFFER INSIDE BACKQUOTES!
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># * Tab stops - $N
+</span></span><span style="display:flex;"><span># $0 is the last, $1 is the first, $2 is second, etc.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># * Placeholders - ${N:default}
+</span></span><span style="display:flex;"><span># #+begin_example
+</span></span><span style="display:flex;"><span># ${N:default value}
+</span></span><span style="display:flex;"><span># #+end_example
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># * Mirrors - just reuse a tabstop with placeholder
+</span></span><span style="display:flex;"><span># #+begin_example
+</span></span><span style="display:flex;"><span># \begin{${1:enumerate}}
+</span></span><span style="display:flex;"><span>#     $0
+</span></span><span style="display:flex;"><span># \end{$1}
+</span></span><span style="display:flex;"><span># #+end_example
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># * Transforming Mirrors - $(
+</span></span><span style="display:flex;"><span># #+begin_example
+</span></span><span style="display:flex;"><span># ${2:foo}
+</span></span><span style="display:flex;"><span># ${2:$(capitalize yas-text)}
+</span></span><span style="display:flex;"><span>#   #+end_example
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># * Transforming fields - ${N:name:$(elisp)} or ${N:$$(elisp)}
+</span></span><span style="display:flex;"><span># #+begin_example
+</span></span><span style="display:flex;"><span># #define &#34;${1:$$(upcase yas-text)}&#34;
+</span></span><span style="display:flex;"><span># #+end_example
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># * Choose a value from a list of options
+</span></span><span style="display:flex;"><span># #+begin_example
+</span></span><span style="display:flex;"><span># &lt;div align=&#34;${2:$$(yas-choose-value &#39;(&#34;right&#34; &#34;center&#34; &#34;left&#34;))}&#34;&gt;
+</span></span><span style="display:flex;"><span># #+end_example
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># * Bound inside evaluated elisp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># | variable         | description                                             |
+</span></span><span style="display:flex;"><span># |------------------+---------------------------------------------------------|
+</span></span><span style="display:flex;"><span># | yas-text         | the current text of this field                          |
+</span></span><span style="display:flex;"><span># | yas-field-value  | the current text of $1 (or $2, etc.)                    |
+</span></span><span style="display:flex;"><span># | yas-modified-p   | whether the field is modified                           |
+</span></span><span style="display:flex;"><span># | yas-choose-value | user chooses from a list of options                     |
+</span></span><span style="display:flex;"><span># | yas-verify-value | Verify that the current field value is in POSSIBILITIES |
+</span></span><span style="display:flex;"><span># --
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$0
+</span></span><span style="display:flex;"><span>${1:default value}
+</span></span><span style="display:flex;"><span>${1:$(capitalize yas-text)}
+</span></span><span style="display:flex;"><span>${2:$$(yas-choose-value &#39;(&#34;right&#34; &#34;center&#34; &#34;left&#34;))}
+</span></span></code></pre></div><p>I saved this in a file in my emacs directory called <code>yasnippet-prompt.txt</code>.
+This is essentially just a pared-down version of the <a href="http://joaotavora.github.io/yasnippet/snippet-development.html#org9801aa7">official docs</a>, and includes some useful examples to get started with.</p>
+<p>To use this as the <code>yas-new-snippet</code> prompt, I won&rsquo;t bother customizing the yasnippet group or anything like that (I&rsquo;m not sure they even expose the prompt as a customization variable), but this is emacs-lisp!
+I don&rsquo;t need the yasnippet author&rsquo;s permission or cooperation to use their code any way I see fit, and it&rsquo;s trivial to replace the original <code>yas-new-snippet</code> command with a version that does what I want &ldquo;the manual way&rdquo;, the way I would accomplish the goal myself&hellip; manually.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(defvar matt/yas-new-snippet-prompt-file (<span style="color:#a6e22e">concat</span> (doom-path <span style="color:#e6db74">&#34;yasnippet-prompt.txt&#34;</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(defun matt/yas-new-snippet-with-example ()
+</span></span><span style="display:flex;"><span>  (interactive)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">funcall-interactively</span> <span style="color:#e6db74">&#39;yas-new-snippet</span>)
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">erase-buffer</span>)
+</span></span><span style="display:flex;"><span>  (insert-file matt/yas-new-snippet-prompt-file))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(map! :map yas-minor-mode-map [remap yas-new-snippet] <span style="color:#a6e22e">#&#39;</span>matt/yas-new-snippet-with-example)
+</span></span></code></pre></div><p>The steps are:</p>
+<ol>
+<li>call the normal command</li>
+<li>erase the useless buffer</li>
+<li>insert the helpful buffer</li>
+<li>remap the keybinding for <code>yas-new-snippet</code> to always refer to my version instead.</li>
+</ol>
+<p>And that&rsquo;s it!</p>
+<p>It&rsquo;s very cathartic to have the editor do exactly what I want the way I want it to, and emacs is the only software available that even comes close to this level of program-ability.</p>
+<p>I also use the Jetbrains IDEs, which are some of the most widely used editors and arguably the most powerful IDEs for many programming languages, and they have a feature called <a href="https://www.jetbrains.com/help/idea/using-live-templates.html">Live templates</a> which is analogous to yasnippets.</p>
+<p>Live templates use the <a href="https://velocity.apache.org/engine/devel/user-guide.html#velocity-template-language-vtl-an-introduction">Apache Velocity Templating Engine</a> to program and expand templates, and that system is WAY more complex than yasnippet&rsquo;s simple syntax.
+<strong>And</strong> yasnippets are way more powerful than Live Templates, because instead of stupid, STUPID arbitrary limitations on what are &ldquo;valid&rdquo; transformations in templates, yasnippet treats me like an adult and just lets me use <strong>any elisp</strong> inside the snippets.</p>
+<p>Seriously, look at <a href="https://www.jetbrains.com/help/idea/template-variables.html#predefined_functions">this silliness</a> from the Jetbrains documentation:</p>
+<blockquote>
+<p>Functions used in live template variables﻿
+The following functions can be used to define live template variables:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>capitalize(&lt;String&gt;)</td>
+<td>Capitalizes the first letter of a string.</td>
+</tr>
+<tr>
+<td>capitalizeAndUnderscore(&lt;String&gt;)</td>
+<td>Capitalizes all the letters of a string, and inserts an underscore between the parts.</td>
+</tr>
+<tr>
+<td>clipboard()</td>
+<td>Returns the contents of the system clipboard.</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>Granted there is a bunch of stuff there, but seriously, you shouldn&rsquo;t have to (and cannot possibly) enumerate all the possible editing operations I might want to do with my code.</p>
+<p>Whereas with yasnippets your imagination is you only limitation:</p>
+<ul>
+<li>Maybe I want to give snippets choices based on live information, e.g.
+<pre tabindex="0"><code class="language-nil" data-lang="nil">${2:$$(yas-choose-value (get-list-of-live-docker-images))}
+${2:$$(yas-choose-value (browse-url-and-extract-table-info))}
+</code></pre></li>
+<li>Maybe I want to conditionally format a field based on the value of another field.</li>
+<li>Maybe I want to recursively run snippets!</li>
+</ul>
+<p>with Jetbrains you have a couple-dozen choices and <em>that&rsquo;s it, forever, no more extending the system</em>.</p>
+<p>Obviously I understand why the Jetbrains editor necessitates this type of system (they cannot run arbitrary user code mixed in with all these privileged editing functions), and the editor would definitely blow up if they gave you complete freedom, but that&rsquo;s what makes IDEs suck and emacs awesome.
+It&rsquo;s built in a way that the <em>default</em> assumption of every single function is that it can be used by whomever whenever for whatever reason.</p>
+<p>This freedom is the reason for emacs superiority, full stop.</p>
+<p>It&rsquo;s the proper counter to &ldquo;well VS Code has most of the same stuff and it has modern conveniences (and I don&rsquo;t have to learn a whole programming language just to use it)&rdquo;.
+Those people always ask &ldquo;What can you really do with emacs that I can&rsquo;t do with VSCode?&rdquo;, and the true answer is &ldquo;Whatever I want&rdquo;.
+I&rsquo;m not even a RMS fan or super zealous about the FOSS ideology or anything, this is just good software.
+It&rsquo;s certainly the most free software.</p>
+<p>FOSS ideologues don&rsquo;t get that most people don&rsquo;t really want or <em>need</em> that much freedom, and that&rsquo;s fine.
+They wouldn&rsquo;t get much value from using emacs.</p>
+<p>But, what I&rsquo;ve learned this past year is that you won&rsquo;t ever leverage that freedom without writing emacs-lisp.
+I&rsquo;m sorry&hellip; I&rsquo;m convinced there&rsquo;s just no way around it.
+Sure, you can <em>use</em> emacs just fine without writing any code (heck I did for a long time&hellip;), but then you will always be limited to what other people <em>think</em> you want.</p>
+<p>The truth is that editing with emacs and learning emacs-lisp are two distinct processes, very long and arduous, that only together unlock the power of emacs.</p>
+<p>Finally committing to really learning emacs-lisp and the systems that compose emacs leveled-up my editing beyond what the other systems can provide me, but it&rsquo;s been a really intense investment.</p>
+<p>Over the 4 years I&rsquo;ve used emacs it has consumed every text-editing activity I do (blogging, side projects in all sorts of different programming languages, <a href="https://github.com/mjdiloreto/simsched">day-planning</a>, organizing all my various things with org-mode) <em>except</em> professional web development.
+I still use Jetbrain&rsquo;s WebStorm for that, because it has so many features out-of-the-box I use daily that I haven&rsquo;t configured emacs for (yet), but even many parts of that are slowly losing to my ever-growing emacs configuration, such as git interaction, which I now only use emacs&rsquo;s <code>magit</code> for.</p>
+<p>Might seem ironic given all the chest-thumping for emacs, but I don&rsquo;t think it&rsquo;s hypocritical.
+I see emacs as one of the few callous-forming instruments available to programmers, as Rich Hickey would say.
+It <em>hurts</em> to use sometimes, takes ages to learn, and is quirky, but there&rsquo;s no limit to your potential with it, and if you&rsquo;re willing to invest wisely it pays dividends, I&rsquo;m just not <em>quite</em> enough of a virtuoso yet to make it play better than WebStorm.</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://mjdiloreto.github.io/posts/literate-import/"><i class="fa fa-chevron-circle-left"></i> Literate Import</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://mjdiloreto.github.io/index.xml">Subscribe</a></h6>
+
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+</body>
+
+</html>

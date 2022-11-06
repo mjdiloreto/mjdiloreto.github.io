@@ -7,7 +7,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="The HTML5 Herald" />
-  <meta name="author" content="[Matthew DiLoreto]" /><meta name="generator" content="Hugo 0.92.2" />
+  <meta name="author" content="[Matthew DiLoreto]" /><meta name="generator" content="Hugo 0.104.2" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
   <script src="https://kit.fontawesome.com/b76b73e8e8.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
@@ -141,24 +141,24 @@ Most books at least solve this problem by providing code execution tools (a bare
 <h2 id="partial-results">Partial Results</h2>
 <p>One thing I wish more books emphasized is the <em>substitution model</em> of programming.
 That is, the iterative process of substituting subexpressions for their results to make up larger results in a program, e.g;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(+ <span style="color:#ae81ff">1</span> (+ <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>))
-<span style="color:#75715e">; becomes</span>
-(+ <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">5</span>)
-<span style="color:#75715e">; becomes</span>
-<span style="color:#ae81ff">6</span>
-</code></pre></div><p>Technically this model only applies to expressions, so in a language like Python there are exceptions, but the same basic principle carries over at least somewhat in every programming language, and it is not an obvious principle.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(+ <span style="color:#ae81ff">1</span> (+ <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; becomes</span>
+</span></span><span style="display:flex;"><span>(+ <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">; becomes</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span>
+</span></span></code></pre></div><p>Technically this model only applies to expressions, so in a language like Python there are exceptions, but the same basic principle carries over at least somewhat in every programming language, and it is not an obvious principle.</p>
 <p>It&rsquo;s not obvious to a beginner that:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">age_input <span style="color:#f92672">=</span> input()
-age <span style="color:#f92672">=</span> int(age_input)
-</code></pre></div><p>is exactly the same as:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">age <span style="color:#f92672">=</span> int(input())
-</code></pre></div><p>unless she is explicitly told so.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>age_input <span style="color:#f92672">=</span> input()
+</span></span><span style="display:flex;"><span>age <span style="color:#f92672">=</span> int(age_input)
+</span></span></code></pre></div><p>is exactly the same as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>age <span style="color:#f92672">=</span> int(input())
+</span></span></code></pre></div><p>unless she is explicitly told so.
 But the abstract knowledge does not stick immediately, because she will then balk at:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">names <span style="color:#f92672">=</span> input()<span style="color:#f92672">.</span>split()
-</code></pre></div><p>The code editor should show the results of each part of chained method calls, and of each subexpression in an expression.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>names <span style="color:#f92672">=</span> input()<span style="color:#f92672">.</span>split()
+</span></span></code></pre></div><p>The code editor should show the results of each part of chained method calls, and of each subexpression in an expression.</p>
 <p>As a side note, when describing the previous example I was asked, &ldquo;How come it isn&rsquo;t&rdquo;:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">ages <span style="color:#f92672">=</span> split(input())
-</code></pre></div><p>What a good question, and the explanation will be completely incomprehensible to a beginner:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>ages <span style="color:#f92672">=</span> split(input())
+</span></span></code></pre></div><p>What a good question, and the explanation will be completely incomprehensible to a beginner:</p>
 <p>&ldquo;Well in Python everything is an object (except for primitives), and those objects have methods, which are really just functions whose first argument is always the object instance itself. Isn&rsquo;t programming fun?&rdquo;</p>
 <p>This is a huge WTF for beginners, and I remember spending hours googling &ldquo;what is an object in programming&rdquo; when I first started to code.
 It&rsquo;s irrelevant to teach a beginner these things, but languages like Python force this confusion from the start.</p>
@@ -196,12 +196,12 @@ Beginners do not write tests, because they do not yet know the value of doing so
 Books should provide this list of cases and run the tests whenever the code is updated.
 The beginner should know <em>immediately</em> whenever one of her changes influenced the outcome of a test case.</p>
 <p>The book should also provide test cases for the functions relevant to a solution, i.e. I should be able to hover over `pow` in some Python code and see:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pow(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)  <span style="color:#75715e"># -&gt; 4</span>
-pow(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)  <span style="color:#75715e"># -&gt; 8</span>
-pow(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>)  <span style="color:#75715e"># -&gt; 16</span>
-pow(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)  <span style="color:#75715e"># -&gt; 27</span>
-<span style="color:#75715e"># ... etc.</span>
-</code></pre></div><p>So far I have not come across any books which have immediate feedback like this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pow(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)  <span style="color:#75715e"># -&gt; 4</span>
+</span></span><span style="display:flex;"><span>pow(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>)  <span style="color:#75715e"># -&gt; 8</span>
+</span></span><span style="display:flex;"><span>pow(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>)  <span style="color:#75715e"># -&gt; 16</span>
+</span></span><span style="display:flex;"><span>pow(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)  <span style="color:#75715e"># -&gt; 27</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ... etc.</span>
+</span></span></code></pre></div><p>So far I have not come across any books which have immediate feedback like this.</p>
 <h2 id="exploration">Exploration</h2>
 <p>This is by far the most important aspect of programming that books fail at.
 Almost every one of my tutoring texts includes the phrase &ldquo;open up your terminal and type <code>python3</code>&rdquo; (I demonstrated the REPL live a couple times; I&rsquo;m not a sadist).

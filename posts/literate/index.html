@@ -7,7 +7,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="The HTML5 Herald" />
-  <meta name="author" content="[Matt DiLoreto]" /><meta name="generator" content="Hugo 0.92.2" />
+  <meta name="author" content="[Matt DiLoreto]" /><meta name="generator" content="Hugo 0.104.2" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
   <script src="https://kit.fontawesome.com/b76b73e8e8.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
@@ -161,89 +161,89 @@ Because my program would have to consume English text, it needed a way to distin
 </blockquote>
 <p>Phonemes are like the atoms of <em>phonetics</em>, the indivisible <em>sounds</em> a speaker makes to construct and distinguish words.</p>
 <p>For example, even though &ldquo;read&rdquo; and &ldquo;read&rdquo; are spelled the same, the constituent <em>phonemes</em> help listeners discriminate between them:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">read -&gt; rēd
-read -&gt; rĕd
-</code></pre></div><p>The first is the &ldquo;long-e&rdquo; sound, like in the word &ldquo;reed&rdquo;, while the other is the &ldquo;short-e&rdquo; sound, like in the word &ldquo;red&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>read -&gt; rēd
+</span></span><span style="display:flex;"><span>read -&gt; rĕd
+</span></span></code></pre></div><p>The first is the &ldquo;long-e&rdquo; sound, like in the word &ldquo;reed&rdquo;, while the other is the &ldquo;short-e&rdquo; sound, like in the word &ldquo;red&rdquo;.</p>
 <p>For my program, I would also need a way to map a word to the list of phonemes that compose it.
 I searched Google (again) and came across the amazing <strong>Carnegie Melon Phonetic Dictionary</strong>, which is free to use and download <a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict">here</a>.</p>
 <h4 id="the-carnegie-melon-phonetic-dictionary">The Carnegie Melon Phonetic Dictionary</h4>
 <p>The dictionary actually solves both of my data needs! First, it is a dictionary, a function with the signature:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">word -&gt; boolean
-</code></pre></div><p>verifying if a word is valid English, and also a <em>phonetic dictionary</em>, a function with the signature:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">word -&gt; [phoneme]
-</code></pre></div><p>giving the list of phonemes that compose a valid English word.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>word -&gt; boolean
+</span></span></code></pre></div><p>verifying if a word is valid English, and also a <em>phonetic dictionary</em>, a function with the signature:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>word -&gt; [phoneme]
+</span></span></code></pre></div><p>giving the list of phonemes that compose a valid English word.
 Lets explore the dictionary a bit.</p>
 <!--list-separator-->
 <ul>
 <li>
 <p>Phones</p>
 <p>This file (<code>cmudict-0.7b.phones</code>) describes the phonemes in the English language, it isn&rsquo;t very large, which is kind of amazing given the huge diversity of words their composition can produce:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">AA	vowel
-AE	vowel
-AH	vowel
-AO	vowel
-AW	vowel
-AY	vowel
-B	stop
-CH	affricate
-D	stop
-DH	fricative
-EH	vowel
-ER	vowel
-EY	vowel
-F	fricative
-G	stop
-HH	aspirate
-IH	vowel
-IY	vowel
-JH	affricate
-K	stop
-L	liquid
-M	nasal
-N	nasal
-NG	nasal
-OW	vowel
-OY	vowel
-P	stop
-R	liquid
-S	fricative
-SH	fricative
-T	stop
-TH	fricative
-UH	vowel
-UW	vowel
-V	fricative
-W	semivowel
-Y	semivowel
-Z	fricative
-ZH	fricative
-</code></pre></div><p>The first column is the symbol the dictionary uses to represent that phoneme.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>AA	vowel
+</span></span><span style="display:flex;"><span>AE	vowel
+</span></span><span style="display:flex;"><span>AH	vowel
+</span></span><span style="display:flex;"><span>AO	vowel
+</span></span><span style="display:flex;"><span>AW	vowel
+</span></span><span style="display:flex;"><span>AY	vowel
+</span></span><span style="display:flex;"><span>B	stop
+</span></span><span style="display:flex;"><span>CH	affricate
+</span></span><span style="display:flex;"><span>D	stop
+</span></span><span style="display:flex;"><span>DH	fricative
+</span></span><span style="display:flex;"><span>EH	vowel
+</span></span><span style="display:flex;"><span>ER	vowel
+</span></span><span style="display:flex;"><span>EY	vowel
+</span></span><span style="display:flex;"><span>F	fricative
+</span></span><span style="display:flex;"><span>G	stop
+</span></span><span style="display:flex;"><span>HH	aspirate
+</span></span><span style="display:flex;"><span>IH	vowel
+</span></span><span style="display:flex;"><span>IY	vowel
+</span></span><span style="display:flex;"><span>JH	affricate
+</span></span><span style="display:flex;"><span>K	stop
+</span></span><span style="display:flex;"><span>L	liquid
+</span></span><span style="display:flex;"><span>M	nasal
+</span></span><span style="display:flex;"><span>N	nasal
+</span></span><span style="display:flex;"><span>NG	nasal
+</span></span><span style="display:flex;"><span>OW	vowel
+</span></span><span style="display:flex;"><span>OY	vowel
+</span></span><span style="display:flex;"><span>P	stop
+</span></span><span style="display:flex;"><span>R	liquid
+</span></span><span style="display:flex;"><span>S	fricative
+</span></span><span style="display:flex;"><span>SH	fricative
+</span></span><span style="display:flex;"><span>T	stop
+</span></span><span style="display:flex;"><span>TH	fricative
+</span></span><span style="display:flex;"><span>UH	vowel
+</span></span><span style="display:flex;"><span>UW	vowel
+</span></span><span style="display:flex;"><span>V	fricative
+</span></span><span style="display:flex;"><span>W	semivowel
+</span></span><span style="display:flex;"><span>Y	semivowel
+</span></span><span style="display:flex;"><span>Z	fricative
+</span></span><span style="display:flex;"><span>ZH	fricative
+</span></span></code></pre></div><p>The first column is the symbol the dictionary uses to represent that phoneme.
 Using the examples from earlier, we could translate to phonemes like so:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">read -&gt; &#34;R IY D&#34;
-read -&gt; &#34;R EH D&#34;
-</code></pre></div> <!--list-separator-->
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>read -&gt; &#34;R IY D&#34;
+</span></span><span style="display:flex;"><span>read -&gt; &#34;R EH D&#34;
+</span></span></code></pre></div> <!--list-separator-->
 <ul>
 <li>
 <p>Exploring through code</p>
 <p>Let&rsquo;s parse this file to get a list of all the valid phonemes in our repl session.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&#34;AA\tvowel\nAE\tvowel\nAH\tvowel\nAO\tvowel\nAW\tvowel\nAY\tvowel\nB\tstop\nCH\taffricate\nD\tstop\nDH\tfricative\nEH\tvowel\nER\tvowel\nEY\tvowel\nF\tfricative\nG\tstop\nHH\taspirate\nIH\tvowel\nIY\tvowel\nJH\taffricate\nK\tstop\nL\tliquid\nM\tnasal\nN\tnasal\nNG\tnasal\nOW\tvowel\nOY\tvowel\nP\tstop\nR\tliquid\nS\tfricative\nSH\tfricative\nT\tstop\nTH\tfricative\nUH\tvowel\nUW\tvowel\nV\tfricative\nW\tsemivowel\nY\tsemivowel\nZ\tfricative\nZH\tfricative\n&#34;
-</code></pre></div><p>Of course we will want to split the string by newlines:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">clojure.string/split-lines</span> (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[&#34;AA\tvowel&#34; &#34;AE\tvowel&#34; &#34;AH\tvowel&#34; &#34;AO\tvowel&#34; &#34;AW\tvowel&#34; &#34;AY\tvowel&#34; &#34;B\tstop&#34; &#34;CH\taffricate&#34; &#34;D\tstop&#34; &#34;DH\tfricative&#34; &#34;EH\tvowel&#34; &#34;ER\tvowel&#34; &#34;EY\tvowel&#34; &#34;F\tfricative&#34; &#34;G\tstop&#34; &#34;HH\taspirate&#34; &#34;IH\tvowel&#34; &#34;IY\tvowel&#34; &#34;JH\taffricate&#34; &#34;K\tstop&#34; &#34;L\tliquid&#34; &#34;M\tnasal&#34; &#34;N\tnasal&#34; &#34;NG\tnasal&#34; &#34;OW\tvowel&#34; &#34;OY\tvowel&#34; &#34;P\tstop&#34; &#34;R\tliquid&#34; &#34;S\tfricative&#34; &#34;SH\tfricative&#34; &#34;T\tstop&#34; &#34;TH\tfricative&#34; &#34;UH\tvowel&#34; &#34;UW\tvowel&#34; &#34;V\tfricative&#34; &#34;W\tsemivowel&#34; &#34;Y\tsemivowel&#34; &#34;Z\tfricative&#34; &#34;ZH\tfricative&#34;]
-</code></pre></div><p>And we also want to split on tabs (since this is a tab-separated file):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"> (mapcat <span style="color:#f92672">#</span>(<span style="color:#a6e22e">clojure.string/split</span> % <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\t&#34;</span>) (<span style="color:#a6e22e">clojure.string/split-lines</span> (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">(&#34;AA&#34; &#34;vowel&#34; &#34;AE&#34; &#34;vowel&#34; &#34;AH&#34; &#34;vowel&#34; &#34;AO&#34; &#34;vowel&#34; &#34;AW&#34; &#34;vowel&#34; &#34;AY&#34; &#34;vowel&#34; &#34;B&#34; &#34;stop&#34; &#34;CH&#34; &#34;affricate&#34; &#34;D&#34; &#34;stop&#34; &#34;DH&#34; &#34;fricative&#34; &#34;EH&#34; &#34;vowel&#34; &#34;ER&#34; &#34;vowel&#34; &#34;EY&#34; &#34;vowel&#34; &#34;F&#34; &#34;fricative&#34; &#34;G&#34; &#34;stop&#34; &#34;HH&#34; &#34;aspirate&#34; &#34;IH&#34; &#34;vowel&#34; &#34;IY&#34; &#34;vowel&#34; &#34;JH&#34; &#34;affricate&#34; &#34;K&#34; &#34;stop&#34; &#34;L&#34; &#34;liquid&#34; &#34;M&#34; &#34;nasal&#34; &#34;N&#34; &#34;nasal&#34; &#34;NG&#34; &#34;nasal&#34; &#34;OW&#34; &#34;vowel&#34; &#34;OY&#34; &#34;vowel&#34; &#34;P&#34; &#34;stop&#34; &#34;R&#34; &#34;liquid&#34; &#34;S&#34; &#34;fricative&#34; &#34;SH&#34; &#34;fricative&#34; &#34;T&#34; &#34;stop&#34; &#34;TH&#34; &#34;fricative&#34; &#34;UH&#34; &#34;vowel&#34; &#34;UW&#34; &#34;vowel&#34; &#34;V&#34; &#34;fricative&#34; &#34;W&#34; &#34;semivowel&#34; &#34;Y&#34; &#34;semivowel&#34; &#34;Z&#34; &#34;fricative&#34; &#34;ZH&#34; &#34;fricative&#34;)
-</code></pre></div><p>You know what, let&rsquo;s ignore the second column entirely, i.e. every 2nd entry (since we are only after the phonemes themselves):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(take-nth <span style="color:#ae81ff">2</span> (mapcat <span style="color:#f92672">#</span>(<span style="color:#a6e22e">clojure.string/split</span> % <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\t&#34;</span>) (<span style="color:#a6e22e">clojure.string/split-lines</span> (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>))))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">(&#34;AA&#34; &#34;AE&#34; &#34;AH&#34; &#34;AO&#34; &#34;AW&#34; &#34;AY&#34; &#34;B&#34; &#34;CH&#34; &#34;D&#34; &#34;DH&#34; &#34;EH&#34; &#34;ER&#34; &#34;EY&#34; &#34;F&#34; &#34;G&#34; &#34;HH&#34; &#34;IH&#34; &#34;IY&#34; &#34;JH&#34; &#34;K&#34; &#34;L&#34; &#34;M&#34; &#34;N&#34; &#34;NG&#34; &#34;OW&#34; &#34;OY&#34; &#34;P&#34; &#34;R&#34; &#34;S&#34; &#34;SH&#34; &#34;T&#34; &#34;TH&#34; &#34;UH&#34; &#34;UW&#34; &#34;V&#34; &#34;W&#34; &#34;Y&#34; &#34;Z&#34; &#34;ZH&#34;)
-</code></pre></div><p>Finally, I think we will want a Set of phonemes, instead of a list, since there is really no order to these entries.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(set (take-nth <span style="color:#ae81ff">2</span> (mapcat <span style="color:#f92672">#</span>(<span style="color:#a6e22e">clojure.string/split</span> % <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\t&#34;</span>) (<span style="color:#a6e22e">clojure.string/split-lines</span> (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>)))))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#{&#34;T&#34; &#34;CH&#34; &#34;K&#34; &#34;HH&#34; &#34;UH&#34; &#34;AY&#34; &#34;AH&#34; &#34;OW&#34; &#34;L&#34; &#34;JH&#34; &#34;UW&#34; &#34;G&#34; &#34;EH&#34; &#34;M&#34; &#34;OY&#34; &#34;S&#34; &#34;Y&#34; &#34;EY&#34; &#34;Z&#34; &#34;R&#34; &#34;F&#34; &#34;AW&#34; &#34;IY&#34; &#34;B&#34; &#34;SH&#34; &#34;P&#34; &#34;V&#34; &#34;TH&#34; &#34;IH&#34; &#34;AA&#34; &#34;AO&#34; &#34;N&#34; &#34;DH&#34; &#34;W&#34; &#34;ZH&#34; &#34;NG&#34; &#34;D&#34; &#34;ER&#34; &#34;AE&#34;}
-</code></pre></div><p>That looks pretty good, let&rsquo;s save it into a variable:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">def </span>phonemes (set (take-nth <span style="color:#ae81ff">2</span> (mapcat <span style="color:#f92672">#</span>(<span style="color:#a6e22e">clojure.string/split</span> % <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\t&#34;</span>) (<span style="color:#a6e22e">clojure.string/split-lines</span> (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>))))))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/phonemes
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&#34;AA\tvowel\nAE\tvowel\nAH\tvowel\nAO\tvowel\nAW\tvowel\nAY\tvowel\nB\tstop\nCH\taffricate\nD\tstop\nDH\tfricative\nEH\tvowel\nER\tvowel\nEY\tvowel\nF\tfricative\nG\tstop\nHH\taspirate\nIH\tvowel\nIY\tvowel\nJH\taffricate\nK\tstop\nL\tliquid\nM\tnasal\nN\tnasal\nNG\tnasal\nOW\tvowel\nOY\tvowel\nP\tstop\nR\tliquid\nS\tfricative\nSH\tfricative\nT\tstop\nTH\tfricative\nUH\tvowel\nUW\tvowel\nV\tfricative\nW\tsemivowel\nY\tsemivowel\nZ\tfricative\nZH\tfricative\n&#34;
+</span></span></code></pre></div><p>Of course we will want to split the string by newlines:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">clojure.string/split-lines</span> (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[&#34;AA\tvowel&#34; &#34;AE\tvowel&#34; &#34;AH\tvowel&#34; &#34;AO\tvowel&#34; &#34;AW\tvowel&#34; &#34;AY\tvowel&#34; &#34;B\tstop&#34; &#34;CH\taffricate&#34; &#34;D\tstop&#34; &#34;DH\tfricative&#34; &#34;EH\tvowel&#34; &#34;ER\tvowel&#34; &#34;EY\tvowel&#34; &#34;F\tfricative&#34; &#34;G\tstop&#34; &#34;HH\taspirate&#34; &#34;IH\tvowel&#34; &#34;IY\tvowel&#34; &#34;JH\taffricate&#34; &#34;K\tstop&#34; &#34;L\tliquid&#34; &#34;M\tnasal&#34; &#34;N\tnasal&#34; &#34;NG\tnasal&#34; &#34;OW\tvowel&#34; &#34;OY\tvowel&#34; &#34;P\tstop&#34; &#34;R\tliquid&#34; &#34;S\tfricative&#34; &#34;SH\tfricative&#34; &#34;T\tstop&#34; &#34;TH\tfricative&#34; &#34;UH\tvowel&#34; &#34;UW\tvowel&#34; &#34;V\tfricative&#34; &#34;W\tsemivowel&#34; &#34;Y\tsemivowel&#34; &#34;Z\tfricative&#34; &#34;ZH\tfricative&#34;]
+</span></span></code></pre></div><p>And we also want to split on tabs (since this is a tab-separated file):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span> (mapcat <span style="color:#f92672">#</span>(<span style="color:#a6e22e">clojure.string/split</span> % <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\t&#34;</span>) (<span style="color:#a6e22e">clojure.string/split-lines</span> (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>(&#34;AA&#34; &#34;vowel&#34; &#34;AE&#34; &#34;vowel&#34; &#34;AH&#34; &#34;vowel&#34; &#34;AO&#34; &#34;vowel&#34; &#34;AW&#34; &#34;vowel&#34; &#34;AY&#34; &#34;vowel&#34; &#34;B&#34; &#34;stop&#34; &#34;CH&#34; &#34;affricate&#34; &#34;D&#34; &#34;stop&#34; &#34;DH&#34; &#34;fricative&#34; &#34;EH&#34; &#34;vowel&#34; &#34;ER&#34; &#34;vowel&#34; &#34;EY&#34; &#34;vowel&#34; &#34;F&#34; &#34;fricative&#34; &#34;G&#34; &#34;stop&#34; &#34;HH&#34; &#34;aspirate&#34; &#34;IH&#34; &#34;vowel&#34; &#34;IY&#34; &#34;vowel&#34; &#34;JH&#34; &#34;affricate&#34; &#34;K&#34; &#34;stop&#34; &#34;L&#34; &#34;liquid&#34; &#34;M&#34; &#34;nasal&#34; &#34;N&#34; &#34;nasal&#34; &#34;NG&#34; &#34;nasal&#34; &#34;OW&#34; &#34;vowel&#34; &#34;OY&#34; &#34;vowel&#34; &#34;P&#34; &#34;stop&#34; &#34;R&#34; &#34;liquid&#34; &#34;S&#34; &#34;fricative&#34; &#34;SH&#34; &#34;fricative&#34; &#34;T&#34; &#34;stop&#34; &#34;TH&#34; &#34;fricative&#34; &#34;UH&#34; &#34;vowel&#34; &#34;UW&#34; &#34;vowel&#34; &#34;V&#34; &#34;fricative&#34; &#34;W&#34; &#34;semivowel&#34; &#34;Y&#34; &#34;semivowel&#34; &#34;Z&#34; &#34;fricative&#34; &#34;ZH&#34; &#34;fricative&#34;)
+</span></span></code></pre></div><p>You know what, let&rsquo;s ignore the second column entirely, i.e. every 2nd entry (since we are only after the phonemes themselves):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(take-nth <span style="color:#ae81ff">2</span> (mapcat <span style="color:#f92672">#</span>(<span style="color:#a6e22e">clojure.string/split</span> % <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\t&#34;</span>) (<span style="color:#a6e22e">clojure.string/split-lines</span> (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>))))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>(&#34;AA&#34; &#34;AE&#34; &#34;AH&#34; &#34;AO&#34; &#34;AW&#34; &#34;AY&#34; &#34;B&#34; &#34;CH&#34; &#34;D&#34; &#34;DH&#34; &#34;EH&#34; &#34;ER&#34; &#34;EY&#34; &#34;F&#34; &#34;G&#34; &#34;HH&#34; &#34;IH&#34; &#34;IY&#34; &#34;JH&#34; &#34;K&#34; &#34;L&#34; &#34;M&#34; &#34;N&#34; &#34;NG&#34; &#34;OW&#34; &#34;OY&#34; &#34;P&#34; &#34;R&#34; &#34;S&#34; &#34;SH&#34; &#34;T&#34; &#34;TH&#34; &#34;UH&#34; &#34;UW&#34; &#34;V&#34; &#34;W&#34; &#34;Y&#34; &#34;Z&#34; &#34;ZH&#34;)
+</span></span></code></pre></div><p>Finally, I think we will want a Set of phonemes, instead of a list, since there is really no order to these entries.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(set (take-nth <span style="color:#ae81ff">2</span> (mapcat <span style="color:#f92672">#</span>(<span style="color:#a6e22e">clojure.string/split</span> % <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\t&#34;</span>) (<span style="color:#a6e22e">clojure.string/split-lines</span> (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>)))))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#{&#34;T&#34; &#34;CH&#34; &#34;K&#34; &#34;HH&#34; &#34;UH&#34; &#34;AY&#34; &#34;AH&#34; &#34;OW&#34; &#34;L&#34; &#34;JH&#34; &#34;UW&#34; &#34;G&#34; &#34;EH&#34; &#34;M&#34; &#34;OY&#34; &#34;S&#34; &#34;Y&#34; &#34;EY&#34; &#34;Z&#34; &#34;R&#34; &#34;F&#34; &#34;AW&#34; &#34;IY&#34; &#34;B&#34; &#34;SH&#34; &#34;P&#34; &#34;V&#34; &#34;TH&#34; &#34;IH&#34; &#34;AA&#34; &#34;AO&#34; &#34;N&#34; &#34;DH&#34; &#34;W&#34; &#34;ZH&#34; &#34;NG&#34; &#34;D&#34; &#34;ER&#34; &#34;AE&#34;}
+</span></span></code></pre></div><p>That looks pretty good, let&rsquo;s save it into a variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>phonemes (set (take-nth <span style="color:#ae81ff">2</span> (mapcat <span style="color:#f92672">#</span>(<span style="color:#a6e22e">clojure.string/split</span> % <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\t&#34;</span>) (<span style="color:#a6e22e">clojure.string/split-lines</span> (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>))))))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/phonemes
+</span></span></code></pre></div></li>
 </ul>
  <!--list-separator-->
 <ul>
@@ -253,15 +253,15 @@ read -&gt; &#34;R EH D&#34;
 This leads to deeply nested expressions which can be difficult to read.</p>
 <p>Clojure&rsquo;s answer to this problem is called the &ldquo;threading macro&rdquo; <code>-&gt;&gt;</code></p>
 <p>The below expression is equivalent to what we created above:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">def </span>phonemes
-  (<span style="color:#a6e22e">-&gt;&gt;</span>
-   (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>)
-   (<span style="color:#a6e22e">clojure.string/split-lines</span>)
-   (mapcat <span style="color:#f92672">#</span>(<span style="color:#a6e22e">clojure.string/split</span> % <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\t&#34;</span>))
-   (take-nth <span style="color:#ae81ff">2</span>)
-   (<span style="color:#a6e22e">set</span>)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/phonemes
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>phonemes
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">-&gt;&gt;</span>
+</span></span><span style="display:flex;"><span>   (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b.phones&#34;</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#a6e22e">clojure.string/split-lines</span>)
+</span></span><span style="display:flex;"><span>   (mapcat <span style="color:#f92672">#</span>(<span style="color:#a6e22e">clojure.string/split</span> % <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\t&#34;</span>))
+</span></span><span style="display:flex;"><span>   (take-nth <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#a6e22e">set</span>)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/phonemes
+</span></span></code></pre></div></li>
 </ul>
 </li>
 </ul>
@@ -270,81 +270,81 @@ This leads to deeply nested expressions which can be difficult to read.</p>
 <li>
 <p>Dict</p>
 <p>This is the mapping of English words to their phonemes, using the phones described above.</p>
-<p>It begins with a few lines of licensing comments (denoted by &lsquo;;;;').</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">;;; # CMUdict  --  Major Version: 0.07
-;;;
-;;; # $HeadURL: http://svn.code.sf.net/p/cmusphinx/code/trunk/cmudict/cmudict-0.7b $
-;;; # $Date:: 2015-02-18 20:42:08 -0500 (Wed, 18 Feb 2015)      $:
-;;; # $Id:: cmudict-0.7b 12857 2015-02-19 01:42:08Z air         $:
-;;; # $Rev:: 12857                                              $:
-;;; # $Author:: air                                             $:
-;;;
-;;; #
-;;; # ========================================================================
-;;; # Copyright (C) 1993-2015 Carnegie Mellon University. All rights reserved.
-;;; #
-;;; # Redistribution and use in source and binary forms, with or without
-;;; # modification, are permitted provided that the following conditions
-;;; # are met:
-;;; #
-;;; # 1. Redistributions of source code must retain the above copyright
-;;; #    notice, this list of conditions and the following disclaimer.
-;;; #    The contents of this file are deemed to be source code.
-;;; #
-;;; # 2. Redistributions in binary form must reproduce the above copyright
-;;; #    notice, this list of conditions and the following disclaimer in
-;;; #    the documentation and/or other materials provided with the
-;;; #    distribution.
-;;; #
-;;; # This work was supported in part by funding from the Defense Advanced
-;;; # Research Projects Agency, the Office of Naval Research and the National
-;;; # Science Foundation of the United States of America, and by member
-;;; # companies of the Carnegie Mellon Sphinx Speech Consortium. We acknowledge
-;;; # the contributions of many volunteers to the expansion and improvement of
-;;; # this dictionary.
-;;; #
-;;; # THIS SOFTWARE IS PROVIDED BY CARNEGIE MELLON UNIVERSITY ``AS IS&#39;&#39; AND
-;;; # ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
-;;; # THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-;;; # PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL CARNEGIE MELLON UNIVERSITY
-;;; # NOR ITS EMPLOYEES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-;;; # SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-;;; # LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-;;; # DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-;;; # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-;;; # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-;;; # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-;;; #
-;;; # ========================================================================
-;;; #
-;;;
-;;;  NOTES  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;;  [20080401] (air)  New dict file format introduced
-;;;   - comments (like this section) are allowed
-;;;   - file name is major version; vers/rev information is now in the header
-;;;
-;;;
-;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-</code></pre></div><p>And then continues to the dictionary itself, <code>cmudict-0.7b</code>.</p>
+<p>It begins with a few lines of licensing comments (denoted by &lsquo;;;;&rsquo;).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>;;; # CMUdict  --  Major Version: 0.07
+</span></span><span style="display:flex;"><span>;;;
+</span></span><span style="display:flex;"><span>;;; # $HeadURL: http://svn.code.sf.net/p/cmusphinx/code/trunk/cmudict/cmudict-0.7b $
+</span></span><span style="display:flex;"><span>;;; # $Date:: 2015-02-18 20:42:08 -0500 (Wed, 18 Feb 2015)      $:
+</span></span><span style="display:flex;"><span>;;; # $Id:: cmudict-0.7b 12857 2015-02-19 01:42:08Z air         $:
+</span></span><span style="display:flex;"><span>;;; # $Rev:: 12857                                              $:
+</span></span><span style="display:flex;"><span>;;; # $Author:: air                                             $:
+</span></span><span style="display:flex;"><span>;;;
+</span></span><span style="display:flex;"><span>;;; #
+</span></span><span style="display:flex;"><span>;;; # ========================================================================
+</span></span><span style="display:flex;"><span>;;; # Copyright (C) 1993-2015 Carnegie Mellon University. All rights reserved.
+</span></span><span style="display:flex;"><span>;;; #
+</span></span><span style="display:flex;"><span>;;; # Redistribution and use in source and binary forms, with or without
+</span></span><span style="display:flex;"><span>;;; # modification, are permitted provided that the following conditions
+</span></span><span style="display:flex;"><span>;;; # are met:
+</span></span><span style="display:flex;"><span>;;; #
+</span></span><span style="display:flex;"><span>;;; # 1. Redistributions of source code must retain the above copyright
+</span></span><span style="display:flex;"><span>;;; #    notice, this list of conditions and the following disclaimer.
+</span></span><span style="display:flex;"><span>;;; #    The contents of this file are deemed to be source code.
+</span></span><span style="display:flex;"><span>;;; #
+</span></span><span style="display:flex;"><span>;;; # 2. Redistributions in binary form must reproduce the above copyright
+</span></span><span style="display:flex;"><span>;;; #    notice, this list of conditions and the following disclaimer in
+</span></span><span style="display:flex;"><span>;;; #    the documentation and/or other materials provided with the
+</span></span><span style="display:flex;"><span>;;; #    distribution.
+</span></span><span style="display:flex;"><span>;;; #
+</span></span><span style="display:flex;"><span>;;; # This work was supported in part by funding from the Defense Advanced
+</span></span><span style="display:flex;"><span>;;; # Research Projects Agency, the Office of Naval Research and the National
+</span></span><span style="display:flex;"><span>;;; # Science Foundation of the United States of America, and by member
+</span></span><span style="display:flex;"><span>;;; # companies of the Carnegie Mellon Sphinx Speech Consortium. We acknowledge
+</span></span><span style="display:flex;"><span>;;; # the contributions of many volunteers to the expansion and improvement of
+</span></span><span style="display:flex;"><span>;;; # this dictionary.
+</span></span><span style="display:flex;"><span>;;; #
+</span></span><span style="display:flex;"><span>;;; # THIS SOFTWARE IS PROVIDED BY CARNEGIE MELLON UNIVERSITY ``AS IS&#39;&#39; AND
+</span></span><span style="display:flex;"><span>;;; # ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+</span></span><span style="display:flex;"><span>;;; # THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+</span></span><span style="display:flex;"><span>;;; # PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL CARNEGIE MELLON UNIVERSITY
+</span></span><span style="display:flex;"><span>;;; # NOR ITS EMPLOYEES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+</span></span><span style="display:flex;"><span>;;; # SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+</span></span><span style="display:flex;"><span>;;; # LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+</span></span><span style="display:flex;"><span>;;; # DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+</span></span><span style="display:flex;"><span>;;; # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+</span></span><span style="display:flex;"><span>;;; # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+</span></span><span style="display:flex;"><span>;;; # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</span></span><span style="display:flex;"><span>;;; #
+</span></span><span style="display:flex;"><span>;;; # ========================================================================
+</span></span><span style="display:flex;"><span>;;; #
+</span></span><span style="display:flex;"><span>;;;
+</span></span><span style="display:flex;"><span>;;;  NOTES  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+</span></span><span style="display:flex;"><span>;;;
+</span></span><span style="display:flex;"><span>;;;  [20080401] (air)  New dict file format introduced
+</span></span><span style="display:flex;"><span>;;;   - comments (like this section) are allowed
+</span></span><span style="display:flex;"><span>;;;   - file name is major version; vers/rev information is now in the header
+</span></span><span style="display:flex;"><span>;;;
+</span></span><span style="display:flex;"><span>;;;
+</span></span><span style="display:flex;"><span>;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+</span></span><span style="display:flex;"><span>;;;
+</span></span></code></pre></div><p>And then continues to the dictionary itself, <code>cmudict-0.7b</code>.</p>
 <p>The first few-dozen lines are actually the phonetic pronunciations of symbols like &ldquo;!&rdquo;, &ldquo;#&rdquo;, etc. so they are a bit strange, but we can still see the structure the dictionary:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">!EXCLAMATION-POINT  EH2 K S K L AH0 M EY1 SH AH0 N P OY2 N T
-&#34;CLOSE-QUOTE  K L OW1 Z K W OW1 T
-&#34;DOUBLE-QUOTE  D AH1 B AH0 L K W OW1 T
-&#34;END-OF-QUOTE  EH1 N D AH0 V K W OW1 T
-&#34;END-QUOTE  EH1 N D K W OW1 T
-</code></pre></div><p>You might be asking &ldquo;Why do some of the phonemes have numbers?&rdquo;,
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>!EXCLAMATION-POINT  EH2 K S K L AH0 M EY1 SH AH0 N P OY2 N T
+</span></span><span style="display:flex;"><span>&#34;CLOSE-QUOTE  K L OW1 Z K W OW1 T
+</span></span><span style="display:flex;"><span>&#34;DOUBLE-QUOTE  D AH1 B AH0 L K W OW1 T
+</span></span><span style="display:flex;"><span>&#34;END-OF-QUOTE  EH1 N D AH0 V K W OW1 T
+</span></span><span style="display:flex;"><span>&#34;END-QUOTE  EH1 N D K W OW1 T
+</span></span></code></pre></div><p>You might be asking &ldquo;Why do some of the phonemes have numbers?&rdquo;,
 this is meant to indicate which phonemes are stressed, something I want to completely disregard (the whole point of a mondegreen is to stress different phonemes from the statement being deciphered).</p>
 <p>So, when we parse the dictionary, let&rsquo;s make sure not to include those characters:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">def </span>dictionary-chars <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;^[A-Z&#39;\-\.\_]+&#34;</span>)
-
-(<span style="color:#66d9ef">defn </span>normalize-string
-  <span style="color:#e6db74">&#34;Converts a symbol found in the dictionary to just it&#39;s phonetic part
-</span><span style="color:#e6db74">  (i.e. no stress)&#34;</span>
-  [sym]
-  (re-find dictionary-chars sym))
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>dictionary-chars <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;^[A-Z&#39;\-\.\_]+&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>normalize-string
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Converts a symbol found in the dictionary to just it&#39;s phonetic part
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  (i.e. no stress)&#34;</span>
+</span></span><span style="display:flex;"><span>  [sym]
+</span></span><span style="display:flex;"><span>  (re-find dictionary-chars sym))
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>#&lsquo;user/dictionary-chars</th>
@@ -356,42 +356,42 @@ this is meant to indicate which phonemes are stressed, something I want to compl
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">normalize-string</span> <span style="color:#e6db74">&#34;AH0&#34;</span>)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&#34;AH&#34;
-</code></pre></div><p>Let&rsquo;s test some examples in the repl to make sure the substitutions produce valid phonemes.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">normalize-string</span> <span style="color:#e6db74">&#34;AH0&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&#34;AH&#34;
+</span></span></code></pre></div><p>Let&rsquo;s test some examples in the repl to make sure the substitutions produce valid phonemes.
 First, we need to get a list of all the lines in the dictionary:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">def </span>dictionary-lines
-  (<span style="color:#a6e22e">-&gt;&gt;</span>
-  (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b&#34;</span>)
-   (<span style="color:#a6e22e">clojure.string/split-lines</span>)
-   (filter (complement <span style="color:#f92672">#</span>(<span style="color:#a6e22e">.startsWith</span> % <span style="color:#e6db74">&#34;;&#34;</span>)))))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/dictionary-lines
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(take <span style="color:#ae81ff">10</span> dictionary-lines)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">(&#34;!EXCLAMATION-POINT  EH2 K S K L AH0 M EY1 SH AH0 N P OY2 N T&#34; &#34;\&#34;CLOSE-QUOTE  K L OW1 Z K W OW1 T&#34; &#34;\&#34;DOUBLE-QUOTE  D AH1 B AH0 L K W OW1 T&#34; &#34;\&#34;END-OF-QUOTE  EH1 N D AH0 V K W OW1 T&#34; &#34;\&#34;END-QUOTE  EH1 N D K W OW1 T&#34; &#34;\&#34;IN-QUOTES  IH1 N K W OW1 T S&#34; &#34;\&#34;QUOTE  K W OW1 T&#34; &#34;\&#34;UNQUOTE  AH1 N K W OW1 T&#34; &#34;#HASH-MARK  HH AE1 M AA2 R K&#34; &#34;#POUND-SIGN  P AW1 N D S AY2 N&#34;)
-</code></pre></div><p>Now, what happens when a word has multiple possible pronunciations?
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>dictionary-lines
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">-&gt;&gt;</span>
+</span></span><span style="display:flex;"><span>  (slurp <span style="color:#e6db74">&#34;resources/cmudict-0.7b&#34;</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#a6e22e">clojure.string/split-lines</span>)
+</span></span><span style="display:flex;"><span>   (filter (complement <span style="color:#f92672">#</span>(<span style="color:#a6e22e">.startsWith</span> % <span style="color:#e6db74">&#34;;&#34;</span>)))))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/dictionary-lines
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(take <span style="color:#ae81ff">10</span> dictionary-lines)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>(&#34;!EXCLAMATION-POINT  EH2 K S K L AH0 M EY1 SH AH0 N P OY2 N T&#34; &#34;\&#34;CLOSE-QUOTE  K L OW1 Z K W OW1 T&#34; &#34;\&#34;DOUBLE-QUOTE  D AH1 B AH0 L K W OW1 T&#34; &#34;\&#34;END-OF-QUOTE  EH1 N D AH0 V K W OW1 T&#34; &#34;\&#34;END-QUOTE  EH1 N D K W OW1 T&#34; &#34;\&#34;IN-QUOTES  IH1 N K W OW1 T S&#34; &#34;\&#34;QUOTE  K W OW1 T&#34; &#34;\&#34;UNQUOTE  AH1 N K W OW1 T&#34; &#34;#HASH-MARK  HH AE1 M AA2 R K&#34; &#34;#POUND-SIGN  P AW1 N D S AY2 N&#34;)
+</span></span></code></pre></div><p>Now, what happens when a word has multiple possible pronunciations?
 Let&rsquo;s look at the entry for &ldquo;THE&rdquo;:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">THE  DH AH0
-THE(1)  DH AH1
-THE(2)  DH IY0
-</code></pre></div><p>We need to remove the <code>(1)</code> and <code>(2)</code> so that these spellings will be the same.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>THE  DH AH0
+</span></span><span style="display:flex;"><span>THE(1)  DH AH1
+</span></span><span style="display:flex;"><span>THE(2)  DH IY0
+</span></span></code></pre></div><p>We need to remove the <code>(1)</code> and <code>(2)</code> so that these spellings will be the same.
 Luckily, we can normalize the spellings in the same way we normalized the phonemes, by disallowing numerics and parentheses.</p>
 <p>Then, we ought to split the dictionary lines into <code>(spelling phonemes)</code> pairs, being sure to transform the spellings and phonemes into the normalized form we want (no numbered spellings, and no stress indicators on phonemes):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">def </span>spellings+phonemes
-  (map (<span style="color:#66d9ef">fn </span>[line]
-         (<span style="color:#a6e22e">-&gt;&gt;</span>
-          (<span style="color:#a6e22e">clojure.string/split</span> line <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\s&#34;</span>) <span style="color:#75715e">; split lines by space</span>
-          (filter <span style="color:#f92672">#</span>(<span style="color:#a6e22e">not-empty</span> %))           <span style="color:#75715e">; remove empty strings (from whitespace separation)</span>
-          (map normalize-string)            <span style="color:#75715e">; normalize</span>
-          (split-at <span style="color:#ae81ff">1</span>)                      <span style="color:#75715e">; split into spelling + phonemes</span>
-          ((<span style="color:#66d9ef">fn </span>[[[spelling] phonemes]] [spelling phonemes])))) <span style="color:#75715e">; destructure the spelling list</span>
-       dictionary-lines))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/spellings+phonemes
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">rand-nth</span> spellings+phonemes)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[&#34;SOUTHERN&#39;S&#34; (&#34;S&#34; &#34;AH&#34; &#34;DH&#34; &#34;ER&#34; &#34;N&#34; &#34;Z&#34;)]
-</code></pre></div><p>Much better.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>spellings+phonemes
+</span></span><span style="display:flex;"><span>  (map (<span style="color:#66d9ef">fn </span>[line]
+</span></span><span style="display:flex;"><span>         (<span style="color:#a6e22e">-&gt;&gt;</span>
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">clojure.string/split</span> line <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\s&#34;</span>) <span style="color:#75715e">; split lines by space</span>
+</span></span><span style="display:flex;"><span>          (filter <span style="color:#f92672">#</span>(<span style="color:#a6e22e">not-empty</span> %))           <span style="color:#75715e">; remove empty strings (from whitespace separation)</span>
+</span></span><span style="display:flex;"><span>          (map normalize-string)            <span style="color:#75715e">; normalize</span>
+</span></span><span style="display:flex;"><span>          (split-at <span style="color:#ae81ff">1</span>)                      <span style="color:#75715e">; split into spelling + phonemes</span>
+</span></span><span style="display:flex;"><span>          ((<span style="color:#66d9ef">fn </span>[[[spelling] phonemes]] [spelling phonemes])))) <span style="color:#75715e">; destructure the spelling list</span>
+</span></span><span style="display:flex;"><span>       dictionary-lines))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/spellings+phonemes
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">rand-nth</span> spellings+phonemes)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[&#34;SOUTHERN&#39;S&#34; (&#34;S&#34; &#34;AH&#34; &#34;DH&#34; &#34;ER&#34; &#34;N&#34; &#34;Z&#34;)]
+</span></span></code></pre></div><p>Much better.
 I should check that all the &ldquo;spellings&rdquo; and &ldquo;phonemes&rdquo; are each non-empty, in case there were some other data anomalies I didn&rsquo;t find at the beginning of the file.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(filter (<span style="color:#66d9ef">fn </span>[[spelling phonemes]] (or (<span style="color:#a6e22e">empty?</span> spelling) (<span style="color:#a6e22e">empty?</span> phonemes))) spellings+phonemes)
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(filter (<span style="color:#66d9ef">fn </span>[[spelling phonemes]] (or (<span style="color:#a6e22e">empty?</span> spelling) (<span style="color:#a6e22e">empty?</span> phonemes))) spellings+phonemes)
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>(EH K S K L AH M EY SH AH N P OY N T)</th>
@@ -524,19 +524,19 @@ I should check that all the &ldquo;spellings&rdquo; and &ldquo;phonemes&rdquo; a
 </tbody>
 </table>
 <p>Ah, because those first bunch of entries in the dictionary contain special characters, their spelling maps to <code>nil</code>. That&rsquo;s fine, we can adjust our definition to simply omit the pairs starting with <code>nil</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">def </span>spellings+phonemes
-  (<span style="color:#a6e22e">-&gt;&gt;</span>
-   dictionary-lines
-   (map (<span style="color:#66d9ef">fn </span>[line]
-          (<span style="color:#a6e22e">-&gt;&gt;</span>
-           (<span style="color:#a6e22e">clojure.string/split</span> line <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\s&#34;</span>) <span style="color:#75715e">; split lines by space</span>
-           (filter <span style="color:#f92672">#</span>(<span style="color:#a6e22e">not-empty</span> %))           <span style="color:#75715e">; remove empty strings (from whitespace separation)</span>
-           (map normalize-string)            <span style="color:#75715e">; normalize</span>
-           (split-at <span style="color:#ae81ff">1</span>)                      <span style="color:#75715e">; split into spelling + phonemes</span>
-           ((<span style="color:#66d9ef">fn </span>[[[spelling] phonemes]] [spelling phonemes]))))) <span style="color:#75715e">; destructure the spelling list</span>
-   (filter <span style="color:#f92672">#</span>((complement nil?) (first %)))))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/spellings+phonemes
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>spellings+phonemes
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">-&gt;&gt;</span>
+</span></span><span style="display:flex;"><span>   dictionary-lines
+</span></span><span style="display:flex;"><span>   (map (<span style="color:#66d9ef">fn </span>[line]
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">-&gt;&gt;</span>
+</span></span><span style="display:flex;"><span>           (<span style="color:#a6e22e">clojure.string/split</span> line <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\s&#34;</span>) <span style="color:#75715e">; split lines by space</span>
+</span></span><span style="display:flex;"><span>           (filter <span style="color:#f92672">#</span>(<span style="color:#a6e22e">not-empty</span> %))           <span style="color:#75715e">; remove empty strings (from whitespace separation)</span>
+</span></span><span style="display:flex;"><span>           (map normalize-string)            <span style="color:#75715e">; normalize</span>
+</span></span><span style="display:flex;"><span>           (split-at <span style="color:#ae81ff">1</span>)                      <span style="color:#75715e">; split into spelling + phonemes</span>
+</span></span><span style="display:flex;"><span>           ((<span style="color:#66d9ef">fn </span>[[[spelling] phonemes]] [spelling phonemes]))))) <span style="color:#75715e">; destructure the spelling list</span>
+</span></span><span style="display:flex;"><span>   (filter <span style="color:#f92672">#</span>((complement nil?) (first %)))))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/spellings+phonemes
+</span></span></code></pre></div></li>
 </ul>
 <h2 id="homo-phone-graph-s">Homo[phone|graph]s</h2>
 <p>Something we haven&rsquo;t contended with yet are <em>homophones</em>, that is, words which have the same pronunciation, but distinct spellings (e.g. red and read).</p>
@@ -563,20 +563,20 @@ the result by calling (f val-in-result val-in-latter).</p>
 </blockquote>
 <p>Ok, so how am I going to use this function to solve my problem?
 I am going to convert each <code>[spelling phonemes]</code> pair (which at this point more accurately represents a <code>[spelling pronunciation]</code> pair) into a map of <code>{spelling [pronunciation]}</code>, and then merge <em>all of those maps</em> using the <code>into</code> function to conjoin all the <code>[pronunciations]</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(into [<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>] [<span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>])
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[1 2 3 4 5 6]
-</code></pre></div><p>Let&rsquo;s try it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">rand-nth</span> (map (<span style="color:#66d9ef">fn </span> [[spelling pronunciation]] {spelling [pronunciation]}) spellings+phonemes))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">{&#34;HUGGED&#34; [(&#34;HH&#34; &#34;AH&#34; &#34;G&#34; &#34;D&#34;)]}
-</code></pre></div><p>Cool, so now we have a list of maps with 1 key-value pair each, we have to <code>reduce</code> that to a single map with <code>merge-with</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">def </span>word-&gt;pronunciations
-  (<span style="color:#a6e22e">reduce</span>
-   (partial merge-with into)
-   (map (<span style="color:#66d9ef">fn </span> [[spelling pronunciation]] {spelling [pronunciation]}) spellings+phonemes)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/word-&gt;pronunciations
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">.get</span> word-&gt;pronunciations <span style="color:#e6db74">&#34;ICE&#34;</span>)
-(<span style="color:#a6e22e">.get</span> word-&gt;pronunciations <span style="color:#e6db74">&#34;CREAM&#34;</span>)
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(into [<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>] [<span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>])
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[1 2 3 4 5 6]
+</span></span></code></pre></div><p>Let&rsquo;s try it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">rand-nth</span> (map (<span style="color:#66d9ef">fn </span> [[spelling pronunciation]] {spelling [pronunciation]}) spellings+phonemes))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>{&#34;HUGGED&#34; [(&#34;HH&#34; &#34;AH&#34; &#34;G&#34; &#34;D&#34;)]}
+</span></span></code></pre></div><p>Cool, so now we have a list of maps with 1 key-value pair each, we have to <code>reduce</code> that to a single map with <code>merge-with</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>word-&gt;pronunciations
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">reduce</span>
+</span></span><span style="display:flex;"><span>   (partial merge-with into)
+</span></span><span style="display:flex;"><span>   (map (<span style="color:#66d9ef">fn </span> [[spelling pronunciation]] {spelling [pronunciation]}) spellings+phonemes)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/word-&gt;pronunciations
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">.get</span> word-&gt;pronunciations <span style="color:#e6db74">&#34;ICE&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">.get</span> word-&gt;pronunciations <span style="color:#e6db74">&#34;CREAM&#34;</span>)
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>[(&ldquo;AY&rdquo; &ldquo;S&rdquo;)]</th>
@@ -591,41 +591,41 @@ I am going to convert each <code>[spelling phonemes]</code> pair (which at this 
 <p>Hooray! We can now find the pronunciation for any English word.</p>
 <h4 id="exploring-the-pronunciations">Exploring the pronunciations</h4>
 <p>Let&rsquo;s see if we can get a word with multiple pronunciations:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">rand-nth</span> (filter (<span style="color:#66d9ef">fn </span>[[k v]] (&gt; (<span style="color:#a6e22e">.length</span> v) <span style="color:#ae81ff">1</span>)) word-&gt;pronunciations))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[&#34;AYDAR&#34; [(&#34;AY&#34; &#34;D&#34; &#34;AA&#34; &#34;R&#34;) (&#34;EY&#34; &#34;D&#34; &#34;AA&#34; &#34;R&#34;)]]
-</code></pre></div><p>Hmm, I&rsquo;m curious which word has the most pronunciations?</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">let </span>[maxlen (apply max (map (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.length</span> v)) word-&gt;pronunciations))]
-  (filter (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.equals</span> (<span style="color:#a6e22e">.length</span> v) maxlen)) word-&gt;pronunciations))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">([&#34;M&#34; [(&#34;EH&#34; &#34;M&#34;) (&#34;EH&#34; &#34;M&#34; &#34;W&#34; &#34;AH&#34; &#34;N&#34;) (&#34;EH&#34; &#34;M&#34; &#34;T&#34; &#34;UW&#34;) (&#34;EH&#34; &#34;M&#34; &#34;TH&#34; &#34;R&#34; &#34;IY&#34;) (&#34;EH&#34; &#34;M&#34; &#34;F&#34; &#34;AO&#34; &#34;R&#34;) (&#34;EH&#34; &#34;M&#34; &#34;F&#34; &#34;AY&#34; &#34;V&#34;)]] [&#34;C&#34; [(&#34;S&#34; &#34;IY&#34;) (&#34;S&#34; &#34;IY&#34; &#34;W&#34; &#34;AH&#34; &#34;N&#34;) (&#34;S&#34; &#34;IY&#34; &#34;T&#34; &#34;UW&#34;) (&#34;S&#34; &#34;IY&#34; &#34;TH&#34; &#34;R&#34; &#34;IY&#34;) (&#34;S&#34; &#34;IY&#34; &#34;F&#34; &#34;AO&#34; &#34;R&#34;) (&#34;S&#34; &#34;IY&#34; &#34;F&#34; &#34;AY&#34; &#34;V&#34;)]])
-</code></pre></div><p>Oh, I guess &ldquo;M1&rdquo;, &ldquo;M2&rdquo;, &ldquo;M3&rdquo;&hellip; and &ldquo;C1&rdquo;, &ldquo;C2&rdquo;, &ldquo;C3&rdquo; &hellip; are all valid words in the dictionary and I broke them by removing the numbers. Whatever.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">rand-nth</span> (filter (<span style="color:#66d9ef">fn </span>[[k v]] (&gt; (<span style="color:#a6e22e">.length</span> v) <span style="color:#ae81ff">1</span>)) word-&gt;pronunciations))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[&#34;AYDAR&#34; [(&#34;AY&#34; &#34;D&#34; &#34;AA&#34; &#34;R&#34;) (&#34;EY&#34; &#34;D&#34; &#34;AA&#34; &#34;R&#34;)]]
+</span></span></code></pre></div><p>Hmm, I&rsquo;m curious which word has the most pronunciations?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>[maxlen (apply max (map (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.length</span> v)) word-&gt;pronunciations))]
+</span></span><span style="display:flex;"><span>  (filter (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.equals</span> (<span style="color:#a6e22e">.length</span> v) maxlen)) word-&gt;pronunciations))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>([&#34;M&#34; [(&#34;EH&#34; &#34;M&#34;) (&#34;EH&#34; &#34;M&#34; &#34;W&#34; &#34;AH&#34; &#34;N&#34;) (&#34;EH&#34; &#34;M&#34; &#34;T&#34; &#34;UW&#34;) (&#34;EH&#34; &#34;M&#34; &#34;TH&#34; &#34;R&#34; &#34;IY&#34;) (&#34;EH&#34; &#34;M&#34; &#34;F&#34; &#34;AO&#34; &#34;R&#34;) (&#34;EH&#34; &#34;M&#34; &#34;F&#34; &#34;AY&#34; &#34;V&#34;)]] [&#34;C&#34; [(&#34;S&#34; &#34;IY&#34;) (&#34;S&#34; &#34;IY&#34; &#34;W&#34; &#34;AH&#34; &#34;N&#34;) (&#34;S&#34; &#34;IY&#34; &#34;T&#34; &#34;UW&#34;) (&#34;S&#34; &#34;IY&#34; &#34;TH&#34; &#34;R&#34; &#34;IY&#34;) (&#34;S&#34; &#34;IY&#34; &#34;F&#34; &#34;AO&#34; &#34;R&#34;) (&#34;S&#34; &#34;IY&#34; &#34;F&#34; &#34;AY&#34; &#34;V&#34;)]])
+</span></span></code></pre></div><p>Oh, I guess &ldquo;M1&rdquo;, &ldquo;M2&rdquo;, &ldquo;M3&rdquo;&hellip; and &ldquo;C1&rdquo;, &ldquo;C2&rdquo;, &ldquo;C3&rdquo; &hellip; are all valid words in the dictionary and I broke them by removing the numbers. Whatever.</p>
 <p>How about the next-most pronunciations?</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">let </span>[maxlen (apply max (map (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.length</span> v)) word-&gt;pronunciations))]
-  (filter (<span style="color:#66d9ef">fn </span>[[k v]] (= (<span style="color:#a6e22e">.length</span> v) (- maxlen <span style="color:#ae81ff">1</span>))) word-&gt;pronunciations))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">([&#34;CAT-&#34; [(&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;W&#34; &#34;AO&#34; &#34;N&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;T&#34; &#34;UW&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;TH&#34; &#34;R&#34; &#34;IY&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;F&#34; &#34;AO&#34; &#34;R&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;S&#34; &#34;IH&#34; &#34;K&#34; &#34;S&#34;)]])
-</code></pre></div><p>Hurricanes, cool. Again, I removed the numeric value from the word itself, but that shouldn&rsquo;t really matter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>[maxlen (apply max (map (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.length</span> v)) word-&gt;pronunciations))]
+</span></span><span style="display:flex;"><span>  (filter (<span style="color:#66d9ef">fn </span>[[k v]] (= (<span style="color:#a6e22e">.length</span> v) (- maxlen <span style="color:#ae81ff">1</span>))) word-&gt;pronunciations))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>([&#34;CAT-&#34; [(&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;W&#34; &#34;AO&#34; &#34;N&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;T&#34; &#34;UW&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;TH&#34; &#34;R&#34; &#34;IY&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;F&#34; &#34;AO&#34; &#34;R&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;S&#34; &#34;IH&#34; &#34;K&#34; &#34;S&#34;)]])
+</span></span></code></pre></div><p>Hurricanes, cool. Again, I removed the numeric value from the word itself, but that shouldn&rsquo;t really matter.</p>
 <p>I want to find the first real word though&hellip;</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">let </span>[maxlen (apply max (map (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.length</span> v)) word-&gt;pronunciations))]
-  (take <span style="color:#ae81ff">1</span> (filter (<span style="color:#66d9ef">fn </span>[[k v]] (= (<span style="color:#a6e22e">.length</span> v) (- maxlen <span style="color:#ae81ff">2</span>))) word-&gt;pronunciations)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">([&#34;GRANTED&#34; [(&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;T&#34; &#34;AH&#34; &#34;D&#34;) (&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;T&#34; &#34;IH&#34; &#34;D&#34;) (&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;AH&#34; &#34;D&#34;) (&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;IH&#34; &#34;D&#34;)]])
-</code></pre></div><p>This is pretty interesting! The last two pronunciations completely omit the &ldquo;T&rdquo; sound from &ldquo;GRANTED&rdquo;, which is known linguistically as <em><a href="https://en.wikipedia.org/wiki/Elision">elision</a></em>.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>[maxlen (apply max (map (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.length</span> v)) word-&gt;pronunciations))]
+</span></span><span style="display:flex;"><span>  (take <span style="color:#ae81ff">1</span> (filter (<span style="color:#66d9ef">fn </span>[[k v]] (= (<span style="color:#a6e22e">.length</span> v) (- maxlen <span style="color:#ae81ff">2</span>))) word-&gt;pronunciations)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>([&#34;GRANTED&#34; [(&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;T&#34; &#34;AH&#34; &#34;D&#34;) (&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;T&#34; &#34;IH&#34; &#34;D&#34;) (&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;AH&#34; &#34;D&#34;) (&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;IH&#34; &#34;D&#34;)]])
+</span></span></code></pre></div><p>This is pretty interesting! The last two pronunciations completely omit the &ldquo;T&rdquo; sound from &ldquo;GRANTED&rdquo;, which is known linguistically as <em><a href="https://en.wikipedia.org/wiki/Elision">elision</a></em>.
 We say that the &ldquo;T&rdquo; was <em>elided</em> from the pronunciation of &ldquo;GRANTED&rdquo;.</p>
 <h4 id="what-makes-a-map">What makes a Map?</h4>
 <p>Why did I name our data structure <code>word-&gt;pronunciations</code>?
 The <code>A-&gt;B</code> naming convention is common in Lisp-like languages to describe functions which map one data type to another, but what we&rsquo;ve created is supposed to be a map, not a function, right?
 Well, Clojure doesn&rsquo;t make the distinction so severe, since the map data structure is basically a function that converts from the <code>key</code> type to the <code>value</code> type.</p>
 <p>In most languages, (like JavaScript), if you want to get a value out of a map (object in JavaScript), you have to write code that looks like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">my_map</span>[<span style="color:#a6e22e">key</span>]
-</code></pre></div><p>and to call a function you have to write code that looks like this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">my_function</span>(<span style="color:#a6e22e">key</span>)
-</code></pre></div><p>but in Clojure, if you have a map, you can call it like you would a function (since it <em>is</em> a function):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">({<span style="color:#e6db74">:a</span> <span style="color:#ae81ff">1</span>} <span style="color:#e6db74">:a</span>)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">1
-</code></pre></div><p>We are using this fact to our advantage in our definition of <code>word-&gt;pronunciations</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#75715e">;; A map is a data structure (object)...</span>
-(<span style="color:#a6e22e">.get</span> word-&gt;pronunciations <span style="color:#e6db74">&#34;ICE&#34;</span>)
-<span style="color:#75715e">;; ...but also a function!</span>
-(<span style="color:#a6e22e">word-&gt;pronunciations</span> <span style="color:#e6db74">&#34;ICE&#34;</span>)
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">my_map</span>[<span style="color:#a6e22e">key</span>]
+</span></span></code></pre></div><p>and to call a function you have to write code that looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">my_function</span>(<span style="color:#a6e22e">key</span>)
+</span></span></code></pre></div><p>but in Clojure, if you have a map, you can call it like you would a function (since it <em>is</em> a function):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>({<span style="color:#e6db74">:a</span> <span style="color:#ae81ff">1</span>} <span style="color:#e6db74">:a</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>1
+</span></span></code></pre></div><p>We are using this fact to our advantage in our definition of <code>word-&gt;pronunciations</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span><span style="color:#75715e">;; A map is a data structure (object)...</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">.get</span> word-&gt;pronunciations <span style="color:#e6db74">&#34;ICE&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">;; ...but also a function!</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">word-&gt;pronunciations</span> <span style="color:#e6db74">&#34;ICE&#34;</span>)
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>[(&ldquo;AY&rdquo; &ldquo;S&rdquo;)]</th>
@@ -640,52 +640,52 @@ Well, Clojure doesn&rsquo;t make the distinction so severe, since the map data s
 <h3 id="homographs">Homographs</h3>
 <p>Now, homographs are a very similar problem, except in reverse. This time, we want words which have the same pronunciation to be associated.</p>
 <p>Lucky for us, Clojure&rsquo;s maps and lists are fantastic data structures, and compose beautifully.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(= <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;AY&#34;</span> <span style="color:#e6db74">&#34;S&#34;</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;AY&#34;</span> <span style="color:#e6db74">&#34;S&#34;</span>))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">true
-</code></pre></div><p>This is awesome. If two lists contain the same strings, then they&rsquo;re treated as equivalent!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(= <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;AY&#34;</span> <span style="color:#e6db74">&#34;S&#34;</span>) <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;AY&#34;</span> <span style="color:#e6db74">&#34;S&#34;</span>))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>true
+</span></span></code></pre></div><p>This is awesome. If two lists contain the same strings, then they&rsquo;re treated as equivalent!</p>
 <p>JavaScript (arrays, since there are no &ldquo;lists&rdquo;) is not so friendly:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>([<span style="color:#e6db74">&#34;AY&#34;</span>,<span style="color:#e6db74">&#34;S&#34;</span>] <span style="color:#f92672">===</span> [<span style="color:#e6db74">&#34;AY&#34;</span>,<span style="color:#e6db74">&#34;S&#34;</span>]);
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>([<span style="color:#e6db74">&#34;AY&#34;</span>,<span style="color:#e6db74">&#34;S&#34;</span>] <span style="color:#f92672">==</span> [<span style="color:#e6db74">&#34;AY&#34;</span>,<span style="color:#e6db74">&#34;S&#34;</span>]);
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">false
-false
-undefined
-</code></pre></div><p>The implication here is that our lists <strong>will collide in our map</strong>, meaning to get a function mapping <code>pronunciation-&gt;words</code>, all we need to do is reverse the keys and values:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">def </span>pronunciation-&gt;words
-  (<span style="color:#a6e22e">reduce</span>
-   (partial merge-with into)
-   (map (<span style="color:#66d9ef">fn </span> [[spelling pronunciation]] {pronunciation [spelling]}) spellings+phonemes)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/pronunciation-&gt;words
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">pronunciation-&gt;words</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;AY&#34;</span> <span style="color:#e6db74">&#34;S&#34;</span>))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[&#34;ICE&#34;]
-</code></pre></div><h2 id="sentence-pronunciations"><code>sentence-&gt;pronunciations</code></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>([<span style="color:#e6db74">&#34;AY&#34;</span>,<span style="color:#e6db74">&#34;S&#34;</span>] <span style="color:#f92672">===</span> [<span style="color:#e6db74">&#34;AY&#34;</span>,<span style="color:#e6db74">&#34;S&#34;</span>]);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>([<span style="color:#e6db74">&#34;AY&#34;</span>,<span style="color:#e6db74">&#34;S&#34;</span>] <span style="color:#f92672">==</span> [<span style="color:#e6db74">&#34;AY&#34;</span>,<span style="color:#e6db74">&#34;S&#34;</span>]);
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>false
+</span></span><span style="display:flex;"><span>false
+</span></span><span style="display:flex;"><span>undefined
+</span></span></code></pre></div><p>The implication here is that our lists <strong>will collide in our map</strong>, meaning to get a function mapping <code>pronunciation-&gt;words</code>, all we need to do is reverse the keys and values:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>pronunciation-&gt;words
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">reduce</span>
+</span></span><span style="display:flex;"><span>   (partial merge-with into)
+</span></span><span style="display:flex;"><span>   (map (<span style="color:#66d9ef">fn </span> [[spelling pronunciation]] {pronunciation [spelling]}) spellings+phonemes)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/pronunciation-&gt;words
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">pronunciation-&gt;words</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;AY&#34;</span> <span style="color:#e6db74">&#34;S&#34;</span>))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[&#34;ICE&#34;]
+</span></span></code></pre></div><h2 id="sentence-pronunciations"><code>sentence-&gt;pronunciations</code></h2>
 <p>Now that we can go from a word to a list of pronunciations (<code>word-&gt;pronunciation</code>), it shouldn&rsquo;t be too hard to go from a list of words (AKA a sentence) to a list of pronunciations (<code>sentence-&gt;pronunciations</code>).</p>
 <p>The only complication: what should we do if a word has multiple pronunciations? How should you pronounce that sentence?</p>
 <p>Well, each time a word has multiple pronunciations, we should probably return a new pronunciation for the whole sentence.
 The word &ldquo;READ&rdquo; has 2 pronunciations:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">word-&gt;pronunciations</span> <span style="color:#e6db74">&#34;READ&#34;</span>)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[(&#34;R&#34; &#34;EH&#34; &#34;D&#34;) (&#34;R&#34; &#34;IY&#34; &#34;D&#34;)]
-</code></pre></div><p>So the (nonsensical) sentence &ldquo;READ READ&rdquo; should produce 4 pronunciations:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">(&#34;R&#34; &#34;EH&#34; &#34;D&#34; &#34;R&#34; &#34;EH&#34; &#34;D&#34;)
-(&#34;R&#34; &#34;EH&#34; &#34;D&#34; &#34;R&#34; &#34;IY&#34; &#34;D&#34;)
-(&#34;R&#34; &#34;IY&#34; &#34;D&#34; &#34;R&#34; &#34;EH&#34; &#34;D&#34;)
-(&#34;R&#34; &#34;IY&#34; &#34;D&#34; &#34;R&#34; &#34;IY&#34; &#34;D&#34;)
-</code></pre></div><p>This type of combination is a <em><a href="https://en.wikipedia.org/wiki/Cartesian_product">cartesian product</a></em>, and Clojure has an implementation built into the <code>clojure.math.combinatorics</code> <a href="https://github.com/clojure/math.combinatorics">namespace</a>.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">word-&gt;pronunciations</span> <span style="color:#e6db74">&#34;READ&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[(&#34;R&#34; &#34;EH&#34; &#34;D&#34;) (&#34;R&#34; &#34;IY&#34; &#34;D&#34;)]
+</span></span></code></pre></div><p>So the (nonsensical) sentence &ldquo;READ READ&rdquo; should produce 4 pronunciations:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>(&#34;R&#34; &#34;EH&#34; &#34;D&#34; &#34;R&#34; &#34;EH&#34; &#34;D&#34;)
+</span></span><span style="display:flex;"><span>(&#34;R&#34; &#34;EH&#34; &#34;D&#34; &#34;R&#34; &#34;IY&#34; &#34;D&#34;)
+</span></span><span style="display:flex;"><span>(&#34;R&#34; &#34;IY&#34; &#34;D&#34; &#34;R&#34; &#34;EH&#34; &#34;D&#34;)
+</span></span><span style="display:flex;"><span>(&#34;R&#34; &#34;IY&#34; &#34;D&#34; &#34;R&#34; &#34;IY&#34; &#34;D&#34;)
+</span></span></code></pre></div><p>This type of combination is a <em><a href="https://en.wikipedia.org/wiki/Cartesian_product">cartesian product</a></em>, and Clojure has an implementation built into the <code>clojure.math.combinatorics</code> <a href="https://github.com/clojure/math.combinatorics">namespace</a>.
 Unfortunately that namespace needs to be included as a leiningen dependency, and I haven&rsquo;t figured out yet how to get that to work correctly with the literate programming environment I&rsquo;m using (org-babel), so I&rsquo;ll just include a cartesian-product function in this script</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>cart [colls]
-  <span style="color:#e6db74">&#34;Cartesian product on the list of collections&#34;</span>
-  (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">empty?</span> colls)
-    <span style="color:#f92672">&#39;</span>(())
-    (for [more (<span style="color:#a6e22e">cart</span> (rest colls))
-          x (first colls)]
-      (cons x more))))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/cart
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">cart</span> [[]])
-(<span style="color:#a6e22e">cart</span> [[] [<span style="color:#ae81ff">2</span>]])
-(<span style="color:#a6e22e">cart</span> [[<span style="color:#ae81ff">1</span>] [<span style="color:#ae81ff">2</span>]])
-(<span style="color:#a6e22e">cart</span> [[<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>] [<span style="color:#ae81ff">2</span>]])
-(<span style="color:#a6e22e">cart</span> [[<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>] [<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span>]])
-(<span style="color:#a6e22e">cart</span> [[<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>] [<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span>] [<span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>]])
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>cart [colls]
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Cartesian product on the list of collections&#34;</span>
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">empty?</span> colls)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#39;</span>(())
+</span></span><span style="display:flex;"><span>    (for [more (<span style="color:#a6e22e">cart</span> (rest colls))
+</span></span><span style="display:flex;"><span>          x (first colls)]
+</span></span><span style="display:flex;"><span>      (cons x more))))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/cart
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">cart</span> [[]])
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">cart</span> [[] [<span style="color:#ae81ff">2</span>]])
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">cart</span> [[<span style="color:#ae81ff">1</span>] [<span style="color:#ae81ff">2</span>]])
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">cart</span> [[<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>] [<span style="color:#ae81ff">2</span>]])
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">cart</span> [[<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>] [<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span>]])
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">cart</span> [[<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">3</span>] [<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span>] [<span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>]])
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>()</th>
@@ -710,28 +710,28 @@ Unfortunately that namespace needs to be included as a leiningen dependency, and
 </tbody>
 </table>
 <p>Given this definition, the pronunciations of a sentence are merely the cartesian product of the pronunciations of all the words (normalized to capital letters and split by spaces, of course):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>sentence-&gt;words
-  [sentence]
-  (<span style="color:#a6e22e">-&gt;</span>
-   sentence
-   (<span style="color:#a6e22e">clojure.string/upper-case</span>)
-   (<span style="color:#a6e22e">clojure.string/split</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\s&#34;</span>)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/sentence-&gt;words
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">sentence-&gt;words</span> <span style="color:#e6db74">&#34;Luke I am your father.&#34;</span>)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[&#34;LUKE&#34; &#34;I&#34; &#34;AM&#34; &#34;YOUR&#34; &#34;FATHER.&#34;]
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>sentence-&gt;pronunciation
-  [sentence]
-  (<span style="color:#a6e22e">cart</span> (map word-&gt;pronunciations (<span style="color:#a6e22e">sentence-&gt;words</span> sentence))))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/sentence-&gt;pronunciation
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;READ READ&#34;</span>)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">(((&#34;R&#34; &#34;EH&#34; &#34;D&#34;) (&#34;R&#34; &#34;EH&#34; &#34;D&#34;)) ((&#34;R&#34; &#34;IY&#34; &#34;D&#34;) (&#34;R&#34; &#34;EH&#34; &#34;D&#34;)) ((&#34;R&#34; &#34;EH&#34; &#34;D&#34;) (&#34;R&#34; &#34;IY&#34; &#34;D&#34;)) ((&#34;R&#34; &#34;IY&#34; &#34;D&#34;) (&#34;R&#34; &#34;IY&#34; &#34;D&#34;)))
-</code></pre></div><p>Actually, we should flatten each of those results as well, to get a list of strings instead:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>sentence-&gt;pronunciation
-  [sentence]
-  (map flatten (<span style="color:#a6e22e">cart</span> (map word-&gt;pronunciations (<span style="color:#a6e22e">sentence-&gt;words</span> sentence)))))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/sentence-&gt;pronunciation
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;READ READ&#34;</span>)
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>sentence-&gt;words
+</span></span><span style="display:flex;"><span>  [sentence]
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">-&gt;</span>
+</span></span><span style="display:flex;"><span>   sentence
+</span></span><span style="display:flex;"><span>   (<span style="color:#a6e22e">clojure.string/upper-case</span>)
+</span></span><span style="display:flex;"><span>   (<span style="color:#a6e22e">clojure.string/split</span> <span style="color:#f92672">#</span><span style="color:#e6db74">&#34;\s&#34;</span>)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/sentence-&gt;words
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">sentence-&gt;words</span> <span style="color:#e6db74">&#34;Luke I am your father.&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[&#34;LUKE&#34; &#34;I&#34; &#34;AM&#34; &#34;YOUR&#34; &#34;FATHER.&#34;]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>sentence-&gt;pronunciation
+</span></span><span style="display:flex;"><span>  [sentence]
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">cart</span> (map word-&gt;pronunciations (<span style="color:#a6e22e">sentence-&gt;words</span> sentence))))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/sentence-&gt;pronunciation
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;READ READ&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>(((&#34;R&#34; &#34;EH&#34; &#34;D&#34;) (&#34;R&#34; &#34;EH&#34; &#34;D&#34;)) ((&#34;R&#34; &#34;IY&#34; &#34;D&#34;) (&#34;R&#34; &#34;EH&#34; &#34;D&#34;)) ((&#34;R&#34; &#34;EH&#34; &#34;D&#34;) (&#34;R&#34; &#34;IY&#34; &#34;D&#34;)) ((&#34;R&#34; &#34;IY&#34; &#34;D&#34;) (&#34;R&#34; &#34;IY&#34; &#34;D&#34;)))
+</span></span></code></pre></div><p>Actually, we should flatten each of those results as well, to get a list of strings instead:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>sentence-&gt;pronunciation
+</span></span><span style="display:flex;"><span>  [sentence]
+</span></span><span style="display:flex;"><span>  (map flatten (<span style="color:#a6e22e">cart</span> (map word-&gt;pronunciations (<span style="color:#a6e22e">sentence-&gt;words</span> sentence)))))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/sentence-&gt;pronunciation
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;READ READ&#34;</span>)
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>R</th>
@@ -769,8 +769,8 @@ Unfortunately that namespace needs to be included as a leiningen dependency, and
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;Please not while I&#39;m eating&#34;</span>)
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;Please not while I&#39;m eating&#34;</span>)
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>P</th>
@@ -855,14 +855,14 @@ Unfortunately that namespace needs to be included as a leiningen dependency, and
 <h2 id="pronunciation-sentence"><code>pronunciation-&gt;sentence</code></h2>
 <p>Now that we can generate the pronunciation of a sentence, we will want to be able to go from a pronunciation to a sentence.</p>
 <p>The way I imagine the mondegreen generator working is roughly:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">sentence -&gt; pronunciation -&gt; sentence
-</code></pre></div><p>where the first <code>sentence</code> and last <code>sentence</code> are different.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>sentence -&gt; pronunciation -&gt; sentence
+</span></span></code></pre></div><p>where the first <code>sentence</code> and last <code>sentence</code> are different.
 Consider the classic:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">I scream -&gt; ice cream
-</code></pre></div><p>As we can see, their pronunciations match exactly:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;I scream&#34;</span>)
-(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;ice cream&#34;</span>)
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>I scream -&gt; ice cream
+</span></span></code></pre></div><p>As we can see, their pronunciations match exactly:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;I scream&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;ice cream&#34;</span>)
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>((&ldquo;AY&rdquo; &ldquo;S&rdquo; &ldquo;K&rdquo; &ldquo;R&rdquo; &ldquo;IY&rdquo; &ldquo;M&rdquo;))</th>
@@ -895,51 +895,51 @@ That way, we can traverse the trie, looking for the next phoneme in our sentence
 <p>Let&rsquo;s try constructing the trie.
 We can use the same map-merging trick we used to create <code>word-&gt;phonemes</code>.</p>
 <p>I want to create the following map for the word &ldquo;READ&rdquo;:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">{ &#34;R&#34; { &#34;EH&#34; { &#34;D&#34; &#34;What to associate here?&#34; }}}
-</code></pre></div><p>This should embed the phoneme structure, but when we actually finish a word we have to indicate that, while not blocking any further phonemes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>{ &#34;R&#34; { &#34;EH&#34; { &#34;D&#34; &#34;What to associate here?&#34; }}}
+</span></span></code></pre></div><p>This should embed the phoneme structure, but when we actually finish a word we have to indicate that, while not blocking any further phonemes.</p>
 <p>I&rsquo;ll choose to use the keyword <code>:word</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">{ &#34;R&#34; { &#34;EH&#34; { &#34;D&#34; { :word &#34;RED&#34; &#34;IY&#34; { :word &#34;READY&#34; ... more phonemes ... } } }}}
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>word-&gt;nested-map
-  [phones word]
-  (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">empty?</span> phones)
-    { <span style="color:#e6db74">:word</span> word }
-    { <span style="color:#e6db74">:word</span> nil
-      (first phones) (<span style="color:#a6e22e">word-&gt;nested-map</span> (rest phones) word)}))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/word-&gt;nested-map
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">word-&gt;nested-map</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;R&#34;</span> <span style="color:#e6db74">&#34;EH&#34;</span> <span style="color:#e6db74">&#34;D&#34;</span>) <span style="color:#e6db74">&#34;RED&#34;</span>)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">{:word , &#34;R&#34; {:word , &#34;EH&#34; {:word , &#34;D&#34; {:word &#34;RED&#34;}}}}
-</code></pre></div><p>Now to merge.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>{ &#34;R&#34; { &#34;EH&#34; { &#34;D&#34; { :word &#34;RED&#34; &#34;IY&#34; { :word &#34;READY&#34; ... more phonemes ... } } }}}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>word-&gt;nested-map
+</span></span><span style="display:flex;"><span>  [phones word]
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">if </span>(<span style="color:#a6e22e">empty?</span> phones)
+</span></span><span style="display:flex;"><span>    { <span style="color:#e6db74">:word</span> word }
+</span></span><span style="display:flex;"><span>    { <span style="color:#e6db74">:word</span> nil
+</span></span><span style="display:flex;"><span>      (first phones) (<span style="color:#a6e22e">word-&gt;nested-map</span> (rest phones) word)}))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/word-&gt;nested-map
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">word-&gt;nested-map</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;R&#34;</span> <span style="color:#e6db74">&#34;EH&#34;</span> <span style="color:#e6db74">&#34;D&#34;</span>) <span style="color:#e6db74">&#34;RED&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>{:word , &#34;R&#34; {:word , &#34;EH&#34; {:word , &#34;D&#34; {:word &#34;RED&#34;}}}}
+</span></span></code></pre></div><p>Now to merge.</p>
 <p>Unfortunately Clojure&rsquo;s <code>merge-with</code> function only works for a single level of map, but we will want to <code>deep-merge</code> them.
 Actually, we&rsquo;ll have to <code>deep-merge-with</code> them, since some of the phoneme maps are bound to collide.</p>
 <p>I&rsquo;m not above using other people&rsquo;s code, and the <a href="https://clojuredocs.org">clojuredocs</a> website has awesome comments with community suggestions.
 I pulled this implementation from the comments on the built-in <code>merge-with</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>deep-merge-with
-  <span style="color:#e6db74">&#34;https://clojuredocs.org/clojure.core/merge-with#example-5b80843ae4b00ac801ed9e74
-</span><span style="color:#e6db74">  Like merge-with, but merges maps recursively, applying the given fn
-</span><span style="color:#e6db74">  only when there&#39;s a non-map at a particular level.&#34;</span>
-  [f <span style="color:#f92672">&amp;</span> maps]
-  (<span style="color:#a6e22e">apply</span>
-   (<span style="color:#66d9ef">fn </span>m [<span style="color:#f92672">&amp;</span> maps]
-     (<span style="color:#66d9ef">if </span>(every? map? maps)
-       (apply merge-with m maps)
-       (apply f maps)))
-   maps))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/deep-merge-with
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">deep-merge-with</span> + {<span style="color:#e6db74">:a</span> {<span style="color:#e6db74">:b</span> {<span style="color:#e6db74">:c</span> <span style="color:#ae81ff">1</span> <span style="color:#e6db74">:d</span> {<span style="color:#e6db74">:x</span> <span style="color:#ae81ff">1</span> <span style="color:#e6db74">:y</span> <span style="color:#ae81ff">2</span>}} <span style="color:#e6db74">:e</span> <span style="color:#ae81ff">3</span>} <span style="color:#e6db74">:f</span> <span style="color:#ae81ff">4</span>}
-                   {<span style="color:#e6db74">:a</span> {<span style="color:#e6db74">:b</span> {<span style="color:#e6db74">:c</span> <span style="color:#ae81ff">2</span> <span style="color:#e6db74">:d</span> {<span style="color:#e6db74">:z</span> <span style="color:#ae81ff">9</span>} <span style="color:#e6db74">:z</span> <span style="color:#ae81ff">3</span>} <span style="color:#e6db74">:e</span> <span style="color:#ae81ff">100</span>}})
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">{:a {:b {:c 3, :d {:x 1, :y 2, :z 9}, :z 3}, :e 103}, :f 4}
-</code></pre></div><p>Now, we will also need a way to handle our <em>homophones</em>, so <code>:word</code> will actually have to be an array, and the function we <code>merge-with</code> will have to be able to handle insert into that array.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>merge-with-nil
-  [a b]
-  (cond (nil? a) b
-        (nil? b) a
-        <span style="color:#e6db74">:else</span> (into a b)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/merge-with-
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">merge-with-nil</span> nil nil)
-(<span style="color:#a6e22e">merge-with-nil</span> [<span style="color:#ae81ff">1</span>] nil)
-(<span style="color:#a6e22e">merge-with-nil</span> nil [<span style="color:#ae81ff">1</span>])
-(<span style="color:#a6e22e">merge-with-nil</span> [<span style="color:#ae81ff">1</span>] [<span style="color:#ae81ff">2</span>])
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>deep-merge-with
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;https://clojuredocs.org/clojure.core/merge-with#example-5b80843ae4b00ac801ed9e74
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Like merge-with, but merges maps recursively, applying the given fn
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  only when there&#39;s a non-map at a particular level.&#34;</span>
+</span></span><span style="display:flex;"><span>  [f <span style="color:#f92672">&amp;</span> maps]
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">apply</span>
+</span></span><span style="display:flex;"><span>   (<span style="color:#66d9ef">fn </span>m [<span style="color:#f92672">&amp;</span> maps]
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">if </span>(every? map? maps)
+</span></span><span style="display:flex;"><span>       (apply merge-with m maps)
+</span></span><span style="display:flex;"><span>       (apply f maps)))
+</span></span><span style="display:flex;"><span>   maps))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/deep-merge-with
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">deep-merge-with</span> + {<span style="color:#e6db74">:a</span> {<span style="color:#e6db74">:b</span> {<span style="color:#e6db74">:c</span> <span style="color:#ae81ff">1</span> <span style="color:#e6db74">:d</span> {<span style="color:#e6db74">:x</span> <span style="color:#ae81ff">1</span> <span style="color:#e6db74">:y</span> <span style="color:#ae81ff">2</span>}} <span style="color:#e6db74">:e</span> <span style="color:#ae81ff">3</span>} <span style="color:#e6db74">:f</span> <span style="color:#ae81ff">4</span>}
+</span></span><span style="display:flex;"><span>                   {<span style="color:#e6db74">:a</span> {<span style="color:#e6db74">:b</span> {<span style="color:#e6db74">:c</span> <span style="color:#ae81ff">2</span> <span style="color:#e6db74">:d</span> {<span style="color:#e6db74">:z</span> <span style="color:#ae81ff">9</span>} <span style="color:#e6db74">:z</span> <span style="color:#ae81ff">3</span>} <span style="color:#e6db74">:e</span> <span style="color:#ae81ff">100</span>}})
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>{:a {:b {:c 3, :d {:x 1, :y 2, :z 9}, :z 3}, :e 103}, :f 4}
+</span></span></code></pre></div><p>Now, we will also need a way to handle our <em>homophones</em>, so <code>:word</code> will actually have to be an array, and the function we <code>merge-with</code> will have to be able to handle insert into that array.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>merge-with-nil
+</span></span><span style="display:flex;"><span>  [a b]
+</span></span><span style="display:flex;"><span>  (cond (nil? a) b
+</span></span><span style="display:flex;"><span>        (nil? b) a
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">:else</span> (into a b)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/merge-with-
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">merge-with-nil</span> nil nil)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">merge-with-nil</span> [<span style="color:#ae81ff">1</span>] nil)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">merge-with-nil</span> nil [<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">merge-with-nil</span> [<span style="color:#ae81ff">1</span>] [<span style="color:#ae81ff">2</span>])
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>[1]</th>
@@ -955,34 +955,34 @@ I pulled this implementation from the comments on the built-in <code>merge-with<
 </tbody>
 </table>
 <p>So now creating our trie is simple:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">def </span>pronunciations-trie
-  (<span style="color:#a6e22e">apply</span>
-   deep-merge-with
-   merge-with-nil
-   (map (<span style="color:#66d9ef">fn </span>[[pronunciation word]] (<span style="color:#a6e22e">word-&gt;nested-map</span> pronunciation word)) pronunciation-&gt;words)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/pronunciations-trie
-</code></pre></div><p>To get at words in the trie, we need to recursively <code>get</code> phonemes, and finally select the word:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">-&gt;</span>
- pronunciations-trie
- (<span style="color:#a6e22e">.get</span> <span style="color:#e6db74">&#34;R&#34;</span>)
- (<span style="color:#a6e22e">.get</span> <span style="color:#e6db74">&#34;EH&#34;</span>)
- (<span style="color:#a6e22e">.get</span> <span style="color:#e6db74">&#34;D&#34;</span>)
- (<span style="color:#e6db74">:word</span>))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[&#34;READ&#34; &#34;READE&#34; &#34;RED&#34; &#34;REDD&#34;]
-</code></pre></div><p>We can use Clojure&rsquo;s <code>loop</code> macro to define a function which will check if a list of phonemes is a valid pronunciation of some English word.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>pronunciations-trie
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">apply</span>
+</span></span><span style="display:flex;"><span>   deep-merge-with
+</span></span><span style="display:flex;"><span>   merge-with-nil
+</span></span><span style="display:flex;"><span>   (map (<span style="color:#66d9ef">fn </span>[[pronunciation word]] (<span style="color:#a6e22e">word-&gt;nested-map</span> pronunciation word)) pronunciation-&gt;words)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/pronunciations-trie
+</span></span></code></pre></div><p>To get at words in the trie, we need to recursively <code>get</code> phonemes, and finally select the word:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">-&gt;</span>
+</span></span><span style="display:flex;"><span> pronunciations-trie
+</span></span><span style="display:flex;"><span> (<span style="color:#a6e22e">.get</span> <span style="color:#e6db74">&#34;R&#34;</span>)
+</span></span><span style="display:flex;"><span> (<span style="color:#a6e22e">.get</span> <span style="color:#e6db74">&#34;EH&#34;</span>)
+</span></span><span style="display:flex;"><span> (<span style="color:#a6e22e">.get</span> <span style="color:#e6db74">&#34;D&#34;</span>)
+</span></span><span style="display:flex;"><span> (<span style="color:#e6db74">:word</span>))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[&#34;READ&#34; &#34;READE&#34; &#34;RED&#34; &#34;REDD&#34;]
+</span></span></code></pre></div><p>We can use Clojure&rsquo;s <code>loop</code> macro to define a function which will check if a list of phonemes is a valid pronunciation of some English word.</p>
 <p>In our case we don&rsquo;t just want to return <code>true</code> or <code>false</code>, but the actual trie structure that the pronunciation results in.
 This will let us continue to look up words based on where we leave off.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>lookup-pronunciation
-  [pronunciation]
-  (<span style="color:#66d9ef">loop </span>[remaining pronunciation
-         trie pronunciations-trie]
-    (cond (<span style="color:#a6e22e">empty?</span> remaining) trie
-          (nil? trie) nil
-          <span style="color:#e6db74">:else</span> (<span style="color:#a6e22e">recur</span> (rest remaining) (<span style="color:#a6e22e">trie</span> (first remaining))))))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/lookup-pronunciation
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> [<span style="color:#e6db74">&#34;R&#34;</span> <span style="color:#e6db74">&#34;EH&#34;</span> <span style="color:#e6db74">&#34;D&#34;</span>]))
-(<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> [<span style="color:#e6db74">&#34;D&#34;</span> <span style="color:#e6db74">&#34;EY&#34;</span>]))
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>lookup-pronunciation
+</span></span><span style="display:flex;"><span>  [pronunciation]
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">loop </span>[remaining pronunciation
+</span></span><span style="display:flex;"><span>         trie pronunciations-trie]
+</span></span><span style="display:flex;"><span>    (cond (<span style="color:#a6e22e">empty?</span> remaining) trie
+</span></span><span style="display:flex;"><span>          (nil? trie) nil
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">:else</span> (<span style="color:#a6e22e">recur</span> (rest remaining) (<span style="color:#a6e22e">trie</span> (first remaining))))))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/lookup-pronunciation
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> [<span style="color:#e6db74">&#34;R&#34;</span> <span style="color:#e6db74">&#34;EH&#34;</span> <span style="color:#e6db74">&#34;D&#34;</span>]))
+</span></span><span style="display:flex;"><span>(<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> [<span style="color:#e6db74">&#34;D&#34;</span> <span style="color:#e6db74">&#34;EY&#34;</span>]))
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>[&ldquo;READ&rdquo; &ldquo;READE&rdquo; &ldquo;RED&rdquo; &ldquo;REDD&rdquo;]</th>
@@ -1010,48 +1010,48 @@ The type of substitutions I see are usually phonetically similar, like <code>&qu
 <p>Mathematically, when we want to express equivalence between objects, we can put them in the same <em>Set</em>.</p>
 <p>I&rsquo;ve created a list of Sets of phonemes which I consider to be valid substitutions for each other in our game, but these, while guided by my limited knowledge of phonetics, are more or less arbitrary.</p>
 <p>Singleton classes represent phonemes which I don&rsquo;t think should be replaced with anything else.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">def </span>equivalence-classes
-  <span style="color:#e6db74">&#34;It would be better to base these substitutions on some kind of linguistic data. I bet it exists.&#34;</span>
-  [<span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;AA&#34;</span> <span style="color:#e6db74">&#34;AO&#34;</span> <span style="color:#e6db74">&#34;AW&#34;</span> <span style="color:#e6db74">&#34;AH&#34;</span> <span style="color:#e6db74">&#34;UH&#34;</span>} <span style="color:#75715e">; all pretty similar vowel sounds</span>
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;AY&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;B&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;CH&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;D&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;DH&#34;</span> <span style="color:#e6db74">&#34;TH&#34;</span>} <span style="color:#75715e">; The difference in the &#34;TH&#34; sound between &#34;these&#34; and &#34;teeth&#34;</span>
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;EH&#34;</span> <span style="color:#e6db74">&#34;IH&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;EY&#34;</span>} <span style="color:#75715e">; Maybe can be paired up?</span>
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;ER&#34;</span> <span style="color:#e6db74">&#34;R&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;F&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;G&#34;</span> <span style="color:#e6db74">&#34;K&#34;</span>} <span style="color:#75715e">; voiced vs. unvoiced glottal stops</span>
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;HH&#34;</span> nil} <span style="color:#75715e">; The &#34;H&#34; sounds often gets deleted from mondegreens, so this indicates it is equivalent to no sound.</span>
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;IY&#34;</span>} <span style="color:#75715e">; Maybe goes with &#34;IH&#34;, but probably not &#34;EH&#34;... Maybe these shouldn&#39;t be sets?</span>
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;JH&#34;</span> <span style="color:#e6db74">&#34;ZH&#34;</span>} <span style="color:#75715e">; I forget the linguistic difference between these, but it&#39;s &#34;EDGE&#34; vs. &#34;JACQUE&#34;</span>
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;L&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;M&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;N&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;NG&#34;</span>} <span style="color:#75715e">; Can go with N+G when splitting one phoneme into multiple is allowed.</span>
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;OW&#34;</span>} <span style="color:#75715e">; All diphthongs can probably go with their constituent monophthongs. e.g. AA+UW</span>
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;OY&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;P&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;SH&#34;</span>} <span style="color:#75715e">; Maybe belongs with &#34;S&#34;</span>
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;T&#34;</span>} <span style="color:#75715e">; Can this go with &#34;D&#34;? Is that too jarring?</span>
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;V&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;W&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;Y&#34;</span>}
-   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;S&#34;</span> <span style="color:#e6db74">&#34;Z&#34;</span>}])
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/equivalence-classes
-</code></pre></div><p>This is honestly a pretty conservative interpretation of which phonemes are close enough for our game, and if I were to really perfect this program, this is where I would focus.</p>
-<p>Now that we have the classes, we can answer the question &ldquo;Given a phoneme, what are its valid replacements for our game?&quot;:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>valid-replacements
-  [phoneme]
-  (mapcat (partial apply vector) (filter <span style="color:#f92672">#</span>(<span style="color:#a6e22e">%</span> phoneme) equivalence-classes)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/valid-replacements
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">valid-replacements</span> <span style="color:#e6db74">&#34;AY&#34;</span>)
-(<span style="color:#a6e22e">valid-replacements</span> <span style="color:#e6db74">&#34;AA&#34;</span>)
-(<span style="color:#a6e22e">valid-replacements</span> <span style="color:#e6db74">&#34;S&#34;</span>)
-(<span style="color:#a6e22e">valid-replacements</span> <span style="color:#e6db74">&#34;Z&#34;</span>)
-(<span style="color:#a6e22e">valid-replacements</span> <span style="color:#e6db74">&#34;HH&#34;</span>)
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>equivalence-classes
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;It would be better to base these substitutions on some kind of linguistic data. I bet it exists.&#34;</span>
+</span></span><span style="display:flex;"><span>  [<span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;AA&#34;</span> <span style="color:#e6db74">&#34;AO&#34;</span> <span style="color:#e6db74">&#34;AW&#34;</span> <span style="color:#e6db74">&#34;AH&#34;</span> <span style="color:#e6db74">&#34;UH&#34;</span>} <span style="color:#75715e">; all pretty similar vowel sounds</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;AY&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;B&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;CH&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;D&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;DH&#34;</span> <span style="color:#e6db74">&#34;TH&#34;</span>} <span style="color:#75715e">; The difference in the &#34;TH&#34; sound between &#34;these&#34; and &#34;teeth&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;EH&#34;</span> <span style="color:#e6db74">&#34;IH&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;EY&#34;</span>} <span style="color:#75715e">; Maybe can be paired up?</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;ER&#34;</span> <span style="color:#e6db74">&#34;R&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;F&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;G&#34;</span> <span style="color:#e6db74">&#34;K&#34;</span>} <span style="color:#75715e">; voiced vs. unvoiced glottal stops</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;HH&#34;</span> nil} <span style="color:#75715e">; The &#34;H&#34; sounds often gets deleted from mondegreens, so this indicates it is equivalent to no sound.</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;IY&#34;</span>} <span style="color:#75715e">; Maybe goes with &#34;IH&#34;, but probably not &#34;EH&#34;... Maybe these shouldn&#39;t be sets?</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;JH&#34;</span> <span style="color:#e6db74">&#34;ZH&#34;</span>} <span style="color:#75715e">; I forget the linguistic difference between these, but it&#39;s &#34;EDGE&#34; vs. &#34;JACQUE&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;L&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;M&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;N&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;NG&#34;</span>} <span style="color:#75715e">; Can go with N+G when splitting one phoneme into multiple is allowed.</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;OW&#34;</span>} <span style="color:#75715e">; All diphthongs can probably go with their constituent monophthongs. e.g. AA+UW</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;OY&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;P&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;SH&#34;</span>} <span style="color:#75715e">; Maybe belongs with &#34;S&#34;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;T&#34;</span>} <span style="color:#75715e">; Can this go with &#34;D&#34;? Is that too jarring?</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;V&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;W&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;Y&#34;</span>}
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">#</span>{<span style="color:#e6db74">&#34;S&#34;</span> <span style="color:#e6db74">&#34;Z&#34;</span>}])
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/equivalence-classes
+</span></span></code></pre></div><p>This is honestly a pretty conservative interpretation of which phonemes are close enough for our game, and if I were to really perfect this program, this is where I would focus.</p>
+<p>Now that we have the classes, we can answer the question &ldquo;Given a phoneme, what are its valid replacements for our game?&rdquo;:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>valid-replacements
+</span></span><span style="display:flex;"><span>  [phoneme]
+</span></span><span style="display:flex;"><span>  (mapcat (partial apply vector) (filter <span style="color:#f92672">#</span>(<span style="color:#a6e22e">%</span> phoneme) equivalence-classes)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/valid-replacements
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">valid-replacements</span> <span style="color:#e6db74">&#34;AY&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">valid-replacements</span> <span style="color:#e6db74">&#34;AA&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">valid-replacements</span> <span style="color:#e6db74">&#34;S&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">valid-replacements</span> <span style="color:#e6db74">&#34;Z&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">valid-replacements</span> <span style="color:#e6db74">&#34;HH&#34;</span>)
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>(&ldquo;AY&rdquo;)</th>
@@ -1075,66 +1075,66 @@ The type of substitutions I see are usually phonetically similar, like <code>&qu
 <h3 id="finding-a-sentence-given-a-pronunciation">Finding a sentence given a pronunciation</h3>
 <p>Now to combine what we have done so far.</p>
 <p>Let&rsquo;s manually walk through an example sentence that we know works so that we can piece together our algorithm.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&#34;I SCREAM&#34;
-</code></pre></div><p>First, we turn it into a pronunciation:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">((&#34;AY&#34; &#34;S&#34; &#34;K&#34; &#34;R&#34; &#34;IY&#34; &#34;M&#34;))
-</code></pre></div><p>Cool, only 1 possible pronunciation to worry about.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&#34;I SCREAM&#34;
+</span></span></code></pre></div><p>First, we turn it into a pronunciation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>((&#34;AY&#34; &#34;S&#34; &#34;K&#34; &#34;R&#34; &#34;IY&#34; &#34;M&#34;))
+</span></span></code></pre></div><p>Cool, only 1 possible pronunciation to worry about.</p>
 <p>Next, we need to recursively ask whether our phonemes make up a word:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">lookup-pronunciation</span> [<span style="color:#e6db74">&#34;AY&#34;</span>])
- <span style="color:#75715e">; no?</span>
-(<span style="color:#a6e22e">lookup-pronunciation</span> [<span style="color:#e6db74">&#34;AY&#34;</span> <span style="color:#e6db74">&#34;S&#34;</span>])
- <span style="color:#75715e">; no?</span>
-(<span style="color:#a6e22e">lookup-pronunciation</span> [<span style="color:#e6db74">&#34;AY&#34;</span> <span style="color:#e6db74">&#34;S&#34;</span> <span style="color:#e6db74">&#34;K&#34;</span>])
-...
-</code></pre></div><p>Or whether any of the valid replacements for each of our phonemes make up a word:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>pronunciation-&gt;sentence
-  [pronunciation]
-  (<span style="color:#a6e22e">letfn</span> [(<span style="color:#a6e22e">find-pronuns</span>
-            [prev-phones next-phones]
-            (<span style="color:#66d9ef">let </span>[answer (<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> prev-phones))]
-              (cond (<span style="color:#a6e22e">empty?</span> next-phones) answer  <span style="color:#75715e">; whether or not it is valid, we have no more phonemes to work with</span>
-                    answer (cons answer (<span style="color:#a6e22e">find-pronuns</span> [] next-phones)) <span style="color:#75715e">; we found a real word, just worry about the next set of phonemes then</span>
-                    <span style="color:#e6db74">:else</span> (reduce (<span style="color:#66d9ef">fn </span>[acc x] (or acc (<span style="color:#a6e22e">find-pronuns</span> (conj prev-phones x) (rest next-phones))))
-                                  nil
-                                  (<span style="color:#a6e22e">valid-replacements</span> (first next-phones))))))]
-    (<span style="color:#a6e22e">find-pronuns</span> [] pronunciation)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/pronunciation-&gt;sentence
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">pronunciation-&gt;sentence</span> (first (<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">([&#34;AI&#34; &#34;AY&#34; &#34;AYE&#34; &#34;EYE&#34; &#34;I&#34; &#34;I.&#34;] &#34;SCREAM&#34;)
-</code></pre></div><p>Ok, so we got our original sentence more or less.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">lookup-pronunciation</span> [<span style="color:#e6db74">&#34;AY&#34;</span>])
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">; no?</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">lookup-pronunciation</span> [<span style="color:#e6db74">&#34;AY&#34;</span> <span style="color:#e6db74">&#34;S&#34;</span>])
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">; no?</span>
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">lookup-pronunciation</span> [<span style="color:#e6db74">&#34;AY&#34;</span> <span style="color:#e6db74">&#34;S&#34;</span> <span style="color:#e6db74">&#34;K&#34;</span>])
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>Or whether any of the valid replacements for each of our phonemes make up a word:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>pronunciation-&gt;sentence
+</span></span><span style="display:flex;"><span>  [pronunciation]
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">letfn</span> [(<span style="color:#a6e22e">find-pronuns</span>
+</span></span><span style="display:flex;"><span>            [prev-phones next-phones]
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">let </span>[answer (<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> prev-phones))]
+</span></span><span style="display:flex;"><span>              (cond (<span style="color:#a6e22e">empty?</span> next-phones) answer  <span style="color:#75715e">; whether or not it is valid, we have no more phonemes to work with</span>
+</span></span><span style="display:flex;"><span>                    answer (cons answer (<span style="color:#a6e22e">find-pronuns</span> [] next-phones)) <span style="color:#75715e">; we found a real word, just worry about the next set of phonemes then</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">:else</span> (reduce (<span style="color:#66d9ef">fn </span>[acc x] (or acc (<span style="color:#a6e22e">find-pronuns</span> (conj prev-phones x) (rest next-phones))))
+</span></span><span style="display:flex;"><span>                                  nil
+</span></span><span style="display:flex;"><span>                                  (<span style="color:#a6e22e">valid-replacements</span> (first next-phones))))))]
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">find-pronuns</span> [] pronunciation)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/pronunciation-&gt;sentence
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">pronunciation-&gt;sentence</span> (first (<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>([&#34;AI&#34; &#34;AY&#34; &#34;AYE&#34; &#34;EYE&#34; &#34;I&#34; &#34;I.&#34;] &#34;SCREAM&#34;)
+</span></span></code></pre></div><p>Ok, so we got our original sentence more or less.
 To prevent that, let&rsquo;s pass in the a set of the words in the original sentence, and make sure we don&rsquo;t return any of those.
 Technically this will exclude a set of potential solutions where a word in the original sentence occurs somewhere completely different in the Mondegreen sentence, e.g. if you had the sentence &ldquo;I SCREAM ICE-CREAM&rdquo;, a valid Mondegreen would technically be &ldquo;ICE-CREAM I SCREAM&rdquo;, but I&rsquo;ll just ignore that set of solutions in favor of something which doesn&rsquo;t contain <em>any</em> words from the original.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>pronunciation-&gt;sentence
-  <span style="color:#e6db74">&#34;Can this series of phonemes be parsed as a collection of English words? Find one answer containing no words from the set of words in the original sentence.&#34;</span>
-  [pronunciation original-sentence]
-  (<span style="color:#a6e22e">letfn</span> [(<span style="color:#a6e22e">word?</span> [phones]
-            (<span style="color:#66d9ef">let </span>[words (<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> phones))]
-              (and (not (some <span style="color:#f92672">#</span>(<span style="color:#a6e22e">original-sentence</span> %) words)) (first words))))
-          (<span style="color:#a6e22e">search-substitutions</span>
-            [prev-phones next-phones]
-            (reduce (<span style="color:#66d9ef">fn </span>[acc x] (or acc (<span style="color:#a6e22e">find-pronuns</span> (conj prev-phones x) (rest next-phones))))
-                    nil
-                    (<span style="color:#a6e22e">valid-replacements</span> (first next-phones))))
-          (<span style="color:#a6e22e">find-pronuns</span> [prev-phones next-phones]
-            (<span style="color:#66d9ef">let </span>[answer (<span style="color:#a6e22e">word?</span> prev-phones)]
-              (<span style="color:#a6e22e">cond</span>
-                (<span style="color:#a6e22e">empty?</span> next-phones) (when answer (list answer))
-                answer (if-let [rest-of-sentence (<span style="color:#a6e22e">find-pronuns</span> [] next-phones)]
-                         (cons answer rest-of-sentence)
-                         (<span style="color:#a6e22e">search-substitutions</span> prev-phones next-phones))
-                <span style="color:#e6db74">:else</span> (<span style="color:#a6e22e">search-substitutions</span> prev-phones next-phones))))]
-    (<span style="color:#a6e22e">find-pronuns</span> [] pronunciation)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/pronunciation-&gt;sentence
-</code></pre></div><p>We achieve this by taking the set of words from the original sentence and comparing the possible word for the phonemes so far against that set.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>pronunciation-&gt;sentence
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Can this series of phonemes be parsed as a collection of English words? Find one answer containing no words from the set of words in the original sentence.&#34;</span>
+</span></span><span style="display:flex;"><span>  [pronunciation original-sentence]
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">letfn</span> [(<span style="color:#a6e22e">word?</span> [phones]
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">let </span>[words (<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> phones))]
+</span></span><span style="display:flex;"><span>              (and (not (some <span style="color:#f92672">#</span>(<span style="color:#a6e22e">original-sentence</span> %) words)) (first words))))
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">search-substitutions</span>
+</span></span><span style="display:flex;"><span>            [prev-phones next-phones]
+</span></span><span style="display:flex;"><span>            (reduce (<span style="color:#66d9ef">fn </span>[acc x] (or acc (<span style="color:#a6e22e">find-pronuns</span> (conj prev-phones x) (rest next-phones))))
+</span></span><span style="display:flex;"><span>                    nil
+</span></span><span style="display:flex;"><span>                    (<span style="color:#a6e22e">valid-replacements</span> (first next-phones))))
+</span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">find-pronuns</span> [prev-phones next-phones]
+</span></span><span style="display:flex;"><span>            (<span style="color:#66d9ef">let </span>[answer (<span style="color:#a6e22e">word?</span> prev-phones)]
+</span></span><span style="display:flex;"><span>              (<span style="color:#a6e22e">cond</span>
+</span></span><span style="display:flex;"><span>                (<span style="color:#a6e22e">empty?</span> next-phones) (when answer (list answer))
+</span></span><span style="display:flex;"><span>                answer (if-let [rest-of-sentence (<span style="color:#a6e22e">find-pronuns</span> [] next-phones)]
+</span></span><span style="display:flex;"><span>                         (cons answer rest-of-sentence)
+</span></span><span style="display:flex;"><span>                         (<span style="color:#a6e22e">search-substitutions</span> prev-phones next-phones))
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">:else</span> (<span style="color:#a6e22e">search-substitutions</span> prev-phones next-phones))))]
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">find-pronuns</span> [] pronunciation)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/pronunciation-&gt;sentence
+</span></span></code></pre></div><p>We achieve this by taking the set of words from the original sentence and comparing the possible word for the phonemes so far against that set.</p>
 <p>So in the <code>&quot;I SCREAM&quot;</code> example:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">pronunciation-&gt;sentence</span> (first (<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)) (set (<span style="color:#a6e22e">sentence-&gt;words</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">(&#34;ICE&#34; &#34;CREAM&#34;)
-</code></pre></div><p>So in this case, the algorithm found <code>&quot;I&quot;</code> as a possible word for the phoneme list  <code>'(&quot;AY&quot;)</code>, but since that was part of our original sentence, it disregarded it and continued until it found <code>&quot;ICE&quot;</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(set (<span style="color:#a6e22e">sentence-&gt;words</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>))
-(<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;AY&#34;</span>)))
-(some <span style="color:#f92672">#</span>((set (<span style="color:#a6e22e">sentence-&gt;words</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)) %) (<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;AY&#34;</span>))))
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">pronunciation-&gt;sentence</span> (first (<span style="color:#a6e22e">sentence-&gt;pronunciation</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)) (set (<span style="color:#a6e22e">sentence-&gt;words</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>(&#34;ICE&#34; &#34;CREAM&#34;)
+</span></span></code></pre></div><p>So in this case, the algorithm found <code>&quot;I&quot;</code> as a possible word for the phoneme list  <code>'(&quot;AY&quot;)</code>, but since that was part of our original sentence, it disregarded it and continued until it found <code>&quot;ICE&quot;</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(set (<span style="color:#a6e22e">sentence-&gt;words</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>))
+</span></span><span style="display:flex;"><span>(<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;AY&#34;</span>)))
+</span></span><span style="display:flex;"><span>(some <span style="color:#f92672">#</span>((set (<span style="color:#a6e22e">sentence-&gt;words</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)) %) (<span style="color:#e6db74">:word</span> (<span style="color:#a6e22e">lookup-pronunciation</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;AY&#34;</span>))))
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>#{&ldquo;SCREAM&rdquo; &ldquo;I&rdquo;}</th>
@@ -1142,7 +1142,7 @@ Technically this will exclude a set of potential solutions where a word in the o
 </thead>
 <tbody>
 <tr>
-<td>[&ldquo;AI&rdquo; &ldquo;AY&rdquo; &ldquo;AYE&rdquo; &ldquo;EYE&rdquo; &ldquo;I&rdquo; &ldquo;I.&quot;]</td>
+<td>[&ldquo;AI&rdquo; &ldquo;AY&rdquo; &ldquo;AYE&rdquo; &ldquo;EYE&rdquo; &ldquo;I&rdquo; &ldquo;I.&rdquo;]</td>
 </tr>
 <tr>
 <td>&ldquo;I&rdquo;</td>
@@ -1152,17 +1152,17 @@ Technically this will exclude a set of potential solutions where a word in the o
 <h2 id="mondegreen">Mondegreen</h2>
 <p>Now that we have <code>pronunciation-&gt;sentence</code>, we basically have our entire mondegreen generator.
 All that&rsquo;s left is to expose a convenient wrapper to do the parsing of inputs.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>mondegreen
-  [sentence]
-  (<span style="color:#66d9ef">let </span>[sentence-phonemes (<span style="color:#a6e22e">sentence-&gt;pronunciation</span> sentence)
-        sentence-words (set (<span style="color:#a6e22e">sentence-&gt;words</span> sentence))]
-    (<span style="color:#a6e22e">pronunciation-&gt;sentence</span> (first sentence-phonemes) sentence-words)))
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#&#39;user/mondegreen
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a6e22e">mondegreen</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)
-(<span style="color:#a6e22e">mondegreen</span> <span style="color:#e6db74">&#34;ICE-CREAM&#34;</span>)
-(<span style="color:#a6e22e">mondegreen</span> <span style="color:#e6db74">&#34;PLEASE NOT WHILE I&#39;M EATING&#34;</span>)
-(<span style="color:#a6e22e">mondegreen</span> <span style="color:#e6db74">&#34;SOMEONE STOLE MY LEMON TREE&#34;</span>)
-</code></pre></div><table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">defn </span>mondegreen
+</span></span><span style="display:flex;"><span>  [sentence]
+</span></span><span style="display:flex;"><span>  (<span style="color:#66d9ef">let </span>[sentence-phonemes (<span style="color:#a6e22e">sentence-&gt;pronunciation</span> sentence)
+</span></span><span style="display:flex;"><span>        sentence-words (set (<span style="color:#a6e22e">sentence-&gt;words</span> sentence))]
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">pronunciation-&gt;sentence</span> (first sentence-phonemes) sentence-words)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/mondegreen
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">mondegreen</span> <span style="color:#e6db74">&#34;I SCREAM&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">mondegreen</span> <span style="color:#e6db74">&#34;ICE-CREAM&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">mondegreen</span> <span style="color:#e6db74">&#34;PLEASE NOT WHILE I&#39;M EATING&#34;</span>)
+</span></span><span style="display:flex;"><span>(<span style="color:#a6e22e">mondegreen</span> <span style="color:#e6db74">&#34;SOMEONE STOLE MY LEMON TREE&#34;</span>)
+</span></span></code></pre></div><table>
 <thead>
 <tr>
 <th>(&ldquo;ICE&rdquo; &ldquo;CREAM&rdquo;)</th>
