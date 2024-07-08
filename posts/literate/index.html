@@ -7,7 +7,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="The HTML5 Herald" />
-  <meta name="author" content="[Matt DiLoreto]" /><meta name="generator" content="Hugo 0.111.3">
+  <meta name="author" content="[Matt DiLoreto]" /><meta name="generator" content="Hugo 0.128.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
   <script src="https://kit.fontawesome.com/b76b73e8e8.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
@@ -32,7 +32,7 @@
          
         <li><a href="https://github.com/mjdiloreto"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a></li>
            
-        <li><a href="https://mjdiloreto.github.io/index.xml"><i class="fa fa-rss fa-lg" aria-hidden="true"></i></a></li>
+        <li><a href="https://mjdiloreto.github.io//index.xml"><i class="fa fa-rss fa-lg" aria-hidden="true"></i></a></li>
       </ul>
       
       <p><em>A place to keep track of some of my things.</em></p>
@@ -101,16 +101,16 @@
 
         
 
-        <li>32 minutes read</li>
+        <li>31 minutes read</li>
     </ul>
 </aside>
 
     
 
     <figure><img src="/ox-hugo/word_salad.png"
-         alt="letters made out of salad ingredients"/><figcaption>
-            <h4>Word Salad</h4>
-        </figcaption>
+    alt="letters made out of salad ingredients"><figcaption>
+      <h4>Word Salad</h4>
+    </figcaption>
 </figure>
 
 <h2 id="rationale">Rationale</h2>
@@ -388,7 +388,7 @@ Luckily, we can normalize the spellings in the same way we normalized the phonem
 </span></span><span style="display:flex;"><span>       dictionary-lines))
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/spellings+phonemes
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">rand-nth</span> spellings+phonemes)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[&#34;PETKOVSEK&#34; (&#34;P&#34; &#34;EH&#34; &#34;T&#34; &#34;K&#34; &#34;AA&#34; &#34;V&#34; &#34;S&#34; &#34;EH&#34; &#34;K&#34;)]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[&#34;SOUTHERN&#39;S&#34; (&#34;S&#34; &#34;AH&#34; &#34;DH&#34; &#34;ER&#34; &#34;N&#34; &#34;Z&#34;)]
 </span></span></code></pre></div><p>Much better.
 I should check that all the &ldquo;spellings&rdquo; and &ldquo;phonemes&rdquo; are each non-empty, in case there were some other data anomalies I didn&rsquo;t find at the beginning of the file.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(filter (<span style="color:#66d9ef">fn </span>[[spelling phonemes]] (or (<span style="color:#a6e22e">empty?</span> spelling) (<span style="color:#a6e22e">empty?</span> phonemes))) spellings+phonemes)
@@ -525,8 +525,8 @@ I should check that all the &ldquo;spellings&rdquo; and &ldquo;phonemes&rdquo; a
 </tbody>
 </table>
 <p>Ah, because those first bunch of entries in the dictionary contain special characters, their spelling maps to <code>nil</code>. That&rsquo;s fine, we can adjust our definition to simply omit the pairs starting with <code>nil</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-clojure" data-lang="clojure"><span style="display:flex; background-color:#3c3d38"><span>(<span style="color:#66d9ef">def </span>spellings+phonemes
-</span></span><span style="display:flex; background-color:#3c3d38"><span>  (<span style="color:#a6e22e">-&gt;&gt;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>spellings+phonemes
+</span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">-&gt;&gt;</span>
 </span></span><span style="display:flex;"><span>   dictionary-lines
 </span></span><span style="display:flex;"><span>   (map (<span style="color:#66d9ef">fn </span>[line]
 </span></span><span style="display:flex;"><span>          (<span style="color:#a6e22e">-&gt;&gt;</span>
@@ -534,8 +534,9 @@ I should check that all the &ldquo;spellings&rdquo; and &ldquo;phonemes&rdquo; a
 </span></span><span style="display:flex;"><span>           (filter <span style="color:#f92672">#</span>(<span style="color:#a6e22e">not-empty</span> %))           <span style="color:#75715e">; remove empty strings (from whitespace separation)</span>
 </span></span><span style="display:flex;"><span>           (map normalize-string)            <span style="color:#75715e">; normalize</span>
 </span></span><span style="display:flex;"><span>           (split-at <span style="color:#ae81ff">1</span>)                      <span style="color:#75715e">; split into spelling + phonemes</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>           ((<span style="color:#66d9ef">fn </span>[[[spelling] phonemes]] [spelling phonemes]))))) <span style="color:#75715e">; destructure the spelling list</span>
-</span></span><span style="display:flex; background-color:#3c3d38"><span>   (filter <span style="color:#f92672">#</span>((complement nil?) (first %)))))
+</span></span><span style="display:flex;"><span>           ((<span style="color:#66d9ef">fn </span>[[[spelling] phonemes]] [spelling phonemes]))))) <span style="color:#75715e">; destructure the spelling list</span>
+</span></span><span style="display:flex;"><span>   (filter <span style="color:#f92672">#</span>((complement nil?) (first %)))))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#&#39;user/spellings+phonemes
 </span></span></code></pre></div></li>
 </ul>
 <h2 id="homo-phone-graph-s">Homo[phone|graph]s</h2>
@@ -567,7 +568,7 @@ I am going to convert each <code>[spelling phonemes]</code> pair (which at this 
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[1 2 3 4 5 6]
 </span></span></code></pre></div><p>Let&rsquo;s try it:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">rand-nth</span> (map (<span style="color:#66d9ef">fn </span> [[spelling pronunciation]] {spelling [pronunciation]}) spellings+phonemes))
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>{&#34;BOCANEGRA&#34; [(&#34;B&#34; &#34;OW&#34; &#34;K&#34; &#34;AH&#34; &#34;N&#34; &#34;EH&#34; &#34;G&#34; &#34;R&#34; &#34;AH&#34;)]}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>{&#34;HUGGED&#34; [(&#34;HH&#34; &#34;AH&#34; &#34;G&#34; &#34;D&#34;)]}
 </span></span></code></pre></div><p>Cool, so now we have a list of maps with 1 key-value pair each, we have to <code>reduce</code> that to a single map with <code>merge-with</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">def </span>word-&gt;pronunciations
 </span></span><span style="display:flex;"><span>  (<span style="color:#a6e22e">reduce</span>
@@ -592,21 +593,21 @@ I am going to convert each <code>[spelling phonemes]</code> pair (which at this 
 <h4 id="exploring-the-pronunciations">Exploring the pronunciations</h4>
 <p>Let&rsquo;s see if we can get a word with multiple pronunciations:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#a6e22e">rand-nth</span> (filter (<span style="color:#66d9ef">fn </span>[[k v]] (&gt; (<span style="color:#a6e22e">.length</span> v) <span style="color:#ae81ff">1</span>)) word-&gt;pronunciations))
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[&#34;IDS&#34; [(&#34;AY&#34; &#34;D&#34; &#34;IY&#34; &#34;Z&#34;) (&#34;IH&#34; &#34;D&#34; &#34;Z&#34;)]]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[&#34;AYDAR&#34; [(&#34;AY&#34; &#34;D&#34; &#34;AA&#34; &#34;R&#34;) (&#34;EY&#34; &#34;D&#34; &#34;AA&#34; &#34;R&#34;)]]
 </span></span></code></pre></div><p>Hmm, I&rsquo;m curious which word has the most pronunciations?</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>[maxlen (apply max (map (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.length</span> v)) word-&gt;pronunciations))]
 </span></span><span style="display:flex;"><span>  (filter (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.equals</span> (<span style="color:#a6e22e">.length</span> v) maxlen)) word-&gt;pronunciations))
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>([ [(&#34;EH&#34; &#34;K&#34; &#34;S&#34; &#34;K&#34; &#34;L&#34; &#34;AH&#34; &#34;M&#34; &#34;EY&#34; &#34;SH&#34; &#34;AH&#34; &#34;N&#34; &#34;P&#34; &#34;OY&#34; &#34;N&#34; &#34;T&#34;) (&#34;K&#34; &#34;L&#34; &#34;OW&#34; &#34;Z&#34; &#34;K&#34; &#34;W&#34; &#34;OW&#34; &#34;T&#34;) (&#34;D&#34; &#34;AH&#34; &#34;B&#34; &#34;AH&#34; &#34;L&#34; &#34;K&#34; &#34;W&#34; &#34;OW&#34; &#34;T&#34;) (&#34;EH&#34; &#34;N&#34; &#34;D&#34; &#34;AH&#34; &#34;V&#34; &#34;K&#34; &#34;W&#34; &#34;OW&#34; &#34;T&#34;) (&#34;EH&#34; &#34;N&#34; &#34;D&#34; &#34;K&#34; &#34;W&#34; &#34;OW&#34; &#34;T&#34;) (&#34;IH&#34; &#34;N&#34; &#34;K&#34; &#34;W&#34; &#34;OW&#34; &#34;T&#34; &#34;S&#34;) (&#34;K&#34; &#34;W&#34; &#34;OW&#34; &#34;T&#34;) (&#34;AH&#34; &#34;N&#34; &#34;K&#34; &#34;W&#34; &#34;OW&#34; &#34;T&#34;) (&#34;HH&#34; &#34;AE&#34; &#34;M&#34; &#34;AA&#34; &#34;R&#34; &#34;K&#34;) (&#34;P&#34; &#34;AW&#34; &#34;N&#34; &#34;D&#34; &#34;S&#34; &#34;AY&#34; &#34;N&#34;) (&#34;SH&#34; &#34;AA&#34; &#34;R&#34; &#34;P&#34; &#34;S&#34; &#34;AY&#34; &#34;N&#34;) (&#34;P&#34; &#34;ER&#34; &#34;S&#34; &#34;EH&#34; &#34;N&#34; &#34;T&#34;) (&#34;AE&#34; &#34;M&#34; &#34;P&#34; &#34;ER&#34; &#34;S&#34; &#34;AE&#34; &#34;N&#34; &#34;D&#34;) (&#34;B&#34; &#34;IH&#34; &#34;G&#34; &#34;IH&#34; &#34;N&#34; &#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34; &#34;Z&#34;) (&#34;IH&#34; &#34;N&#34; &#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34; &#34;TH&#34; &#34;AH&#34; &#34;S&#34; &#34;IY&#34; &#34;Z&#34;) (&#34;L&#34; &#34;EH&#34; &#34;F&#34; &#34;T&#34; &#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34;) (&#34;OW&#34; &#34;P&#34; &#34;AH&#34; &#34;N&#34; &#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34; &#34;TH&#34; &#34;AH&#34; &#34;S&#34; &#34;IY&#34; &#34;Z&#34;) (&#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34;) (&#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34; &#34;Z&#34;) (&#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34; &#34;TH&#34; &#34;AH&#34; &#34;S&#34; &#34;IY&#34; &#34;Z&#34;) (&#34;K&#34; &#34;L&#34; &#34;OW&#34; &#34;Z&#34; &#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34;) (&#34;K&#34; &#34;L&#34; &#34;OW&#34; &#34;Z&#34; &#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34; &#34;TH&#34; &#34;AH&#34; &#34;S&#34; &#34;IY&#34; &#34;Z&#34;) (&#34;EH&#34; &#34;N&#34; &#34;D&#34; &#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34;) (&#34;EH&#34; &#34;N&#34; &#34;D&#34; &#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34; &#34;Z&#34;) (&#34;EH&#34; &#34;N&#34; &#34;D&#34; &#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34; &#34;TH&#34; &#34;AH&#34; &#34;S&#34; &#34;IY&#34; &#34;Z&#34;) (&#34;EH&#34; &#34;N&#34; &#34;D&#34; &#34;DH&#34; &#34;AH&#34; &#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34;) (&#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34;) (&#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34; &#34;Z&#34;) (&#34;R&#34; &#34;AY&#34; &#34;T&#34; &#34;P&#34; &#34;EH&#34; &#34;R&#34; &#34;AH&#34; &#34;N&#34;) (&#34;AH&#34; &#34;N&#34; &#34;P&#34; &#34;ER&#34; &#34;EH&#34; &#34;N&#34; &#34;TH&#34; &#34;AH&#34; &#34;S&#34; &#34;IY&#34; &#34;Z&#34;) (&#34;P&#34; &#34;L&#34; &#34;UH&#34; &#34;S&#34;) (&#34;K&#34; &#34;AA&#34; &#34;M&#34; &#34;AH&#34;) (&#34;S&#34; &#34;L&#34; &#34;AE&#34; &#34;SH&#34;) (&#34;TH&#34; &#34;R&#34; &#34;IY&#34; &#34;D&#34; &#34;IY&#34;) (&#34;TH&#34; &#34;R&#34; &#34;IY&#34; &#34;D&#34; &#34;IY&#34;) (&#34;K&#34; &#34;OW&#34; &#34;L&#34; &#34;AH&#34; &#34;N&#34;) (&#34;K&#34; &#34;W&#34; &#34;EH&#34; &#34;S&#34; &#34;CH&#34; &#34;AH&#34; &#34;N&#34; &#34;M&#34; &#34;AA&#34; &#34;R&#34; &#34;K&#34;) (&#34;B&#34; &#34;R&#34; &#34;EY&#34; &#34;S&#34;) (&#34;L&#34; &#34;EH&#34; &#34;F&#34; &#34;T&#34; &#34;B&#34; &#34;R&#34; &#34;EY&#34; &#34;S&#34;) (&#34;OW&#34; &#34;P&#34; &#34;EH&#34; &#34;N&#34; &#34;B&#34; &#34;R&#34; &#34;EY&#34; &#34;S&#34;) (&#34;K&#34; &#34;L&#34; &#34;OW&#34; &#34;Z&#34; &#34;B&#34; &#34;R&#34; &#34;EY&#34; &#34;S&#34;) (&#34;R&#34; &#34;AY&#34; &#34;T&#34; &#34;B&#34; &#34;R&#34; &#34;EY&#34; &#34;S&#34;)]])
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>([&#34;M&#34; [(&#34;EH&#34; &#34;M&#34;) (&#34;EH&#34; &#34;M&#34; &#34;W&#34; &#34;AH&#34; &#34;N&#34;) (&#34;EH&#34; &#34;M&#34; &#34;T&#34; &#34;UW&#34;) (&#34;EH&#34; &#34;M&#34; &#34;TH&#34; &#34;R&#34; &#34;IY&#34;) (&#34;EH&#34; &#34;M&#34; &#34;F&#34; &#34;AO&#34; &#34;R&#34;) (&#34;EH&#34; &#34;M&#34; &#34;F&#34; &#34;AY&#34; &#34;V&#34;)]] [&#34;C&#34; [(&#34;S&#34; &#34;IY&#34;) (&#34;S&#34; &#34;IY&#34; &#34;W&#34; &#34;AH&#34; &#34;N&#34;) (&#34;S&#34; &#34;IY&#34; &#34;T&#34; &#34;UW&#34;) (&#34;S&#34; &#34;IY&#34; &#34;TH&#34; &#34;R&#34; &#34;IY&#34;) (&#34;S&#34; &#34;IY&#34; &#34;F&#34; &#34;AO&#34; &#34;R&#34;) (&#34;S&#34; &#34;IY&#34; &#34;F&#34; &#34;AY&#34; &#34;V&#34;)]])
 </span></span></code></pre></div><p>Oh, I guess &ldquo;M1&rdquo;, &ldquo;M2&rdquo;, &ldquo;M3&rdquo;&hellip; and &ldquo;C1&rdquo;, &ldquo;C2&rdquo;, &ldquo;C3&rdquo; &hellip; are all valid words in the dictionary and I broke them by removing the numbers. Whatever.</p>
 <p>How about the next-most pronunciations?</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>[maxlen (apply max (map (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.length</span> v)) word-&gt;pronunciations))]
 </span></span><span style="display:flex;"><span>  (filter (<span style="color:#66d9ef">fn </span>[[k v]] (= (<span style="color:#a6e22e">.length</span> v) (- maxlen <span style="color:#ae81ff">1</span>))) word-&gt;pronunciations))
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>([&#34;CAT-&#34; [(&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;W&#34; &#34;AO&#34; &#34;N&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;T&#34; &#34;UW&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;TH&#34; &#34;R&#34; &#34;IY&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;F&#34; &#34;AO&#34; &#34;R&#34;) (&#34;K&#34; &#34;AE&#34; &#34;T&#34; &#34;S&#34; &#34;IH&#34; &#34;K&#34; &#34;S&#34;)]])
 </span></span></code></pre></div><p>Hurricanes, cool. Again, I removed the numeric value from the word itself, but that shouldn&rsquo;t really matter.</p>
 <p>I want to find the first real word though&hellip;</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-clojure" data-lang="clojure"><span style="display:flex;"><span>(<span style="color:#66d9ef">let </span>[maxlen (apply max (map (<span style="color:#66d9ef">fn </span>[[k v]] (<span style="color:#a6e22e">.length</span> v)) word-&gt;pronunciations))]
 </span></span><span style="display:flex;"><span>  (take <span style="color:#ae81ff">1</span> (filter (<span style="color:#66d9ef">fn </span>[[k v]] (= (<span style="color:#a6e22e">.length</span> v) (- maxlen <span style="color:#ae81ff">2</span>))) word-&gt;pronunciations)))
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>([&#34;GRANTED&#34; [(&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;T&#34; &#34;AH&#34; &#34;D&#34;) (&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;T&#34; &#34;IH&#34; &#34;D&#34;) (&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;AH&#34; &#34;D&#34;) (&#34;G&#34; &#34;R&#34; &#34;AE&#34; &#34;N&#34; &#34;IH&#34; &#34;D&#34;)]])
 </span></span></code></pre></div><p>This is pretty interesting! The last two pronunciations completely omit the &ldquo;T&rdquo; sound from &ldquo;GRANTED&rdquo;, which is known linguistically as <em><a href="https://en.wikipedia.org/wiki/Elision">elision</a></em>.
 We say that the &ldquo;T&rdquo; was <em>elided</em> from the pronunciation of &ldquo;GRANTED&rdquo;.</p>
 <h4 id="what-makes-a-map">What makes a Map?</h4>
@@ -1215,7 +1216,6 @@ All that&rsquo;s left is to expose a convenient wrapper to do the parsing of inp
     </footer>
 </div>
 <script src="/js/scripts.js"></script>
-
 </body>
 
 </html>

@@ -1,0 +1,265 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>Matthew DiLoreto</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="The HTML5 Herald" />
+  <meta name="author" content="[Matthew DiLoreto]" /><meta name="generator" content="Hugo 0.128.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+  <script src="https://kit.fontawesome.com/b76b73e8e8.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+  <script src="https://cdn.counter.dev/script.js" data-id="2d0e29f1-8e6a-4ab3-b545-8d740cd6986f" data-utcoffset="-5"></script>
+</head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Matthew DiLoreto</a>
+            </h1>
+
+      <ul id="social-media">
+        
+        
+         
+        <li><a href="https://www.linkedin.com/in/matthew-diloreto-410510150"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+         
+        <li><a href="https://github.com/mjdiloreto"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a></li>
+           
+        <li><a href="https://mjdiloreto.github.io//index.xml"><i class="fa fa-rss fa-lg" aria-hidden="true"></i></a></li>
+      </ul>
+      
+      <p><em>A place to keep track of some of my things.</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="active" href="/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Posts</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About Me</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/blogs_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>Blogs I Like</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/books_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>My Reading</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/music_i_like/">
+                <i class="fa-li fa  fa-lg"></i><span>What Am I Listening to?</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/what_am_i_working_on/">
+                <i class="fa-li fa  fa-lg"></i><span>What Am Working On?</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>There are Many Ways to Build a Wep App - A Poem</h1>
+
+    
+        <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2023-12-30T10:12:00-05:00">Dec 30, 2023</time>
+        </li>
+        
+
+        
+
+        <li>5 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    <p>There are many ways to build a web app, as you will come to see. <br/>
+Not all are suitable for what you may need. <br/>
+With proper care and attention you might discover <br/>
+one approach more favorable than another&hellip; <br/></p>
+<p>Let&rsquo;s build some apps, it won&rsquo;t be too hard; <br/>
+though some techniques may seem bizarre. <br/>
+Just open an editor and start to type: <br/>
+<code>&lt;html&gt;&lt;/html&gt;</code> (don&rsquo;t forget <code>&lt;!DOCTYPE&gt;</code>!) <br/></p>
+<p>Let the <code>&lt;p&gt;</code>&rsquo;s and <code>&lt;ol&gt;</code>&rsquo;s and <code>&lt;div&gt;</code>&rsquo;s and <code>&lt;span&gt;</code>&rsquo;s <br/>
+flow from your keyboard through both your hands. <br/>
+When you are done, open it and behold - <br/>
+in a browser your document unfold! <br/></p>
+<p>&ldquo;Let&rsquo;s make it pretty!&rdquo; I hear you say, <br/>
+That will be easy with CSS today. <br/>
+Create a new file, save it and <code>&lt;link&gt;</code>, <br/>
+inside the <code>&lt;head&gt;</code> &ndash; styles before you could blink! <br/></p>
+<p>But what of <code>&lt;a&gt;</code> or some other page? <br/>
+I click on a link, but I&rsquo;m caught in this cage. <br/>
+I have an <code>index</code> but I want more, <br/>
+like <code>/about</code>, and <code>/contact</code>, and <code>/shop</code>, or <code>/store</code>! <br/></p>
+<p>An app cannot be one static page, <br/>
+we need an <code>HTTP</code> server to complete our maze. <br/>
+We can spin one up with any language fast. <br/>
+With the help of a terminal it&rsquo;ll be a flash: <br/></p>
+<p>We start  <code>ruby -run -ehttpd</code> <br/>
+and give the port <code>-p8080</code> <br/>
+we serve the directory with all our files <br/>
+<code>.</code> or <code>/www</code>, whatever makes you smile :) <br/></p>
+<p>Now we have a perfect example <br/>
+of a <em>static site</em> - for many use-cases ample. <br/>
+But what if we want to change some of our links? <br/>
+Maybe all <code>/blue</code> should change to <code>/pink</code>? <br/></p>
+<p>We could manually edit each of our pages, <br/>
+inside our text editor, but that would take ages! <br/>
+Maybe this works, if our site is small, <br/>
+or maybe an alternative is better after all? <br/></p>
+<p>If we could track every link with a name, <br/>
+and reuse <em>templates</em> wherever markup is the same&hellip; <br/>
+Then we could just simply <em>generate</em> <br/>
+our whole static site, wouldn&rsquo;t that be great? <br/></p>
+<p><code>Hugo</code> and <code>Jekyll</code> and <code>Gatsby</code> and more, <br/>
+oh there&rsquo;s static site generators out there galore! <br/>
+Even more powerful, especially when collaborating, <br/>
+are <code>CMS</code> tools that make things less frustrating. <br/></p>
+<p>Most of the web runs with <code>CMS</code> systems, <br/>
+don&rsquo;t ignore their power, you just might miss them. <br/>
+<code>Wordpress</code> is the master of this domain - <br/>
+<strong>43%</strong> of internet pages play by their game[<a href="https://w3techs.com/technologies/details/cm-wordpress">*</a>]. <br/></p>
+<p>&ldquo;But we&rsquo;re building <em>apps</em>!&rdquo;, I hear you exclaim, <br/>
+I will not use <em>Wordpress</em>, that&rsquo;s super lame. <br/>
+Well fine, that&rsquo;s fine - if that&rsquo;s how you&rsquo;ll be, <br/>
+let&rsquo;s venture into a world of greater complexity. <br/></p>
+<p>&ldquo;These templates are nice, but my app is <em>dynamic</em>. <br/>
+There&rsquo;s too much data for one page, I&rsquo;m starting to panic!&rdquo; <br/>
+Relax, my friend, lucky for you I say, <br/>
+&ldquo;There&rsquo;s <code>AJAX</code> to help keep that data at bay!&rdquo; <br/></p>
+<p>We&rsquo;ll serve smaller elements with no data inside, <br/>
+A placeholder sits where it will eventually reside. <br/>
+When users interact - like clicking a button - <br/>
+Javascript will ask our server for data to shove in. <br/></p>
+<p>Most folks use <code>JSON</code>, a simple notation, <br/>
+Easily understood, facilitating creation. <br/>
+So our server changes its primary role, <br/>
+from templating HTML to serving JSON, on the whole. <br/></p>
+<p>This way can work well, and has for many years, <br/>
+with <code>JQuery</code> a standout among all of its peers. <br/>
+But imperatively updating different parts of our pages, <br/>
+can soon prove nightmarish when apps grow through the ages. <br/></p>
+<p>I know what we&rsquo;ll do! I&rsquo;ll share you the news&hellip; <br/>
+Our UI is a <em>function</em>, from Data to Views[<a href="https://www.youtube.com/watch?v=x7cQ3mrcKaY">*</a>]! <br/>
+So <code>React</code> comes along, and has not yet stopped, <br/>
+to declare a tree <em>structure</em> where data flows from the top. <br/></p>
+<p><code>JSX</code> is not templates, when used in our projects, <br/>
+It&rsquo;s builds a <em>virtual DOM</em>, plain Javascript objects. <br/>
+These objects are then rendered, by <code>ReactDOM</code>, <br/>
+and diff&rsquo;ed on state changes, imperative updates be gone! <br/></p>
+<p>We can write our whole app in this functional way, <br/>
+and our sad HTML almost completely goes away. <br/>
+Just have one div, with an id such as <code>root</code>, <br/>
+a tiny HTML file and a Javascript bundle to boot! <br/></p>
+<p>Just one <em>single page</em>, no routes needed here, <br/>
+when the URL is in <code>state</code>, the right things will appear. <br/>
+Routing is done client-side, with so much more, <br/>
+but this leads to issues, many things become chores. <br/></p>
+<p>Client-side routing can be a hassle, <br/>
+and history navigation, things the browser should wrestle&hellip; <br/>
+Bugs arise from how state is assembled. <br/>
+<em>Everything</em> on one page with shared state? Developers tremble. <br/></p>
+<p>Projects like <code>Redux</code> promise organization, <br/>
+of all client-side state, but can cause complication. <br/>
+Data is duplicated, on two different systems, <br/>
+synchronizing one and the other, becomes a tough mission. <br/></p>
+<p>Other issues also come into play, <br/>
+like <em>SEO</em>, where pages must have data right away. <br/>
+Let&rsquo;s get to work, taking React to the <code>Node</code> runtime, <br/>
+so we can render things <strong>twice</strong>, not just one time! <br/></p>
+<p><code>NextJS</code> is an example of a framework, <br/>
+That tries to make this server-side game work. <br/>
+Render as much as possible in the initial HTML response, <br/>
+which will then be <em>hydrated</em> on the client-side once. <br/></p>
+<p>&ldquo;But wait, we&rsquo;re rendering HTML on the server once more? <br/>
+Didn&rsquo;t we use to do this, in the days of yore?&rdquo; <br/>
+Why yes we <em>did</em> do this, I&rsquo;m glad you can tell! <br/>
+But we have extra client-side powers, when we need those as well. <br/></p>
+<p>Other server-side frameworks are joining the mixer, <br/>
+One excellent tool is LiveView in Elixir. <br/>
+Screw client-side React, Javascript is icky. <br/>
+We can react using websockets, it isn&rsquo;t that tricky. <br/></p>
+<p>Then there&rsquo;s <code>HTMX</code>, a darling of mine, <br/>
+the simplicity is tantalizing, I think it works fine. <br/>
+Why should just <code>&lt;a&gt;</code> and <code>&lt;form&gt;</code> issue requests? <br/>
+Shouldn&rsquo;t any element act at our behest? <br/></p>
+<p>I&rsquo;ll share an arcane secret, my young acolyte&hellip; <br/>
+HTML is <em>hypertext</em>, <code>HATEOAS</code> gives it flight[<a href="https://htmx.org/essays/hateoas/">*</a>]! <br/>
+An ancient idea, gaining traction fast, <br/>
+while hypertext standards are stuck in the past. <br/></p>
+<p>The web is a beautiful, wonderful thing, <br/>
+these myriad styles make my heart sing! <br/>
+I hope you see just how lucky we are <br/>
+that our apps can reach anyone, those near or afar. <br/></p>
+<p>I want you try each web app approach too. <br/>
+It is all great fun, it&rsquo;s been a pleasure to coach you. <br/>
+Now go forth and build, in whichever way you may choose, <br/>
+make marvelous apps, and no one will lose! <br/></p>
+<p>(P.S. Sorry Angular, Svelte, Vue, etc. etc. etc. etc.)</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://mjdiloreto.github.io/posts/hacker-jargon-lexicon/"><i class="fa fa-chevron-circle-left"></i> Finding my Career in Computer Science; Busy Beavers and The Hacker Jargon Lexicon</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6> |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://mjdiloreto.github.io/index.xml">Subscribe</a></h6>
+
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+</body>
+
+</html>

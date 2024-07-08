@@ -5,93 +5,142 @@
        <description>Programming musings, emacs, web development, and various thoughts from on Matthew DiLoreto</description>
        <generator>Hugo -- gohugo.io</generator>
        <language>en-us</language>
-       <lastBuildDate>Thu, 26 Jan 2023 22:34:00 -0600</lastBuildDate>
+       <lastBuildDate>Sat, 30 Dec 2023 10:12:00 -0500</lastBuildDate>
        
            <atom:link href="https://mjdiloreto.github.io/index.xml" rel="self" type="application/rss+xml" />
        
        
        <item>
-         <title>The Stages of Fatherly Love</title>
-         <link>https://mjdiloreto.github.io/posts/the-stages-of-fatherly-love/</link>
-         <pubDate>Thu, 26 Jan 2023 22:34:00 -0600</pubDate>
+         <title>There are Many Ways to Build a Wep App - A Poem</title>
+         <link>https://mjdiloreto.github.io/posts/there-are-many-ways-to-build-a-web-app/</link>
+         <pubDate>Sat, 30 Dec 2023 10:12:00 -0500</pubDate>
          
-         <guid>https://mjdiloreto.github.io/posts/the-stages-of-fatherly-love/</guid>
-         <description>&lt;p&gt;I&amp;rsquo;m getting married this year so I feel it&amp;rsquo;s the right time to contemplate fatherhood.
-What makes a good father?
-What did my father do that I want to emulate?
-What kinds of things can I do?&lt;/p&gt;
-&lt;p&gt;Fatherly love is a complicated thing, but in my mind it seems much less about affection, and much more about &lt;em&gt;teaching&lt;/em&gt;; pushing one&amp;rsquo;s children &lt;em&gt;beyond&lt;/em&gt; the familiar and comfortable, praising their efforts.&lt;/p&gt;
-&lt;p&gt;Fatherly love develops over time as the child enters new stages of life.&lt;/p&gt;
-&lt;h2 id=&#34;brand-new-dad-devoted-physical-attention&#34;&gt;Brand New Dad: Devoted Physical Attention&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Holding&lt;/li&gt;
-&lt;li&gt;Rocking&lt;/li&gt;
-&lt;li&gt;Singing&lt;/li&gt;
-&lt;li&gt;Talking&lt;/li&gt;
-&lt;li&gt;Etc.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Soothe them and care for them.&lt;/p&gt;
-&lt;h2 id=&#34;young-childhood-dad-exploration-and-play&#34;&gt;Young Childhood Dad: Exploration and Play&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Create excitement for the world around them&lt;/li&gt;
-&lt;li&gt;A time for deep connection with Nature&lt;/li&gt;
-&lt;li&gt;Help them discover their physical, mental, and emotional capacities&lt;/li&gt;
-&lt;li&gt;Nurture their sense of awe for the world; bolster a positive world-view&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Explain the &lt;code&gt;Reason&lt;/code&gt; of the world as best you can.&lt;/p&gt;
-&lt;h2 id=&#34;late-childhood-dad-social-dynamics&#34;&gt;Late Childhood Dad: Social Dynamics&lt;/h2&gt;
-&lt;p&gt;Set a social example through:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Sports teams&lt;/li&gt;
-&lt;li&gt;Family friend groups&lt;/li&gt;
-&lt;li&gt;Churchgoing&lt;/li&gt;
-&lt;li&gt;Boys and girls coming together for group activities&lt;/li&gt;
-&lt;li&gt;Play dates&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Teach them how to build and maintain all kinds of relationships, and to regulate their emotions.
-Teach them about death, and how to steel themselves against it.&lt;/p&gt;
-&lt;h2 id=&#34;preteen-young-teenager-dad-belonging&#34;&gt;Preteen/Young Teenager Dad: Belonging&lt;/h2&gt;
-&lt;p&gt;Teach them about:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Anticipating problems&lt;/li&gt;
-&lt;li&gt;How to live a healthy life&lt;/li&gt;
-&lt;li&gt;Long-term consequences&lt;/li&gt;
-&lt;li&gt;Romantic Relationships&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Find out about their character, and what life practices will best lead them down the path &lt;em&gt;they&lt;/em&gt; choose.&lt;/p&gt;
-&lt;p&gt;Give them responsibilities and assert their belonging in the groups they are part of.&lt;/p&gt;
-&lt;p&gt;Cultivate their self-confidence in all settings, and never degrade them.&lt;/p&gt;
-&lt;h2 id=&#34;teenager-dad-role-model&#34;&gt;Teenager Dad: Role Model&lt;/h2&gt;
-&lt;p&gt;What kind of adult should they &lt;em&gt;actually&lt;/em&gt; be like? Embody that person.&lt;/p&gt;
-&lt;p&gt;Prepare them to set out on their own, assert their independence, and bravely forge their path.&lt;/p&gt;
-&lt;p&gt;Teach them &lt;em&gt;ownership&lt;/em&gt; and &lt;em&gt;responsibility&lt;/em&gt;:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;For themselves in society&lt;/li&gt;
-&lt;li&gt;For themselves in relationships&lt;/li&gt;
-&lt;li&gt;For cars and other Big Things&lt;/li&gt;
-&lt;li&gt;For their destinies&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You are their clearest example of adult life - without any other input they will become as you are.
-Don&amp;rsquo;t make them fight against that.
-Be a person they &lt;em&gt;want&lt;/em&gt; to be, and they will become the person &lt;em&gt;they&lt;/em&gt; want to be.
-Be a person they do not want to be, and they will fight to unbecome you, and by doing so may unbecome themselves.&lt;/p&gt;
-&lt;h2 id=&#34;young-adult-dad-pass-the-baton&#34;&gt;Young Adult Dad: Pass the Baton&lt;/h2&gt;
-&lt;p&gt;You have given them all the tools they need to succeed.
-Help them whenever they need with whatever they need, but send them on their own way.&lt;/p&gt;
-&lt;p&gt;Don&amp;rsquo;t lose touch.&lt;/p&gt;
-&lt;p&gt;React out, and ask.&lt;/p&gt;
-&lt;h2 id=&#34;grandpa-share-wisdom&#34;&gt;Grandpa: Share Wisdom&lt;/h2&gt;
-&lt;p&gt;For your child:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Support financially if necessary&lt;/li&gt;
-&lt;li&gt;Relieve some burden by helping with grandchildren&lt;/li&gt;
-&lt;li&gt;Advise appropriately&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Help them course-correct if they go astray, or when they aren&amp;rsquo;t true to the values you taught them.&lt;/p&gt;
-&lt;p&gt;For your grandchildren:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Repeat the stages for as long as you can.&lt;/li&gt;
-&lt;/ul&gt;
+         <guid>https://mjdiloreto.github.io/posts/there-are-many-ways-to-build-a-web-app/</guid>
+         <description>&lt;p&gt;There are many ways to build a web app, as you will come to see. &lt;br/&gt;
+Not all are suitable for what you may need. &lt;br/&gt;
+With proper care and attention you might discover &lt;br/&gt;
+one approach more favorable than another&amp;hellip; &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s build some apps, it won&amp;rsquo;t be too hard; &lt;br/&gt;
+though some techniques may seem bizarre. &lt;br/&gt;
+Just open an editor and start to type: &lt;br/&gt;
+&lt;code&gt;&amp;lt;html&amp;gt;&amp;lt;/html&amp;gt;&lt;/code&gt; (don&amp;rsquo;t forget &lt;code&gt;&amp;lt;!DOCTYPE&amp;gt;&lt;/code&gt;!) &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Let the &lt;code&gt;&amp;lt;p&amp;gt;&lt;/code&gt;&amp;rsquo;s and &lt;code&gt;&amp;lt;ol&amp;gt;&lt;/code&gt;&amp;rsquo;s and &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;&amp;rsquo;s and &lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;&amp;rsquo;s &lt;br/&gt;
+flow from your keyboard through both your hands. &lt;br/&gt;
+When you are done, open it and behold - &lt;br/&gt;
+in a browser your document unfold! &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;Let&amp;rsquo;s make it pretty!&amp;rdquo; I hear you say, &lt;br/&gt;
+That will be easy with CSS today. &lt;br/&gt;
+Create a new file, save it and &lt;code&gt;&amp;lt;link&amp;gt;&lt;/code&gt;, &lt;br/&gt;
+inside the &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt; &amp;ndash; styles before you could blink! &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;But what of &lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt; or some other page? &lt;br/&gt;
+I click on a link, but I&amp;rsquo;m caught in this cage. &lt;br/&gt;
+I have an &lt;code&gt;index&lt;/code&gt; but I want more, &lt;br/&gt;
+like &lt;code&gt;/about&lt;/code&gt;, and &lt;code&gt;/contact&lt;/code&gt;, and &lt;code&gt;/shop&lt;/code&gt;, or &lt;code&gt;/store&lt;/code&gt;! &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;An app cannot be one static page, &lt;br/&gt;
+we need an &lt;code&gt;HTTP&lt;/code&gt; server to complete our maze. &lt;br/&gt;
+We can spin one up with any language fast. &lt;br/&gt;
+With the help of a terminal it&amp;rsquo;ll be a flash: &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;We start  &lt;code&gt;ruby -run -ehttpd&lt;/code&gt; &lt;br/&gt;
+and give the port &lt;code&gt;-p8080&lt;/code&gt; &lt;br/&gt;
+we serve the directory with all our files &lt;br/&gt;
+&lt;code&gt;.&lt;/code&gt; or &lt;code&gt;/www&lt;/code&gt;, whatever makes you smile :) &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Now we have a perfect example &lt;br/&gt;
+of a &lt;em&gt;static site&lt;/em&gt; - for many use-cases ample. &lt;br/&gt;
+But what if we want to change some of our links? &lt;br/&gt;
+Maybe all &lt;code&gt;/blue&lt;/code&gt; should change to &lt;code&gt;/pink&lt;/code&gt;? &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;We could manually edit each of our pages, &lt;br/&gt;
+inside our text editor, but that would take ages! &lt;br/&gt;
+Maybe this works, if our site is small, &lt;br/&gt;
+or maybe an alternative is better after all? &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;If we could track every link with a name, &lt;br/&gt;
+and reuse &lt;em&gt;templates&lt;/em&gt; wherever markup is the same&amp;hellip; &lt;br/&gt;
+Then we could just simply &lt;em&gt;generate&lt;/em&gt; &lt;br/&gt;
+our whole static site, wouldn&amp;rsquo;t that be great? &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Hugo&lt;/code&gt; and &lt;code&gt;Jekyll&lt;/code&gt; and &lt;code&gt;Gatsby&lt;/code&gt; and more, &lt;br/&gt;
+oh there&amp;rsquo;s static site generators out there galore! &lt;br/&gt;
+Even more powerful, especially when collaborating, &lt;br/&gt;
+are &lt;code&gt;CMS&lt;/code&gt; tools that make things less frustrating. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Most of the web runs with &lt;code&gt;CMS&lt;/code&gt; systems, &lt;br/&gt;
+don&amp;rsquo;t ignore their power, you just might miss them. &lt;br/&gt;
+&lt;code&gt;Wordpress&lt;/code&gt; is the master of this domain - &lt;br/&gt;
+&lt;strong&gt;43%&lt;/strong&gt; of internet pages play by their game[&lt;a href=&#34;https://w3techs.com/technologies/details/cm-wordpress&#34;&gt;*&lt;/a&gt;]. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;But we&amp;rsquo;re building &lt;em&gt;apps&lt;/em&gt;!&amp;rdquo;, I hear you exclaim, &lt;br/&gt;
+I will not use &lt;em&gt;Wordpress&lt;/em&gt;, that&amp;rsquo;s super lame. &lt;br/&gt;
+Well fine, that&amp;rsquo;s fine - if that&amp;rsquo;s how you&amp;rsquo;ll be, &lt;br/&gt;
+let&amp;rsquo;s venture into a world of greater complexity. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;These templates are nice, but my app is &lt;em&gt;dynamic&lt;/em&gt;. &lt;br/&gt;
+There&amp;rsquo;s too much data for one page, I&amp;rsquo;m starting to panic!&amp;rdquo; &lt;br/&gt;
+Relax, my friend, lucky for you I say, &lt;br/&gt;
+&amp;ldquo;There&amp;rsquo;s &lt;code&gt;AJAX&lt;/code&gt; to help keep that data at bay!&amp;rdquo; &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ll serve smaller elements with no data inside, &lt;br/&gt;
+A placeholder sits where it will eventually reside. &lt;br/&gt;
+When users interact - like clicking a button - &lt;br/&gt;
+Javascript will ask our server for data to shove in. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Most folks use &lt;code&gt;JSON&lt;/code&gt;, a simple notation, &lt;br/&gt;
+Easily understood, facilitating creation. &lt;br/&gt;
+So our server changes its primary role, &lt;br/&gt;
+from templating HTML to serving JSON, on the whole. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;This way can work well, and has for many years, &lt;br/&gt;
+with &lt;code&gt;JQuery&lt;/code&gt; a standout among all of its peers. &lt;br/&gt;
+But imperatively updating different parts of our pages, &lt;br/&gt;
+can soon prove nightmarish when apps grow through the ages. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;I know what we&amp;rsquo;ll do! I&amp;rsquo;ll share you the news&amp;hellip; &lt;br/&gt;
+Our UI is a &lt;em&gt;function&lt;/em&gt;, from Data to Views[&lt;a href=&#34;https://www.youtube.com/watch?v=x7cQ3mrcKaY&#34;&gt;*&lt;/a&gt;]! &lt;br/&gt;
+So &lt;code&gt;React&lt;/code&gt; comes along, and has not yet stopped, &lt;br/&gt;
+to declare a tree &lt;em&gt;structure&lt;/em&gt; where data flows from the top. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;JSX&lt;/code&gt; is not templates, when used in our projects, &lt;br/&gt;
+It&amp;rsquo;s builds a &lt;em&gt;virtual DOM&lt;/em&gt;, plain Javascript objects. &lt;br/&gt;
+These objects are then rendered, by &lt;code&gt;ReactDOM&lt;/code&gt;, &lt;br/&gt;
+and diff&amp;rsquo;ed on state changes, imperative updates be gone! &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;We can write our whole app in this functional way, &lt;br/&gt;
+and our sad HTML almost completely goes away. &lt;br/&gt;
+Just have one div, with an id such as &lt;code&gt;root&lt;/code&gt;, &lt;br/&gt;
+a tiny HTML file and a Javascript bundle to boot! &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Just one &lt;em&gt;single page&lt;/em&gt;, no routes needed here, &lt;br/&gt;
+when the URL is in &lt;code&gt;state&lt;/code&gt;, the right things will appear. &lt;br/&gt;
+Routing is done client-side, with so much more, &lt;br/&gt;
+but this leads to issues, many things become chores. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Client-side routing can be a hassle, &lt;br/&gt;
+and history navigation, things the browser should wrestle&amp;hellip; &lt;br/&gt;
+Bugs arise from how state is assembled. &lt;br/&gt;
+&lt;em&gt;Everything&lt;/em&gt; on one page with shared state? Developers tremble. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Projects like &lt;code&gt;Redux&lt;/code&gt; promise organization, &lt;br/&gt;
+of all client-side state, but can cause complication. &lt;br/&gt;
+Data is duplicated, on two different systems, &lt;br/&gt;
+synchronizing one and the other, becomes a tough mission. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Other issues also come into play, &lt;br/&gt;
+like &lt;em&gt;SEO&lt;/em&gt;, where pages must have data right away. &lt;br/&gt;
+Let&amp;rsquo;s get to work, taking React to the &lt;code&gt;Node&lt;/code&gt; runtime, &lt;br/&gt;
+so we can render things &lt;strong&gt;twice&lt;/strong&gt;, not just one time! &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;NextJS&lt;/code&gt; is an example of a framework, &lt;br/&gt;
+That tries to make this server-side game work. &lt;br/&gt;
+Render as much as possible in the initial HTML response, &lt;br/&gt;
+which will then be &lt;em&gt;hydrated&lt;/em&gt; on the client-side once. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;But wait, we&amp;rsquo;re rendering HTML on the server once more? &lt;br/&gt;
+Didn&amp;rsquo;t we use to do this, in the days of yore?&amp;rdquo; &lt;br/&gt;
+Why yes we &lt;em&gt;did&lt;/em&gt; do this, I&amp;rsquo;m glad you can tell! &lt;br/&gt;
+But we have extra client-side powers, when we need those as well. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Other server-side frameworks are joining the mixer, &lt;br/&gt;
+One excellent tool is LiveView in Elixir. &lt;br/&gt;
+Screw client-side React, Javascript is icky. &lt;br/&gt;
+We can react using websockets, it isn&amp;rsquo;t that tricky. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;Then there&amp;rsquo;s &lt;code&gt;HTMX&lt;/code&gt;, a darling of mine, &lt;br/&gt;
+the simplicity is tantalizing, I think it works fine. &lt;br/&gt;
+Why should just &lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; issue requests? &lt;br/&gt;
+Shouldn&amp;rsquo;t any element act at our behest? &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ll share an arcane secret, my young acolyte&amp;hellip; &lt;br/&gt;
+HTML is &lt;em&gt;hypertext&lt;/em&gt;, &lt;code&gt;HATEOAS&lt;/code&gt; gives it flight[&lt;a href=&#34;https://htmx.org/essays/hateoas/&#34;&gt;*&lt;/a&gt;]! &lt;br/&gt;
+An ancient idea, gaining traction fast, &lt;br/&gt;
+while hypertext standards are stuck in the past. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;The web is a beautiful, wonderful thing, &lt;br/&gt;
+these myriad styles make my heart sing! &lt;br/&gt;
+I hope you see just how lucky we are &lt;br/&gt;
+that our apps can reach anyone, those near or afar. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;I want you try each web app approach too. &lt;br/&gt;
+It is all great fun, it&amp;rsquo;s been a pleasure to coach you. &lt;br/&gt;
+Now go forth and build, in whichever way you may choose, &lt;br/&gt;
+make marvelous apps, and no one will lose! &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;(P.S. Sorry Angular, Svelte, Vue, etc. etc. etc. etc.)&lt;/p&gt;
 </description>
        </item>
        
@@ -149,7 +198,7 @@ It seriously felt like I had superpowers when I knew all these insider terms whi
 It seemed to be a mystical text, revealing the secret gnosis of the real hackers.
 Where Computerphile gave me a sense of the vastness and familiarity of computer science, the lexicon gave me a sense of the arcane, mysterious, and rich history of the field.&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m grateful to have had the experiences I did, and to have listened to and interpreted the subtle hints of my own nature.
-I&amp;rsquo;m also grateful I did so much procrastinating in high school, otherwise I probably would have ended up as some kind of real engineer, not a &lt;em&gt;hacker&lt;/em&gt;.&lt;/p&gt;
+I&amp;rsquo;m also grateful I did so much procrastinating in high school, otherwise I probably have ended up as some kind of real engineer, not a &lt;em&gt;hacker&lt;/em&gt;.&lt;/p&gt;
 </description>
        </item>
        
@@ -161,17 +210,6 @@ I&amp;rsquo;m also grateful I did so much procrastinating in high school, otherw
          <guid>https://mjdiloreto.github.io/posts/yasnippet-helpful-buffer/</guid>
          <description>&lt;p&gt;Yasnippets are a powerful text templating system for emacs, with a convenient interface based on &lt;em&gt;snippets&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The templating language itself is&amp;hellip; fine, but it can be difficult to remember exactly what the syntax is, and yasnippet doesn&amp;rsquo;t help you out that much when you run &lt;code&gt;yas-new-snippet&lt;/code&gt;:&lt;/p&gt;
-&lt;style type=&#34;text/css&#34;&gt;
-code {
-    max-height: 200px;
-    display: inline-block;
-    overflow-y: auto;
-}
-&lt;/style&gt;
-&lt;script type=&#34;text/javascript&#34;&gt;
-const snippet = document.querySelectorAll(&#39;code&#39;)[8] // TODO improve
-console.log(snippet);
-&lt;/script&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;,# -*- mode: snippet -*-
 ,# name:
 ,# key:
@@ -890,9 +928,9 @@ It seems to me that neo-religious movements are effectively generation 0 on the 
          
          <guid>https://mjdiloreto.github.io/posts/bees-and-spiders/</guid>
          <description>&lt;figure&gt;&lt;img src=&#34;https://mjdiloreto.github.io/ox-hugo/spider_fighting_a_bee_on_a_green_leaf.png&#34;
-         alt=&#34;spider fighting a bee on a green leaf&#34;/&gt;&lt;figcaption&gt;
-            &lt;h4&gt;The spiders and bees going about their individual tasks, putting the world in order as best they can&lt;/h4&gt;
-        &lt;/figcaption&gt;
+    alt=&#34;spider fighting a bee on a green leaf&#34;&gt;&lt;figcaption&gt;
+      &lt;h4&gt;The spiders and bees going about their individual tasks, putting the world in order as best they can&lt;/h4&gt;
+    &lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h2 id=&#34;bees&#34;&gt;Bees&lt;/h2&gt;
@@ -1857,9 +1895,9 @@ I need to reach for the &lt;em&gt;simplest&lt;/em&gt; tools available.&lt;/p&gt;
          
          <guid>https://mjdiloreto.github.io/posts/literate/</guid>
          <description>&lt;figure&gt;&lt;img src=&#34;https://mjdiloreto.github.io/ox-hugo/word_salad.png&#34;
-         alt=&#34;letters made out of salad ingredients&#34;/&gt;&lt;figcaption&gt;
-            &lt;h4&gt;Word Salad&lt;/h4&gt;
-        &lt;/figcaption&gt;
+    alt=&#34;letters made out of salad ingredients&#34;&gt;&lt;figcaption&gt;
+      &lt;h4&gt;Word Salad&lt;/h4&gt;
+    &lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;h2 id=&#34;rationale&#34;&gt;Rationale&lt;/h2&gt;
@@ -2137,7 +2175,7 @@ Luckily, we can normalize the spellings in the same way we normalized the phonem
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       dictionary-lines))
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;#&amp;#39;user/spellings+phonemes
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;rand-nth&lt;/span&gt; spellings+phonemes)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&amp;#34;PETKOVSEK&amp;#34; (&amp;#34;P&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;T&amp;#34; &amp;#34;K&amp;#34; &amp;#34;AA&amp;#34; &amp;#34;V&amp;#34; &amp;#34;S&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;K&amp;#34;)]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&amp;#34;SOUTHERN&amp;#39;S&amp;#34; (&amp;#34;S&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;DH&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;N&amp;#34; &amp;#34;Z&amp;#34;)]
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Much better.
 I should check that all the &amp;ldquo;spellings&amp;rdquo; and &amp;ldquo;phonemes&amp;rdquo; are each non-empty, in case there were some other data anomalies I didn&amp;rsquo;t find at the beginning of the file.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(filter (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[spelling phonemes]] (or (&lt;span style=&#34;color:#a6e22e&#34;&gt;empty?&lt;/span&gt; spelling) (&lt;span style=&#34;color:#a6e22e&#34;&gt;empty?&lt;/span&gt; phonemes))) spellings+phonemes)
@@ -2274,8 +2312,8 @@ I should check that all the &amp;ldquo;spellings&amp;rdquo; and &amp;ldquo;phone
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;Ah, because those first bunch of entries in the dictionary contain special characters, their spelling maps to &lt;code&gt;nil&lt;/code&gt;. That&amp;rsquo;s fine, we can adjust our definition to simply omit the pairs starting with &lt;code&gt;nil&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;spellings+phonemes
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a6e22e&#34;&gt;-&amp;gt;&amp;gt;&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;spellings+phonemes
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a6e22e&#34;&gt;-&amp;gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   dictionary-lines
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[line]
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          (&lt;span style=&#34;color:#a6e22e&#34;&gt;-&amp;gt;&amp;gt;&lt;/span&gt;
@@ -2283,8 +2321,9 @@ I should check that all the &amp;ldquo;spellings&amp;rdquo; and &amp;ldquo;phone
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           (filter &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;not-empty&lt;/span&gt; %))           &lt;span style=&#34;color:#75715e&#34;&gt;; remove empty strings (from whitespace separation)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           (map normalize-string)            &lt;span style=&#34;color:#75715e&#34;&gt;; normalize&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           (split-at &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)                      &lt;span style=&#34;color:#75715e&#34;&gt;; split into spelling + phonemes&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;           ((&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[[spelling] phonemes]] [spelling phonemes]))))) &lt;span style=&#34;color:#75715e&#34;&gt;; destructure the spelling list&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex; background-color:#3c3d38&#34;&gt;&lt;span&gt;   (filter &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;((complement nil?) (first %)))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;           ((&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[[spelling] phonemes]] [spelling phonemes]))))) &lt;span style=&#34;color:#75715e&#34;&gt;; destructure the spelling list&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   (filter &lt;span style=&#34;color:#f92672&#34;&gt;#&lt;/span&gt;((complement nil?) (first %)))))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;#&amp;#39;user/spellings+phonemes
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;homo-phone-graph-s&#34;&gt;Homo[phone|graph]s&lt;/h2&gt;
@@ -2316,7 +2355,7 @@ I am going to convert each &lt;code&gt;[spelling phonemes]&lt;/code&gt; pair (wh
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[1 2 3 4 5 6]
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s try it:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;rand-nth&lt;/span&gt; (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt; [[spelling pronunciation]] {spelling [pronunciation]}) spellings+phonemes))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{&amp;#34;BOCANEGRA&amp;#34; [(&amp;#34;B&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;K&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;G&amp;#34; &amp;#34;R&amp;#34; &amp;#34;AH&amp;#34;)]}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{&amp;#34;HUGGED&amp;#34; [(&amp;#34;HH&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;G&amp;#34; &amp;#34;D&amp;#34;)]}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Cool, so now we have a list of maps with 1 key-value pair each, we have to &lt;code&gt;reduce&lt;/code&gt; that to a single map with &lt;code&gt;merge-with&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;def &lt;/span&gt;word-&amp;gt;pronunciations
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (&lt;span style=&#34;color:#a6e22e&#34;&gt;reduce&lt;/span&gt;
@@ -2341,21 +2380,21 @@ I am going to convert each &lt;code&gt;[spelling phonemes]&lt;/code&gt; pair (wh
 &lt;h4 id=&#34;exploring-the-pronunciations&#34;&gt;Exploring the pronunciations&lt;/h4&gt;
 &lt;p&gt;Let&amp;rsquo;s see if we can get a word with multiple pronunciations:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;rand-nth&lt;/span&gt; (filter (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (&amp;gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v) &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)) word-&amp;gt;pronunciations))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&amp;#34;IDS&amp;#34; [(&amp;#34;AY&amp;#34; &amp;#34;D&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;Z&amp;#34;) (&amp;#34;IH&amp;#34; &amp;#34;D&amp;#34; &amp;#34;Z&amp;#34;)]]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&amp;#34;AYDAR&amp;#34; [(&amp;#34;AY&amp;#34; &amp;#34;D&amp;#34; &amp;#34;AA&amp;#34; &amp;#34;R&amp;#34;) (&amp;#34;EY&amp;#34; &amp;#34;D&amp;#34; &amp;#34;AA&amp;#34; &amp;#34;R&amp;#34;)]]
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hmm, I&amp;rsquo;m curious which word has the most pronunciations?&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;[maxlen (apply max (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v)) word-&amp;gt;pronunciations))]
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (filter (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (&lt;span style=&#34;color:#a6e22e&#34;&gt;.equals&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v) maxlen)) word-&amp;gt;pronunciations))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;([ [(&amp;#34;EH&amp;#34; &amp;#34;K&amp;#34; &amp;#34;S&amp;#34; &amp;#34;K&amp;#34; &amp;#34;L&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;EY&amp;#34; &amp;#34;SH&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;P&amp;#34; &amp;#34;OY&amp;#34; &amp;#34;N&amp;#34; &amp;#34;T&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;L&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;Z&amp;#34; &amp;#34;K&amp;#34; &amp;#34;W&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;T&amp;#34;) (&amp;#34;D&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;B&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;L&amp;#34; &amp;#34;K&amp;#34; &amp;#34;W&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;T&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;D&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;V&amp;#34; &amp;#34;K&amp;#34; &amp;#34;W&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;T&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;D&amp;#34; &amp;#34;K&amp;#34; &amp;#34;W&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;T&amp;#34;) (&amp;#34;IH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;K&amp;#34; &amp;#34;W&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;T&amp;#34; &amp;#34;S&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;W&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;T&amp;#34;) (&amp;#34;AH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;K&amp;#34; &amp;#34;W&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;T&amp;#34;) (&amp;#34;HH&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;M&amp;#34; &amp;#34;AA&amp;#34; &amp;#34;R&amp;#34; &amp;#34;K&amp;#34;) (&amp;#34;P&amp;#34; &amp;#34;AW&amp;#34; &amp;#34;N&amp;#34; &amp;#34;D&amp;#34; &amp;#34;S&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;SH&amp;#34; &amp;#34;AA&amp;#34; &amp;#34;R&amp;#34; &amp;#34;P&amp;#34; &amp;#34;S&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;S&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;T&amp;#34;) (&amp;#34;AE&amp;#34; &amp;#34;M&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;S&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;N&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;B&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;G&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;Z&amp;#34;) (&amp;#34;IH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;Z&amp;#34;) (&amp;#34;L&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;F&amp;#34; &amp;#34;T&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;OW&amp;#34; &amp;#34;P&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;Z&amp;#34;) (&amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;Z&amp;#34;) (&amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;Z&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;L&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;Z&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;L&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;Z&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;Z&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;D&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;D&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;Z&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;D&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;Z&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;D&amp;#34; &amp;#34;DH&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;Z&amp;#34;) (&amp;#34;R&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;T&amp;#34; &amp;#34;P&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;R&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;AH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;P&amp;#34; &amp;#34;ER&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;Z&amp;#34;) (&amp;#34;P&amp;#34; &amp;#34;L&amp;#34; &amp;#34;UH&amp;#34; &amp;#34;S&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;AA&amp;#34; &amp;#34;M&amp;#34; &amp;#34;AH&amp;#34;) (&amp;#34;S&amp;#34; &amp;#34;L&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;SH&amp;#34;) (&amp;#34;TH&amp;#34; &amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;D&amp;#34; &amp;#34;IY&amp;#34;) (&amp;#34;TH&amp;#34; &amp;#34;R&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;D&amp;#34; &amp;#34;IY&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;L&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;W&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;S&amp;#34; &amp;#34;CH&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;M&amp;#34; &amp;#34;AA&amp;#34; &amp;#34;R&amp;#34; &amp;#34;K&amp;#34;) (&amp;#34;B&amp;#34; &amp;#34;R&amp;#34; &amp;#34;EY&amp;#34; &amp;#34;S&amp;#34;) (&amp;#34;L&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;F&amp;#34; &amp;#34;T&amp;#34; &amp;#34;B&amp;#34; &amp;#34;R&amp;#34; &amp;#34;EY&amp;#34; &amp;#34;S&amp;#34;) (&amp;#34;OW&amp;#34; &amp;#34;P&amp;#34; &amp;#34;EH&amp;#34; &amp;#34;N&amp;#34; &amp;#34;B&amp;#34; &amp;#34;R&amp;#34; &amp;#34;EY&amp;#34; &amp;#34;S&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;L&amp;#34; &amp;#34;OW&amp;#34; &amp;#34;Z&amp;#34; &amp;#34;B&amp;#34; &amp;#34;R&amp;#34; &amp;#34;EY&amp;#34; &amp;#34;S&amp;#34;) (&amp;#34;R&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;T&amp;#34; &amp;#34;B&amp;#34; &amp;#34;R&amp;#34; &amp;#34;EY&amp;#34; &amp;#34;S&amp;#34;)]])
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;([&amp;#34;M&amp;#34; [(&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;W&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;T&amp;#34; &amp;#34;UW&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;R&amp;#34; &amp;#34;IY&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;F&amp;#34; &amp;#34;AO&amp;#34; &amp;#34;R&amp;#34;) (&amp;#34;EH&amp;#34; &amp;#34;M&amp;#34; &amp;#34;F&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;V&amp;#34;)]] [&amp;#34;C&amp;#34; [(&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34;) (&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;W&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;T&amp;#34; &amp;#34;UW&amp;#34;) (&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;R&amp;#34; &amp;#34;IY&amp;#34;) (&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;F&amp;#34; &amp;#34;AO&amp;#34; &amp;#34;R&amp;#34;) (&amp;#34;S&amp;#34; &amp;#34;IY&amp;#34; &amp;#34;F&amp;#34; &amp;#34;AY&amp;#34; &amp;#34;V&amp;#34;)]])
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Oh, I guess &amp;ldquo;M1&amp;rdquo;, &amp;ldquo;M2&amp;rdquo;, &amp;ldquo;M3&amp;rdquo;&amp;hellip; and &amp;ldquo;C1&amp;rdquo;, &amp;ldquo;C2&amp;rdquo;, &amp;ldquo;C3&amp;rdquo; &amp;hellip; are all valid words in the dictionary and I broke them by removing the numbers. Whatever.&lt;/p&gt;
 &lt;p&gt;How about the next-most pronunciations?&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;[maxlen (apply max (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v)) word-&amp;gt;pronunciations))]
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (filter (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (= (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v) (- maxlen &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;))) word-&amp;gt;pronunciations))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;([&amp;#34;CAT-&amp;#34; [(&amp;#34;K&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;T&amp;#34; &amp;#34;W&amp;#34; &amp;#34;AO&amp;#34; &amp;#34;N&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;T&amp;#34; &amp;#34;T&amp;#34; &amp;#34;UW&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;T&amp;#34; &amp;#34;TH&amp;#34; &amp;#34;R&amp;#34; &amp;#34;IY&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;T&amp;#34; &amp;#34;F&amp;#34; &amp;#34;AO&amp;#34; &amp;#34;R&amp;#34;) (&amp;#34;K&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;T&amp;#34; &amp;#34;S&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;K&amp;#34; &amp;#34;S&amp;#34;)]])
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Hurricanes, cool. Again, I removed the numeric value from the word itself, but that shouldn&amp;rsquo;t really matter.&lt;/p&gt;
 &lt;p&gt;I want to find the first real word though&amp;hellip;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-clojure&#34; data-lang=&#34;clojure&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;let &lt;/span&gt;[maxlen (apply max (map (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v)) word-&amp;gt;pronunciations))]
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  (take &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt; (filter (&lt;span style=&#34;color:#66d9ef&#34;&gt;fn &lt;/span&gt;[[k v]] (= (&lt;span style=&#34;color:#a6e22e&#34;&gt;.length&lt;/span&gt; v) (- maxlen &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;))) word-&amp;gt;pronunciations)))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;([&amp;#34;GRANTED&amp;#34; [(&amp;#34;G&amp;#34; &amp;#34;R&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;N&amp;#34; &amp;#34;T&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;G&amp;#34; &amp;#34;R&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;N&amp;#34; &amp;#34;T&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;G&amp;#34; &amp;#34;R&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;N&amp;#34; &amp;#34;AH&amp;#34; &amp;#34;D&amp;#34;) (&amp;#34;G&amp;#34; &amp;#34;R&amp;#34; &amp;#34;AE&amp;#34; &amp;#34;N&amp;#34; &amp;#34;IH&amp;#34; &amp;#34;D&amp;#34;)]])
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This is pretty interesting! The last two pronunciations completely omit the &amp;ldquo;T&amp;rdquo; sound from &amp;ldquo;GRANTED&amp;rdquo;, which is known linguistically as &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Elision&#34;&gt;elision&lt;/a&gt;&lt;/em&gt;.
 We say that the &amp;ldquo;T&amp;rdquo; was &lt;em&gt;elided&lt;/em&gt; from the pronunciation of &amp;ldquo;GRANTED&amp;rdquo;.&lt;/p&gt;
 &lt;h4 id=&#34;what-makes-a-map&#34;&gt;What makes a Map?&lt;/h4&gt;
@@ -3742,216 +3781,6 @@ So it begins, I&amp;rsquo;ve chosen a side on the holy war, and emacs is slowly 
 Right now my vim/emacs ratio is around 1:1, but I imagine this will shift more in emacs&amp;rsquo;s favor soon.
 I &lt;em&gt;really&lt;/em&gt; like emacs.
 It&amp;rsquo;s almost apples and oranges to vim, or maybe a more apt analogy would be &lt;em&gt;crab-apples&lt;/em&gt; to oranges, where you&amp;rsquo;ve only been eating crab-apples for years and didn&amp;rsquo;t know how good oranges tasted yet.&lt;/p&gt;
-</description>
-       </item>
-       
-       <item>
-         <title>Literate Programming Presentation</title>
-         <link>https://mjdiloreto.github.io/posts-2022-05-24-tue/presentation/</link>
-         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-         
-         <guid>https://mjdiloreto.github.io/posts-2022-05-24-tue/presentation/</guid>
-         <description>&lt;h2 id=&#34;what-is-literate-programming&#34;&gt;What is Literate Programming?&lt;/h2&gt;
-&lt;p&gt;Programs should primarily serve human readers, and secondarily machines.&lt;/p&gt;
-&lt;h2 id=&#34;literate-environments&#34;&gt;Literate Environments&lt;/h2&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;Environment&lt;/th&gt;
-&lt;th&gt;Language&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;👍&lt;/td&gt;
-&lt;td&gt;Jupyter Notebooks&lt;/td&gt;
-&lt;td&gt;Python&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;👍&lt;/td&gt;
-&lt;td&gt;Storybook using &lt;a href=&#34;https://storybook.js.org/docs/react/api/mdx&#34;&gt;MDX&lt;/a&gt;&lt;/td&gt;
-&lt;td&gt;Javascript/React&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;⭐&lt;/td&gt;
-&lt;td&gt;Emacs org-mode (with org-babel)&lt;/td&gt;
-&lt;td&gt;Any&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;Aspects of literate programming are becoming universally more popular.&lt;/p&gt;
-&lt;p&gt;In these classes of programs especially:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Teaching / Research / Data Science (Notebooks)&lt;/li&gt;
-&lt;li&gt;Design Languages (Storybook)&lt;/li&gt;
-&lt;li&gt;Emacs configuration (org-mode)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;why-org-mode&#34;&gt;Why org-mode?&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;General Purpose:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;hypertext transformations&lt;/li&gt;
-&lt;li&gt;agenda views&lt;/li&gt;
-&lt;li&gt;zettelkasten&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Language agnostic&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;org-babel based on noweb&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;I already use emacs+org-mode for many purposes&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;em&gt;Focused on organizing text&lt;/em&gt;, with methods to support it. Code is secondary (as it should be)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;org-export-html&#34;&gt;org export html&lt;/h2&gt;
-&lt;h3 id=&#34;literal-code--from-source-document&#34;&gt;literal code (from source document)&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;#+HTML: Literal HTML code for export
-
-#+BEGIN_EXPORT html
-  All lines between these markers are exported literally
-#+END_EXPORT
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;literal-code--from-outside-script&#34;&gt;literal code (from outside script)&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-nil&#34; data-lang=&#34;nil&#34;&gt;#+HTML_HEAD: &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; type=&amp;#34;text/css&amp;#34; href=&amp;#34;style1.css&amp;#34; /&amp;gt;
-#+HTML_HEAD_EXTRA: &amp;lt;link rel=&amp;#34;alternate stylesheet&amp;#34; type=&amp;#34;text/css&amp;#34; href=&amp;#34;style2.css&amp;#34; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;customizing-css&#34;&gt;customizing CSS&lt;/h3&gt;
-&lt;p&gt;uses standard classes for all exported org-mode fixtures&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;p.author&lt;/th&gt;
-&lt;th&gt;author information, including email&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;p.date&lt;/td&gt;
-&lt;td&gt;publishing date&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p.creator&lt;/td&gt;
-&lt;td&gt;creator info, about org mode version&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.title&lt;/td&gt;
-&lt;td&gt;document title&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.subtitle&lt;/td&gt;
-&lt;td&gt;document subtitle&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.todo&lt;/td&gt;
-&lt;td&gt;TODO keywords, all not-done states&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.done&lt;/td&gt;
-&lt;td&gt;the DONE keywords, all states that count as done&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.WAITING&lt;/td&gt;
-&lt;td&gt;each TODO keyword also uses a class named after itself&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.timestamp&lt;/td&gt;
-&lt;td&gt;timestamp&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.timestamp-kwd&lt;/td&gt;
-&lt;td&gt;keyword associated with a timestamp, like ‘SCHEDULED’&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.timestamp-wrapper&lt;/td&gt;
-&lt;td&gt;span around keyword plus timestamp&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.tag&lt;/td&gt;
-&lt;td&gt;tag in a headline&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;._HOME&lt;/td&gt;
-&lt;td&gt;each tag uses itself as a class, “@” replaced by “_”&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.target&lt;/td&gt;
-&lt;td&gt;target for links&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.linenr&lt;/td&gt;
-&lt;td&gt;the line number in a code example&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.code-highlighted&lt;/td&gt;
-&lt;td&gt;for highlighting referenced code lines&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;div.outline-N&lt;/td&gt;
-&lt;td&gt;div for outline level N (headline plus text)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;div.outline-text-N&lt;/td&gt;
-&lt;td&gt;extra div for text at outline level N&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.section-number-N&lt;/td&gt;
-&lt;td&gt;section number in headlines, different for each level&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.figure-number&lt;/td&gt;
-&lt;td&gt;label like “Figure 1:”&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.table-number&lt;/td&gt;
-&lt;td&gt;label like “Table 1:”&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.listing-number&lt;/td&gt;
-&lt;td&gt;label like “Listing 1:”&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;div.figure&lt;/td&gt;
-&lt;td&gt;how to format an in-lined image&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;pre.src&lt;/td&gt;
-&lt;td&gt;formatted source code&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;pre.example&lt;/td&gt;
-&lt;td&gt;normal example&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p.verse&lt;/td&gt;
-&lt;td&gt;verse paragraph&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;div.footnotes&lt;/td&gt;
-&lt;td&gt;footnote section headline&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p.footnote&lt;/td&gt;
-&lt;td&gt;footnote definition paragraph, containing a footnote&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.footref&lt;/td&gt;
-&lt;td&gt;a footnote reference number (always a &amp;lt;sup&amp;gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.footnum&lt;/td&gt;
-&lt;td&gt;footnote number in footnote definition (always &amp;lt;sup&amp;gt;)&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;.org-svg&lt;/td&gt;
-&lt;td&gt;default class for a linked ‘.svg’ image&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
 </description>
        </item>
        

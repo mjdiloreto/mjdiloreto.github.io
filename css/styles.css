@@ -387,22 +387,3 @@ figure {
 figure img {
     width: unset;
 }
-
-/* Color schemes */
-@media (prefers-color-scheme: light) {
-  body {
-    background: #cecece;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #292929;
-  }
-}
-
-@media (prefers-color-scheme: no-preference) {
-  body {
-    background: #cecece;
-  }
-}
