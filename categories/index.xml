@@ -42,7 +42,7 @@ With the help of a terminal it&amp;rsquo;ll be a flash: &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;We start  &lt;code&gt;ruby -run -ehttpd&lt;/code&gt; &lt;br/&gt;
 and give the port &lt;code&gt;-p8080&lt;/code&gt; &lt;br/&gt;
 we serve the directory with all our files &lt;br/&gt;
-&lt;code&gt;.&lt;/code&gt; or &lt;code&gt;/www&lt;/code&gt;, whatever makes you smile :) &lt;br/&gt;&lt;/p&gt;
+&lt;code&gt;.&lt;/code&gt; or &lt;code&gt;/www&lt;/code&gt;, whatever makes you smile [&lt;a href=&#34;https://gist.github.com/mjdiloreto/df3e7a7ecd79f83950bfc95c09c717bf&#34;&gt;*&lt;/a&gt;] &lt;br/&gt;&lt;/p&gt;
 &lt;p&gt;Now we have a perfect example &lt;br/&gt;
 of a &lt;em&gt;static site&lt;/em&gt; - for many use-cases ample. &lt;br/&gt;
 But what if we want to change some of our links? &lt;br/&gt;
